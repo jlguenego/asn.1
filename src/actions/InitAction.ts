@@ -11,13 +11,12 @@ export class InitAction extends Action {
     console.log('type: ', type);
     console.log('SEQUENCE: ', SEQUENCE);
     if (type === SEQUENCE) {
-      const newState = {...state};
       const sequence = {};
-      newState.pointer = sequence;
-      newState.trees = [...state.trees];
-      newState.trees.push(sequence);
+      state.pointer = sequence;
+      state.trees = [...state.trees];
+      state.trees.push(sequence);
       state.nextAction = ActionType.SEQUENCE;
-      newState.index += 1;
+      state.index += 1;
 
       return state;
     } else {

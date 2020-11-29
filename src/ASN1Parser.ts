@@ -1,4 +1,4 @@
-import {Action} from './Action';
+import {ActionFactory} from './actions/ActionFactory';
 import {ActionType} from './actions/ActionType';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
@@ -27,9 +27,9 @@ export class ASN1Parser {
       console.log('state.nextAction: ', state.nextAction);
 
       Object.freeze(state); // make this state immutable
-      const action = Action.get(state.nextAction);
+      const action = ActionFactory.get(state.nextAction);
       console.log('action: ', action);
-      state = action.reduce(state);
+      state = action.reduce(action.clone(state));
     }
     return state.trees;
   }
