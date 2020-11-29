@@ -2,5 +2,5 @@ node_modules
 .eslintignore
 .eslintrc.json
 .prettierrc.js
-README.md
+CHANGELOG.md
 tsconfig.json
