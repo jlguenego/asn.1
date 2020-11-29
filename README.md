@@ -11,7 +11,7 @@ npm i -g @jlguenego/asn.1
 ### Command line
 
 ```
-asn1-parse [ -s <asn1-specfile> ] [ -e <asn1-encoding-rule> ] [ -f <input-file-encoding> ] [ -t type ]    <messagefile>
+asn1-parse [ -s <asn1-specfile> ] [ -e <asn1-encoding-rule> ] [ -f <input-file-encoding> ] [ -t type ] <messagefile>
 ```
 
 #### Example
