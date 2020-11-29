@@ -1,5 +1,4 @@
 node_modules
-src
 .eslintignore
 .eslintrc.json
 .prettierrc.js
