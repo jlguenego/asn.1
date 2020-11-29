@@ -1,3 +1,5 @@
+import {EncodingRule} from './EncodingRule';
+
 export interface ASN1ParserOptions {
-  asn1: string;
+  encodingRule: EncodingRule;
 }
