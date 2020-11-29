@@ -6,7 +6,7 @@ const SEQUENCE = 0x30;
 
 export class InitAction extends Action {
   type = ActionType.INIT;
-  reduce(state: State): State {
+  transform(state: State): State {
     const type = state.dataview.getUint8(state.index);
     console.log('type: ', type);
     console.log('SEQUENCE: ', SEQUENCE);

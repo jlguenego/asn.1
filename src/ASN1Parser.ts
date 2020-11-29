@@ -29,7 +29,7 @@ export class ASN1Parser {
       Object.freeze(state); // make this state immutable
       const action = ActionFactory.get(state.nextAction);
       console.log('action: ', action);
-      state = action.reduce(action.clone(state));
+      state = action.reduce(state);
     }
     return state.trees;
   }
