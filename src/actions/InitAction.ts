@@ -13,8 +13,6 @@ export class InitAction extends Action {
       return;
     }
     const type = state.dataview.getUint8(state.index);
-    console.log('type: ', type);
-    console.log('SEQUENCE: ', SEQUENCE);
     if (type === SEQUENCE) {
       const sequence = {};
       state.context = {

@@ -11,7 +11,6 @@ export class ItemAction extends Action {
   transform(state: State) {
     const context = state.context as SequenceCtxt;
     const type = state.dataview.getUint8(state.index);
-    console.log('type: ', type);
     state.index++;
     context.index++;
     if (type === INTEGER) {

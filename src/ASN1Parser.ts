@@ -23,9 +23,7 @@ export class ASN1Parser {
       context: undefined,
     };
     while (state.nextAction !== ActionType.NONE) {
-      console.log('state.nextAction: ', state.nextAction);
       const action = ActionFactory.get(state.nextAction);
-      console.log('action: ', action);
       action.transform(state);
     }
     return state.trees;

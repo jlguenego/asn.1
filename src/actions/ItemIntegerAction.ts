@@ -10,7 +10,6 @@ export class ItemIntegerAction extends Action {
     const length = state.dataview.getUint8(state.index);
     state.index++;
     context.index++;
-    console.log('length: ', length);
     if (length === 1) {
       const value = state.dataview.getUint8(state.index);
       state.index++;

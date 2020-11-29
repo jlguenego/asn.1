@@ -7,7 +7,6 @@ export class SequenceAction extends Action {
   type = ActionType.SEQUENCE;
   transform(state: State): void {
     const length = state.dataview.getUint8(state.index);
-    console.log('length: ', length);
     state.index++;
     const context = state.context as SequenceCtxt;
     context.length = length;
