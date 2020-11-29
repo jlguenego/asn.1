@@ -1,11 +1,6 @@
 import assert from 'assert';
 import {Action} from '../Action';
 import {ActionType} from './ActionType';
-import {InitAction} from './InitAction';
-import {ItemAction} from './ItemAction';
-import {ItemIA5StringAction} from './ItemIA5StringAction';
-import {ItemIntegerAction} from './ItemIntegerAction';
-import {SequenceAction} from './SequenceAction';
 
 export class ActionFactory {
   private static actions: {[key: string]: Action} = {};
@@ -21,9 +16,3 @@ export class ActionFactory {
     ActionFactory.actions[action.type] = action;
   }
 }
-
-ActionFactory.register(InitAction);
-ActionFactory.register(SequenceAction);
-ActionFactory.register(ItemAction);
-ActionFactory.register(ItemIntegerAction);
-ActionFactory.register(ItemIA5StringAction);

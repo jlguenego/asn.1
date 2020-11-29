@@ -1,5 +1,6 @@
 import {ActionFactory} from './actions/ActionFactory';
 import {ActionType} from './actions/ActionType';
+import {DERRegister} from './encoding-rules/der/DERRegistration';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
 import {State} from './interfaces/State';
@@ -14,6 +15,7 @@ export class ASN1Parser {
   }
 
   parse(input: ArrayBuffer): Object {
+    this.register();
     const state: State = {
       dataview: new DataView(input),
       size: input.byteLength,
@@ -27,5 +29,11 @@ export class ASN1Parser {
       action.transform(state);
     }
     return state.trees;
+  }
+
+  register() {
+    if (this.options.encodingRule === EncodingRule.DER) {
+      DERRegister();
+    }
   }
 }

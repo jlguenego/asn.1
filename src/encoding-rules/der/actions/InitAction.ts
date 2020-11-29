@@ -1,7 +1,7 @@
-import {Action} from '../Action';
-import {SequenceCtxt} from '../interfaces/SequenceCtxt';
-import {State} from '../interfaces/State';
-import {ActionType} from './ActionType';
+import {Action} from '../../../Action';
+import {ActionType} from '../../../actions/ActionType';
+import {SequenceCtxt} from '../../../interfaces/SequenceCtxt';
+import {State} from '../../../interfaces/State';
 
 const SEQUENCE = 0x30;
 
