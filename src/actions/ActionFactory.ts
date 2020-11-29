@@ -3,6 +3,7 @@ import {Action} from '../Action';
 import {ActionType} from './ActionType';
 import {InitAction} from './InitAction';
 import {ItemAction} from './ItemAction';
+import {ItemIA5StringAction} from './ItemIA5StringAction';
 import {ItemIntegerAction} from './ItemIntegerAction';
 import {SequenceAction} from './SequenceAction';
 
@@ -25,3 +26,4 @@ ActionFactory.register(InitAction);
 ActionFactory.register(SequenceAction);
 ActionFactory.register(ItemAction);
 ActionFactory.register(ItemIntegerAction);
+ActionFactory.register(ItemIA5StringAction);

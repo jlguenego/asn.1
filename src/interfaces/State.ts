@@ -7,5 +7,5 @@ export interface State {
   index: number;
   nextAction: ActionType;
   trees: Props[];
-  context?: Props;
+  context: unknown;
 }

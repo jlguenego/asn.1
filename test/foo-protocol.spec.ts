@@ -15,9 +15,11 @@ describe('Base64 Unit Test', () => {
     const output = asn1Parse(arrayBuffer, {
       encodingRule: EncodingRule.DER,
     });
-    assert.deepStrictEqual(output, {
-      trackingNumber: '5',
-      question: 'Anybody there?',
-    });
+    assert.deepStrictEqual(output, [
+      {
+        '0': 5,
+        '1': 'Anybody there?',
+      },
+    ]);
   });
 });

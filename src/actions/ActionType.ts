@@ -4,4 +4,5 @@ export enum ActionType {
   SEQUENCE = 'sequence',
   ITEM = 'item',
   ITEM_INTEGER = 'item integer',
+  ITEM_IA5STRING = 'item IA5string',
 }
