@@ -23,9 +23,12 @@ export class ASN1Parser {
       pointer: undefined,
     };
     let state = initialState;
-    while (state.nextAction) {
+    while (state.nextAction !== ActionType.NONE) {
+      console.log('state.nextAction: ', state.nextAction);
+
       Object.freeze(state); // make this state immutable
       const action = Action.get(state.nextAction);
+      console.log('action: ', action);
       state = action.reduce(state);
     }
     return state.trees;

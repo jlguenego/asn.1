@@ -1,3 +1,4 @@
+import assert from 'assert';
 import {ActionType} from './actions/ActionType';
 import {State} from './interfaces/State';
 
@@ -6,10 +7,14 @@ export abstract class Action {
   abstract reduce(state: State): State;
 
   static register(MyClass: new () => Action): void {
-    Action.actions[MyClass.name] = new MyClass();
+    const action = new MyClass();
+    Action.actions[action.type] = action;
+    console.log('Action.actions: ', Action.actions);
   }
   static get(type: ActionType): Action {
-    return Action.actions[type];
+    const result = Action.actions[type];
+    assert(result);
+    return result;
   }
   private static actions: {[key: string]: Action} = {};
 }

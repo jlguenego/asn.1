@@ -8,6 +8,8 @@ export class InitAction extends Action {
   type = ActionType.INIT;
   reduce(state: State): State {
     const type = state.dataview.getUint8(state.index);
+    console.log('type: ', type);
+    console.log('SEQUENCE: ', SEQUENCE);
     if (type === SEQUENCE) {
       const newState = {...state};
       const sequence = {};
@@ -23,5 +25,3 @@ export class InitAction extends Action {
     }
   }
 }
-
-Action.register(InitAction);
