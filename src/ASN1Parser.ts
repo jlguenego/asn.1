@@ -26,7 +26,6 @@ export class ASN1Parser {
     while (state.nextAction !== ActionType.NONE) {
       console.log('state.nextAction: ', state.nextAction);
 
-      Object.freeze(state); // make this state immutable
       const action = ActionFactory.get(state.nextAction);
       console.log('action: ', action);
       state = action.reduce(state);
