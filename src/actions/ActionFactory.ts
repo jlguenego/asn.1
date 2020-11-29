@@ -2,6 +2,8 @@ import assert from 'assert';
 import {Action} from '../Action';
 import {ActionType} from './ActionType';
 import {InitAction} from './InitAction';
+import {ItemAction} from './ItemAction';
+import {ItemIntegerAction} from './ItemIntegerAction';
 import {SequenceAction} from './SequenceAction';
 
 export class ActionFactory {
@@ -21,3 +23,5 @@ export class ActionFactory {
 
 ActionFactory.register(InitAction);
 ActionFactory.register(SequenceAction);
+ActionFactory.register(ItemAction);
+ActionFactory.register(ItemIntegerAction);

@@ -14,21 +14,19 @@ export class ASN1Parser {
   }
 
   parse(input: ArrayBuffer): Object {
-    const initialState: State = {
+    const state: State = {
       dataview: new DataView(input),
       size: input.byteLength,
       index: 0,
       nextAction: ActionType.INIT,
       trees: [],
-      pointer: undefined,
+      context: undefined,
     };
-    let state = initialState;
     while (state.nextAction !== ActionType.NONE) {
       console.log('state.nextAction: ', state.nextAction);
-
       const action = ActionFactory.get(state.nextAction);
       console.log('action: ', action);
-      state = action.reduce(state);
+      action.transform(state);
     }
     return state.trees;
   }

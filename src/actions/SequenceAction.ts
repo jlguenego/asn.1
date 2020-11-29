@@ -4,9 +4,14 @@ import {ActionType} from './ActionType';
 
 export class SequenceAction extends Action {
   type = ActionType.SEQUENCE;
-  transform(state: State): State {
+  transform(state: State): void {
     const length = state.dataview.getUint8(state.index);
     console.log('length: ', length);
-    return state;
+    state.index++;
+    if (length === 0) {
+      state.nextAction = ActionType.INIT;
+      return;
+    }
+    state.nextAction = ActionType.ITEM;
   }
 }
