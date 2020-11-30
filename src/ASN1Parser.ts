@@ -17,6 +17,7 @@ export class ASN1Parser {
   parse(input: ArrayBuffer): Object {
     this.register();
     const state: State = {
+      encodingRule: this.options.encodingRule,
       dataview: new DataView(input),
       size: input.byteLength,
       index: 0,
