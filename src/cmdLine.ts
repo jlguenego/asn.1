@@ -3,8 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import {version} from '../package.json';
 import {ASN1Parser} from './ASN1Parser';
+import {ASN1Validator} from './ASN1Validator';
 
-export function asn1Parse(): Object | undefined {
+export function asn1Parse(): void {
   program
     .version(version)
     .arguments('<msgFile>')
@@ -53,6 +54,26 @@ export function asn1Parse(): Object | undefined {
     program.help();
   }
 
+  let asn1Definition: string | undefined;
+  try {
+    if (program['definition']) {
+      const asn1File = path.resolve(process.cwd(), program['definition']);
+      asn1Definition = fs.readFileSync(asn1File, {encoding: 'utf8'});
+    } else {
+      asn1Definition = undefined;
+    }
+  } catch (e) {
+    console.log('Cannot read <asn1-file>:', e.message);
+    program.help();
+  }
+
   const asn1Parser = new ASN1Parser({});
-  return asn1Parser.parse(input);
+  const output = asn1Parser.parse(input);
+  console.log('output: ', output);
+
+  if (asn1Definition) {
+    const asn1Validator = new ASN1Validator(asn1Definition);
+    const validated = asn1Validator.validate(output);
+    console.log('validated: ', validated);
+  }
 }

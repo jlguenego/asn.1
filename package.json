@@ -16,7 +16,8 @@
     "prepare": "npm.cmd run compile",
     "pretest": "npm.cmd run compile",
     "posttest": "npm.cmd run lint",
-    "release": "standard-version"
+    "release": "standard-version",
+    "start": "node bin/asn1-parse.js -f hex examples/messages/msg1.der -d examples/messages/foo-protocol.asn1"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +32,7 @@
     "typescript": "^4.0.3"
   },
   "dependencies": {
+    "chevrotain": "^7.0.3",
     "commander": "^6.2.0"
   }
 }

@@ -3,6 +3,7 @@ import {ActionType} from './actions/ActionType';
 import {DERRegister} from './encoding-rules/der/DERRegistration';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
+import {Props} from './interfaces/Props';
 import {State} from './interfaces/State';
 
 export class ASN1Parser {
@@ -14,7 +15,7 @@ export class ASN1Parser {
     this.options = {...this.options, ...opts};
   }
 
-  parse(input: ArrayBuffer): Object {
+  parse(input: ArrayBuffer): Props[] {
     this.register();
     const state: State = {
       encodingRule: this.options.encodingRule,
