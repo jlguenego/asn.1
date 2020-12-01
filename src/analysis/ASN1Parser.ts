@@ -16,7 +16,7 @@ import {
   L_CURLY,
   R_CURLY,
   COMMA,
-} from './ASN1Token';
+} from './ASN1Lexer';
 
 export class ASN1Parser extends CstParser {
   public ModuleDefinition!: () => CstNode;
