@@ -1,1 +1,1 @@
-export class ASN1ComponentType {}
+export abstract class ASN1ComponentType {}

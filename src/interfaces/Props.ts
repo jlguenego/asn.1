@@ -1,3 +1,5 @@
 export interface Props {
-  [key: string]: Props | string | number | boolean | undefined;
+  [key: string]: PropsItem;
 }
+
+export type PropsItem = string | number | boolean | Props | undefined;
