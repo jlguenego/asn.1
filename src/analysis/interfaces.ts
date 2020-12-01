@@ -20,6 +20,9 @@ export interface TypeCstNode extends CstNode {
 
 export interface BuiltinTypeCstNode extends CstNode {
   SequenceType: CstNode;
+  BooleanType: CstNode;
+  IntegerType: CstNode;
+  CharacterStringType: CstNode;
 }
 
 export interface SequenceTypeCstNode extends CstNode {
@@ -31,5 +34,14 @@ export interface ComponentTypeCstNode extends CstNode {
 }
 
 export interface NamedTypeCstNode extends CstNode {
+  Identifier: IToken[];
   Type: CstNode;
+}
+
+export interface CharacterStringTypeCstNode extends CstNode {
+  RestrictedCharacterStringType: CstNode;
+}
+
+export interface RestrictedCharacterStringTypeCstNode extends CstNode {
+  IA5String: IToken[];
 }

@@ -3,7 +3,11 @@ import {ASN1Assignment} from '../asn1/ASN1Assignment';
 import {ASN1Module} from '../asn1/ASN1Module';
 import {ASN1NamedType} from '../asn1/ASN1NamedType';
 import {ASN1Sequence} from '../asn1/ASN1Sequence';
-import {ASN1Type} from '../asn1/ASN1Type';
+import {
+  ASN1BooleanType,
+  ASN1IA5StringType,
+  ASN1IntegerType,
+} from '../asn1/types/builtin';
 import {ASN1CstParser} from './ASN1CstParser';
 import {
   ASN1CstNode,
@@ -14,6 +18,7 @@ import {
   BuiltinTypeCstNode,
   NamedTypeCstNode,
   ComponentTypeCstNode,
+  CharacterStringTypeCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -54,11 +59,22 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   BuiltinType(ctx: BuiltinTypeCstNode) {
-    return this.visit(ctx.SequenceType);
+    if (ctx.SequenceType) {
+      return this.visit(ctx.SequenceType);
+    }
+    if (ctx.BooleanType) {
+      return new ASN1BooleanType();
+    }
+    if (ctx.IntegerType) {
+      return new ASN1IntegerType();
+    }
+    if (ctx.CharacterStringType) {
+      return this.visit(ctx.CharacterStringType);
+    }
+    return null;
   }
 
   SequenceType(ctx: SequenceTypeCstNode) {
-    // console.log('module: ', module);
     console.log('ctx: ', util.inspect(ctx, false, null, true));
     const sequence = new ASN1Sequence();
     this.visit(ctx.ComponentTypeLists, sequence);
@@ -71,8 +87,18 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   NamedType(ctx: NamedTypeCstNode) {
-    console.log('ctx: ', util.inspect(ctx, false, null, true));
-    const namedType = new ASN1NamedType('titi', new ASN1Type());
+    console.log('ctx NamedType: ', util.inspect(ctx, false, null, true));
+    const name = ctx.Identifier[0].image;
+    const type = this.visit(ctx.Type);
+    const namedType = new ASN1NamedType(name, type);
     return namedType;
+  }
+
+  CharacterStringType(ctx: CharacterStringTypeCstNode) {
+    return this.visit(ctx.RestrictedCharacterStringType);
+  }
+
+  RestrictedCharacterStringType() {
+    return new ASN1IA5StringType();
   }
 }
