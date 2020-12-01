@@ -1,25 +1,30 @@
 import {ASN1Module} from './asn1/ASN1Module';
+import {DERValidator} from './codec/der/DERValidator';
 import {EncodingRule} from './EncodingRule';
 import {Props} from './interfaces/Props';
 
+const getAssignments = (module: ASN1Module, types: string[]) => {
+  if (!types.length) {
+    return [module.assignments[0]];
+  }
+  return types.map(type => module.getAssignment(type));
+};
+
 export class ASN1Validator {
   module: ASN1Module;
-  constructor(private definition: string, private type?: string) {
+  constructor(private definition: string) {
     this.module = ASN1Module.compile(this.definition);
-    if (!this.type) {
-      this.type = this.module.getDefaultType();
-    }
   }
 
-  validate(input: Props[], encodingRule = EncodingRule.DER): boolean {
-    if (encodingRule !== EncodingRule.DER) {
-      throw new Error(
-        `${encodingRule} not yet supported. (Only DER supported at this time)`
-      );
+  validate(input: Props[], types: string[], encodingRule = EncodingRule.DER) {
+    const assignments = getAssignments(this.module, types);
+    if (encodingRule === EncodingRule.DER) {
+      const validator = new DERValidator();
+      validator.validateAll(assignments, input);
+      return;
     }
-    if (input) {
-      return true;
-    }
-    return false;
+    throw new Error(
+      `${encodingRule} not yet supported. (Only DER supported at this time)`
+    );
   }
 }

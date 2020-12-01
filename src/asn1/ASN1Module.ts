@@ -26,10 +26,11 @@ export class ASN1Module {
     this.assignments.push(type);
   }
 
-  getDefaultType(): string {
-    if (this.assignments.length === 0) {
-      throw new Error('Cannot get the default type of an empty def file');
+  getAssignment(name: string) {
+    const assignment = this.assignments.find(a => a.name === name);
+    if (!assignment) {
+      throw new Error(`Assignment (type) not found: ${name}`);
     }
-    return this.assignments[0].name;
+    return assignment;
   }
 }

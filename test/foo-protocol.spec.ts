@@ -28,8 +28,7 @@ describe('Base64 Unit Test', () => {
       resolve(__dirname, 'data/foo-protocol.asn1'),
       {encoding: 'utf8'}
     );
-    const validator = new ASN1Validator(definition, 'FooQuestion');
-    const validated = validator.validate(fooQuestionDerJson, EncodingRule.DER);
-    assert(validated);
+    const validator = new ASN1Validator(definition);
+    validator.validate(fooQuestionDerJson, ['FooQuestion'], EncodingRule.DER);
   });
 });
