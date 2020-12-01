@@ -57,6 +57,10 @@ The output should be:
 }
 ```
 
+## TODO:
+
+Test a Principal name detector in Kerberos.
+
 ## Author
 
 Jean-Louis GUENEGO <jlguenego@gmail.com>
