@@ -1,7 +1,7 @@
-import {Action} from '../../../Action';
-import {ActionType} from '../../../actions/ActionType';
-import {SequenceCtxt} from '../../../interfaces/SequenceCtxt';
-import {State} from '../../../interfaces/State';
+import {Action} from '../../../../Action';
+import {ActionType} from '../../../../actions/ActionType';
+import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
+import {State} from '../../../../interfaces/State';
 
 const INTEGER = 0x02;
 const IA5STRING = 0x16;

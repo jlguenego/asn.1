@@ -1,9 +1,9 @@
 import {ActionFactory} from '../../actions/ActionFactory';
-import {InitAction} from './actions/InitAction';
-import {ItemAction} from './actions/ItemAction';
-import {ItemIA5StringAction} from './actions/ItemIA5StringAction';
-import {ItemIntegerAction} from './actions/ItemIntegerAction';
-import {SequenceAction} from './actions/SequenceAction';
+import {InitAction} from '../../codec/der/decoder/actions/InitAction';
+import {ItemAction} from '../../codec/der/decoder/actions/ItemAction';
+import {ItemIA5StringAction} from '../../codec/der/decoder/actions/ItemIA5StringAction';
+import {ItemIntegerAction} from '../../codec/der/decoder/actions/ItemIntegerAction';
+import {SequenceAction} from '../../codec/der/decoder/actions/SequenceAction';
 
 export function DERRegister() {
   ActionFactory.register(InitAction);
