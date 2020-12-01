@@ -18,34 +18,39 @@ import {
   COMMA,
 } from './ASN1Lexer';
 
-export class ASN1Parser extends CstParser {
+export class ASN1CstParser extends CstParser {
   public ModuleDefinition!: () => CstNode;
-  private ModuleBody!: (idx: number) => CstNode;
-  private AssignmentList!: (idx: number) => CstNode;
-  private Assignment!: (idx: number) => CstNode;
-  private TypeAssignment!: (idx: number) => CstNode;
-  private Type!: (idx: number) => CstNode;
-  private BuiltinType!: (idx: number) => CstNode;
-  private SequenceType!: (idx: number) => CstNode;
-  private IntegerType!: (idx: number) => CstNode;
-  private BooleanType!: (idx: number) => CstNode;
-  private CharacterStringType!: (idx: number) => CstNode;
-  private RestrictedCharacterStringType!: (idx: number) => CstNode;
-  private ComponentTypeLists!: (idx: number) => CstNode;
-  private ComponentTypeList!: (idx: number) => CstNode;
-  private ComponentType!: (idx: number) => CstNode;
-  private NamedType!: (idx: number) => CstNode;
+  public ModuleIdentifier!: () => CstNode;
+  public ModuleBody!: (idx: number) => CstNode;
+  public AssignmentList!: (idx: number) => CstNode;
+  public Assignment!: (idx: number) => CstNode;
+  public TypeAssignment!: (idx: number) => CstNode;
+  public Type!: (idx: number) => CstNode;
+  public BuiltinType!: (idx: number) => CstNode;
+  public SequenceType!: (idx: number) => CstNode;
+  public IntegerType!: (idx: number) => CstNode;
+  public BooleanType!: (idx: number) => CstNode;
+  public CharacterStringType!: (idx: number) => CstNode;
+  public RestrictedCharacterStringType!: (idx: number) => CstNode;
+  public ComponentTypeLists!: (idx: number) => CstNode;
+  public ComponentTypeList!: (idx: number) => CstNode;
+  public ComponentType!: (idx: number) => CstNode;
+  public NamedType!: (idx: number) => CstNode;
 
   constructor() {
     super(allASN1Tokens);
 
     this.RULE('ModuleDefinition', () => {
-      this.CONSUME(TypeReference);
+      this.SUBRULE(this.ModuleIdentifier);
       this.CONSUME(DEFINITIONS);
       this.CONSUME(AFFECTATION);
       this.CONSUME(BEGIN);
       this.SUBRULE(this.ModuleBody);
       this.CONSUME(END);
+    });
+
+    this.RULE('ModuleIdentifier', () => {
+      this.CONSUME(TypeReference);
     });
 
     this.RULE('ModuleBody', () => {

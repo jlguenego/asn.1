@@ -14,6 +14,10 @@ export function asn1Parse(): void {
       'specify a ASN.1 definition file (.asn1)'
     )
     .option(
+      '-t, --type <asn1-type>',
+      'specify a ASN.1 type. Default is the first type described in the ASN.1 definition file.'
+    )
+    .option(
       '-f, --format <type>',
       "specify the message format ('bin'|'hex'|'base64')",
       'bin'

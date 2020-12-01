@@ -1,9 +1,13 @@
+import {ASN1Module} from './asn1/ASN1Module';
 import {Props} from './interfaces/Props';
 
 export class ASN1Validator {
-  // ast: ASN1AST;
-  constructor(private definition: string) {
-    // this.ast = new ASN1AST(definition);
+  module: ASN1Module;
+  constructor(private definition: string, private type?: string) {
+    this.module = ASN1Module.compile(this.definition);
+    if (!this.type) {
+      this.type = this.module.getDefaultType();
+    }
   }
 
   validate(output: Props[]): boolean {
