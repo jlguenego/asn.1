@@ -1,4 +1,3 @@
-import util from 'util';
 import {ASN1Assignment} from '../asn1/ASN1Assignment';
 import {ASN1Module} from '../asn1/ASN1Module';
 import {ASN1NamedType} from '../asn1/ASN1NamedType';
@@ -33,7 +32,6 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   ModuleDefinition(ctx: ASN1CstNode): ASN1Module {
-    console.log('ctx: ', util.inspect(ctx, false, null, true));
     const name = this.visit(ctx.ModuleIdentifier);
     const module = new ASN1Module(name);
     this.visit(ctx.ModuleBody, module);
@@ -46,7 +44,6 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   TypeAssignment(ctx: TypeAssignmentCstNode, module: ASN1Module) {
-    // console.log('ctx: ', util.inspect(ctx, false, null, true));
     const name = ctx.TypeReference[0].image;
     const assignment = new ASN1Assignment(name);
     const type = this.visit(ctx.Type, assignment);
@@ -75,7 +72,6 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   SequenceType(ctx: SequenceTypeCstNode) {
-    console.log('ctx: ', util.inspect(ctx, false, null, true));
     const sequence = new ASN1Sequence();
     this.visit(ctx.ComponentTypeLists, sequence);
     return sequence;
@@ -87,7 +83,7 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   NamedType(ctx: NamedTypeCstNode) {
-    console.log('ctx NamedType: ', util.inspect(ctx, false, null, true));
+    // console.log('ctx NamedType: ', util.inspect(ctx, false, null, true));
     const name = ctx.Identifier[0].image;
     const type = this.visit(ctx.Type);
     const namedType = new ASN1NamedType(name, type);

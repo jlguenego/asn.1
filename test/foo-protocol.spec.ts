@@ -1,12 +1,17 @@
 import assert from 'assert';
+import {readFileSync} from 'fs';
+import {resolve} from 'path';
 
 import {asn1Parse} from '../src';
+import {ASN1Validator} from '../src/ASN1Validator';
 import {EncodingRule} from '../src/EncodingRule';
+import fooQuestionDerJson from './data/foo-question.der.json';
 
 describe('Base64 Unit Test', () => {
   it('should parse the foo protocol', () => {
-    const inputMsg =
-      '30 13 02 01 05 16 0e 41 6e 79 62 6f 64 79 20 74 68 65 72 65 3f';
+    const inputMsg = readFileSync(resolve(__dirname, 'data/foo-question.der'), {
+      encoding: 'utf8',
+    });
     const buf = Buffer.from(inputMsg.replace(/ /g, ''), 'hex');
     const arrayBuffer = buf.buffer.slice(
       buf.byteOffset,
@@ -15,11 +20,16 @@ describe('Base64 Unit Test', () => {
     const output = asn1Parse(arrayBuffer, {
       encodingRule: EncodingRule.DER,
     });
-    assert.deepStrictEqual(output, [
-      {
-        '0': 5,
-        '1': 'Anybody there?',
-      },
-    ]);
+    assert.deepStrictEqual(output, fooQuestionDerJson);
+  });
+
+  it('should validate the fooQuestionDerJson according the ASN1 FooProtocol', () => {
+    const definition = readFileSync(
+      resolve(__dirname, 'data/foo-protocol.asn1'),
+      {encoding: 'utf8'}
+    );
+    const validator = new ASN1Validator(definition, 'FooQuestion');
+    const validated = validator.validate(fooQuestionDerJson, EncodingRule.DER);
+    assert(validated);
   });
 });

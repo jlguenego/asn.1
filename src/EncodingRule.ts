@@ -1,6 +1,6 @@
 export enum EncodingRule {
-  BER,
-  CER,
-  DER,
-  XER,
+  BER = 'BER',
+  CER = 'CER',
+  DER = 'DER',
+  XER = 'XER',
 }

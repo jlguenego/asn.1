@@ -10,7 +10,6 @@ export class ASN1Module {
     parserInstance.input = output.tokens;
     const cstOutput = parserInstance.ModuleDefinition();
     if (parserInstance.errors.length > 0) {
-      console.log(parserInstance.errors);
       throw Error('Syntax error:\n' + parserInstance.errors[0].message);
     }
     const toAstVisitorInstance = new ASN1Visitor();
