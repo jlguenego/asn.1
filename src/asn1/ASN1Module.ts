@@ -1,6 +1,6 @@
 import {ASN1Lexer} from '../analysis/ASN1Lexer';
 import {ASN1CstParser} from '../analysis/ASN1CstParser';
-import {ASN1AssignmentType} from './ASN1AssignmentType';
+import {ASN1Assignment} from './ASN1Assignment';
 import {ASN1Visitor} from '../analysis/ASN1Visitor';
 
 export class ASN1Module {
@@ -18,19 +18,19 @@ export class ASN1Module {
     return ast;
   }
 
-  ctypes: ASN1AssignmentType[] = [];
+  assignments: ASN1Assignment[] = [];
   constructor(public name: string) {
-    this.ctypes = [];
+    this.assignments = [];
   }
 
-  addType(type: ASN1AssignmentType) {
-    this.ctypes.push(type);
+  addAssignment(type: ASN1Assignment) {
+    this.assignments.push(type);
   }
 
   getDefaultType(): string {
-    if (this.ctypes.length === 0) {
+    if (this.assignments.length === 0) {
       throw new Error('Cannot get the default type of an empty def file');
     }
-    return this.ctypes[0].name;
+    return this.assignments[0].name;
   }
 }

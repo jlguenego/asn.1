@@ -1,4 +1,5 @@
 import assert from 'assert';
+import util from 'util';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {ASN1Lexer} from '../src/analysis/ASN1Lexer';
@@ -38,6 +39,9 @@ describe('Lexer Unit Test', () => {
     const toAstVisitorInstance = new ASN1Visitor();
 
     const ast = toAstVisitorInstance.visit(cstOutput);
-    console.log('ast: ', ast);
+    console.log(
+      'ast: ',
+      util.inspect(ast, false, null, true /* enable colors */)
+    );
   });
 });
