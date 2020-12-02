@@ -4,6 +4,7 @@ import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
 import {State} from '../../../../interfaces/State';
 
 const SEQUENCE = 0x30;
+const APPLICATION_0_SEQUENCE = 0x60;
 
 export class InitAction extends Action {
   type = ActionType.INIT;
@@ -13,7 +14,7 @@ export class InitAction extends Action {
       return;
     }
     const type = state.dataview.getUint8(state.index);
-    if (type === SEQUENCE) {
+    if (type === SEQUENCE || type === APPLICATION_0_SEQUENCE) {
       const sequence = {};
       state.context = {
         sequence: sequence,
@@ -25,6 +26,6 @@ export class InitAction extends Action {
       state.index += 1;
       return;
     }
-    throw new Error('Unexpected Type');
+    throw new Error(`Unexpected Type: ${type.toString(16)}`);
   }
 }

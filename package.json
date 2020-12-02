@@ -17,7 +17,8 @@
     "pretest": "npm.cmd run compile",
     "posttest": "npm.cmd run lint",
     "release": "standard-version",
-    "start": "node bin/asn1-parse.js -f hex examples/messages/msg1.der -d examples/messages/foo-protocol.asn1"
+    "start": "node bin/asn1-parse.js -f hex examples/messages/msg1.der -d examples/messages/foo-protocol.asn1",
+    "kerberos": "node bin/asn1-parse.js -f base64 test/data/kerberos.der"
   },
   "keywords": [],
   "author": "",
