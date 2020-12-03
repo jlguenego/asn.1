@@ -35,8 +35,12 @@ export enum ActionType {
   SEQUENCE = 'sequence',
   ITEM = 'item',
 
-  TYPE_BOOLEAN = 'type boolean',
-  TYPE_INTEGER = 'type integer',
+  TYPE_BOOLEAN = 'type boolean', // x01
+  TYPE_INTEGER = 'type integer', // x02
+  TYPE_BIT_STRING = 'type bit string', // x03
+  TYPE_OCTET_STRING = 'type octet string', // x04
+  TYPE_NULL = 'type null', // x05
+  TYPE_OBJECT_IDENTIFER = 'type Object Identifier', // x06
 
   TYPE_CHARACTERSTRING = 'type characterstring',
   TYPE_CHOICE = 'type choice',
@@ -45,10 +49,7 @@ export enum ActionType {
   TYPE_DURATION = 'type duration',
   TYPE_IA5STRING = 'type IA5string',
   TYPE_T61STRING = 'type T61string',
-  TYPE_OBJECT_IDENTIFER = 'type Object Identifier',
-  TYPE_BIT_STRING = 'type bit string',
-  TYPE_OCTET_STRING = 'type octet string',
+
   TYPE_PRINTABLE_STRING = 'type printable string',
   TYPE_UTCTIME = 'type utc time',
-  TYPE_NULL = 'type null',
 }
