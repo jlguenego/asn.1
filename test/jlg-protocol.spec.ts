@@ -21,6 +21,6 @@ describe('JLG Protocol', () => {
       encodingRule: EncodingRule.DER,
     });
     console.log('output: ', output);
-    assert.deepStrictEqual(output, [{'0': true, '1': false}]);
+    assert.deepStrictEqual(output, [{'0': false, '1': true}]);
   });
 });

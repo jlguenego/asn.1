@@ -5,6 +5,6 @@
         00 # FALSE (0)
     01 # Boolean
       01 # Length (1 octet)
-        22 # TRUE (not 0)
+        FF # TRUE (FF)
 
    
