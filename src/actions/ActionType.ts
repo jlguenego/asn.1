@@ -36,12 +36,13 @@ export enum ActionType {
   ITEM = 'item',
 
   TYPE_BOOLEAN = 'type boolean',
+  TYPE_INTEGER = 'type integer',
+
   TYPE_CHARACTERSTRING = 'type characterstring',
   TYPE_CHOICE = 'type choice',
   TYPE_DATE = 'type date',
   TYPE_DATETIME = 'type datetime',
   TYPE_DURATION = 'type duration',
-  TYPE_INTEGER = 'type integer',
   TYPE_IA5STRING = 'type IA5string',
   TYPE_T61STRING = 'type T61string',
   TYPE_OBJECT_IDENTIFER = 'type Object Identifier',

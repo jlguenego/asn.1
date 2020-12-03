@@ -24,6 +24,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/debug": "^4.1.5",
     "@types/mocha": "^8.0.4",
     "@types/node": "^14.11.2",
     "gts": "^3.0.2",
@@ -34,6 +35,7 @@
   },
   "dependencies": {
     "chevrotain": "^7.0.3",
-    "commander": "^6.2.0"
+    "commander": "^6.2.0",
+    "debug": "^4.3.1"
   }
 }

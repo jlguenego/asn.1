@@ -3,20 +3,16 @@ import {readFileSync} from 'fs';
 import {resolve} from 'path';
 
 import {asn1Parse} from '../src';
-import {ASN1Validator} from '../src/ASN1Validator';
 import {EncodingRule} from '../src/EncodingRule';
-import fooQuestionDerJson from './data/foo-question.der.json';
+import {sanitize} from '../src/misc';
 
 describe('JLG Protocol', () => {
   it('test JLGDER message', () => {
     const inputMsg = readFileSync(resolve(__dirname, 'data/jlg-test.der'), {
       encoding: 'utf8',
     });
-    const str = inputMsg
-      .replace(/#.*/g, '')
-      .replace(/ /g, '')
-      .replace(/\r?\n|\r/g, '');
-    const buf = Buffer.from(str, 'hex');
+
+    const buf = Buffer.from(sanitize(inputMsg), 'hex');
     const arrayBuffer = buf.buffer.slice(
       buf.byteOffset,
       buf.byteOffset + buf.byteLength
@@ -25,6 +21,6 @@ describe('JLG Protocol', () => {
       encodingRule: EncodingRule.DER,
     });
     console.log('output: ', output);
-    assert.deepStrictEqual(output, fooQuestionDerJson);
+    assert.deepStrictEqual(output, [{'0': true, '1': false}]);
   });
 });

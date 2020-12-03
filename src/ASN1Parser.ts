@@ -1,3 +1,5 @@
+import dbg from 'debug';
+
 import {ActionFactory} from './actions/ActionFactory';
 import {ActionType} from './actions/ActionType';
 import {DERRegister} from './encoding-rules/der/DERRegistration';
@@ -5,6 +7,8 @@ import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
 import {Props} from './interfaces/Props';
 import {State} from './interfaces/State';
+
+const debug = dbg('asn.1:parser');
 
 export class ASN1Parser {
   options: ASN1ParserOptions = {
@@ -27,7 +31,7 @@ export class ASN1Parser {
       context: undefined,
     };
     while (state.nextAction !== ActionType.NONE) {
-      console.log('state: ', state);
+      debug('state: ', state);
 
       const action = ActionFactory.get(state.nextAction);
       action.transform(state);

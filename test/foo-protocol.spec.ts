@@ -5,6 +5,7 @@ import {resolve} from 'path';
 import {asn1Parse} from '../src';
 import {ASN1Validator} from '../src/ASN1Validator';
 import {EncodingRule} from '../src/EncodingRule';
+import {sanitize} from '../src/misc';
 import fooQuestionDerJson from './data/foo-question.der.json';
 
 describe('Foo Unit Test', () => {
@@ -12,7 +13,7 @@ describe('Foo Unit Test', () => {
     const inputMsg = readFileSync(resolve(__dirname, 'data/foo-question.der'), {
       encoding: 'utf8',
     });
-    const buf = Buffer.from(inputMsg.replace(/ /g, ''), 'hex');
+    const buf = Buffer.from(sanitize(inputMsg), 'hex');
     const arrayBuffer = buf.buffer.slice(
       buf.byteOffset,
       buf.byteOffset + buf.byteLength
