@@ -4,7 +4,7 @@ import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
 import {State} from '../../../../interfaces/State';
 
 export class ItemIntegerAction extends Action {
-  type = ActionType.ITEM_INTEGER;
+  type = ActionType.TYPE_INTEGER;
   transform(state: State): void {
     const context = state.context as SequenceCtxt;
     const length = state.dataview.getUint8(state.index);

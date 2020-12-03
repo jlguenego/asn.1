@@ -4,7 +4,7 @@ import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
 import {State} from '../../../../interfaces/State';
 
 export class ItemIA5StringAction extends Action {
-  type = ActionType.ITEM_IA5STRING;
+  type = ActionType.TYPE_IA5STRING;
   transform(state: State): void {
     const context = state.context as SequenceCtxt;
     const length = state.dataview.getUint8(state.index);

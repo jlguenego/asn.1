@@ -7,7 +7,10 @@ export class ActionFactory {
 
   static get(type: ActionType): Action {
     const result = ActionFactory.actions[type];
-    assert(result);
+    assert(
+      result,
+      'Cannot find the matching actions (not defined/registered in action types)'
+    );
     return result;
   }
 

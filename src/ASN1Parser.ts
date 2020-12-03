@@ -27,6 +27,8 @@ export class ASN1Parser {
       context: undefined,
     };
     while (state.nextAction !== ActionType.NONE) {
+      console.log('state: ', state);
+
       const action = ActionFactory.get(state.nextAction);
       action.transform(state);
     }

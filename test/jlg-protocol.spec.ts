@@ -7,12 +7,16 @@ import {ASN1Validator} from '../src/ASN1Validator';
 import {EncodingRule} from '../src/EncodingRule';
 import fooQuestionDerJson from './data/foo-question.der.json';
 
-describe('Foo Unit Test', () => {
-  it('should parse the foo message', () => {
-    const inputMsg = readFileSync(resolve(__dirname, 'data/foo-question.der'), {
+describe('JLG Protocol', () => {
+  it('test JLGDER message', () => {
+    const inputMsg = readFileSync(resolve(__dirname, 'data/jlg-test.der'), {
       encoding: 'utf8',
     });
-    const buf = Buffer.from(inputMsg.replace(/ /g, ''), 'hex');
+    const str = inputMsg
+      .replace(/#.*/g, '')
+      .replace(/ /g, '')
+      .replace(/\r?\n|\r/g, '');
+    const buf = Buffer.from(str, 'hex');
     const arrayBuffer = buf.buffer.slice(
       buf.byteOffset,
       buf.byteOffset + buf.byteLength
@@ -20,15 +24,7 @@ describe('Foo Unit Test', () => {
     const output = asn1Parse(arrayBuffer, {
       encodingRule: EncodingRule.DER,
     });
+    console.log('output: ', output);
     assert.deepStrictEqual(output, fooQuestionDerJson);
-  });
-
-  it('should validate the fooQuestionDerJson according the ASN1 FooProtocol', () => {
-    const definition = readFileSync(
-      resolve(__dirname, 'data/foo-protocol.asn1'),
-      {encoding: 'utf8'}
-    );
-    const validator = new ASN1Validator(definition);
-    validator.validate(fooQuestionDerJson, ['FooQuestion'], EncodingRule.DER);
   });
 });

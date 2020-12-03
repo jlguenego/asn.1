@@ -1,0 +1,8 @@
+JlgProtocol DEFINITIONS ::= BEGIN
+
+    JlgTest ::= SEQUENCE {
+        isMajor         BOOLEAN,
+        isCritical      BOOLEAN
+    }
+
+END
