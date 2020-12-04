@@ -41,8 +41,17 @@ export function readIdentifierOctets(state: State): Identifier {
 
 export function readLengthOctets(state: State): number {
   const length = readUint8(state);
-  // TODO: implement multi-octet version
-  return length;
+  // (8.1.3.4): one octet case
+  if ((length & 0b1000_0000) === 0) {
+    return length;
+  }
+  // (8.1.3.5 b)
+  let result = 0;
+  for (let i = 0; i < length - 0b1000_0000; i++) {
+    const nbr = readUint8(state);
+    result = result * 256 + nbr;
+  }
+  return result;
 }
 
 export function getTagClass(octet: number): TagClass {

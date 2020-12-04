@@ -1,7 +1,11 @@
+import dbg from 'debug';
 import {Action} from '../../../../Action';
 import {ActionType} from '../../../../actions/ActionType';
 import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
 import {State} from '../../../../interfaces/State';
+import {readLengthOctets} from '../../../ber/decoder/misc';
+
+const debug = dbg('asn.1:sequence');
 
 export class SequenceAction extends Action {
   type = ActionType.SEQUENCE;
@@ -14,8 +18,8 @@ export class SequenceAction extends Action {
     } as SequenceCtxt;
     state.trees.push(sequence);
 
-    const length = state.dataview.getUint8(state.index);
-    state.index++;
+    const length = readLengthOctets(state);
+    debug('length: ', length);
     const context = state.context as SequenceCtxt;
     context.length = length;
     if (length === 0) {
