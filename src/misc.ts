@@ -1,5 +1,4 @@
 import {readFileSync} from 'fs';
-
 export const sanitize = (str: string) =>
   str
     .replace(/#.*/g, '')

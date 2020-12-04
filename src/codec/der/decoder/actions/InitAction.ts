@@ -1,10 +1,12 @@
+import util from 'util';
+
 import {Action} from '../../../../Action';
 import {ActionType} from '../../../../actions/ActionType';
-import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
 import {State} from '../../../../interfaces/State';
+import {TagClass} from '../../../../interfaces/TagClass';
+import {readIdentifierOctets} from '../../../ber/decoder/misc';
 
-const SEQUENCE = 0x30;
-const APPLICATION_0_SEQUENCE = 0x60;
+const SEQUENCE = 0x10;
 
 export class InitAction extends Action {
   type = ActionType.INIT;
@@ -13,12 +15,21 @@ export class InitAction extends Action {
       state.nextAction = ActionType.NONE;
       return;
     }
-    const type = state.dataview.getUint8(state.index);
-    state.index += 1;
-    if (type === SEQUENCE || type === APPLICATION_0_SEQUENCE) {
+    const identifier = readIdentifierOctets(state);
+
+    if (identifier.tagClass === TagClass.UNIVERSAL) {
+      if (identifier.tag === SEQUENCE) {
+        state.nextAction = ActionType.SEQUENCE;
+        return;
+      }
+    }
+    if (identifier.tagClass !== TagClass.UNIVERSAL) {
       state.nextAction = ActionType.SEQUENCE;
       return;
     }
-    throw new Error(`Unexpected Type: ${type.toString(16)}`);
+
+    throw new Error(
+      `Unexpected Identifier: ${util.inspect(identifier, false, null, true)}`
+    );
   }
 }
