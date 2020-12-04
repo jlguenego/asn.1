@@ -20,7 +20,6 @@ describe('JLG Protocol', () => {
     const output = asn1Parse(arrayBuffer, {
       encodingRule: EncodingRule.DER,
     });
-    console.log('output: ', output);
     assert.deepStrictEqual(output, [{'0': false, '1': true}]);
   });
 });

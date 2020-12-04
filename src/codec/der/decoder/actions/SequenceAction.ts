@@ -6,6 +6,14 @@ import {State} from '../../../../interfaces/State';
 export class SequenceAction extends Action {
   type = ActionType.SEQUENCE;
   transform(state: State): void {
+    const sequence = {};
+    state.context = {
+      sequence: sequence,
+      length: -1,
+      index: 0,
+    } as SequenceCtxt;
+    state.trees.push(sequence);
+
     const length = state.dataview.getUint8(state.index);
     state.index++;
     const context = state.context as SequenceCtxt;
