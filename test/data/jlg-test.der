@@ -1,10 +1,18 @@
 30 # Sequence
-  06 # Length of the remaining Sequence
+  0e # Length of the remaining Sequence
     01 # Boolean
       01 # Length (1 octet)
         00 # FALSE (0)
     01 # Boolean
       01 # Length (1 octet)
         FF # TRUE (FF)
+    30 # Sequence
+      06 # Length of the remaining Sequence
+        01 # Boolean
+          01 # Length (1 octet)
+            FF # TRUE (FF)
+        01 # Boolean
+          01 # Length (1 octet)
+            FF # TRUE (FF)
 
    
