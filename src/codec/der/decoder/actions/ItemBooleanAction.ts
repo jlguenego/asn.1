@@ -2,13 +2,13 @@ import {Action} from '../../../../Action';
 import {ActionType} from '../../../../actions/ActionType';
 import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
 import {State} from '../../../../interfaces/State';
+import {readLengthOctets} from '../../../ber/decoder/misc';
 
 export class ItemBooleanAction extends Action {
   type = ActionType.TYPE_BOOLEAN;
   transform(state: State): void {
     const context = state.context as SequenceCtxt;
-    const length = state.dataview.getUint8(state.index);
-    state.index++;
+    const length = readLengthOctets(state);
     context.index++;
     if (length !== 1) {
       throw new Error('read boolean length must be one');
