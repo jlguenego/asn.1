@@ -5,7 +5,9 @@ import {getTagClass, isConstructed} from '../ber/decoder/misc';
 import {DERInput} from './decoder/DERInput';
 import {readBoolean} from './decoder/primitive/ReadBoolean';
 import {readIA5String} from './decoder/primitive/ReadIA5String';
+import {readObjectIdentifier} from './decoder/primitive/ReadObjectIdentifier';
 import {readInteger} from './decoder/primitive/ReadInteger';
+import {readBitString} from './decoder/primitive/ReadBitString';
 
 export class DERDecoder {
   derInput: DERInput;
@@ -103,7 +105,19 @@ export class DERDecoder {
     if (identifier.tag === TagUniversal.INTEGER) {
       return readInteger(this, length);
     }
+    if (identifier.tag === TagUniversal.BIT_STRING) {
+      return readBitString(this, length);
+    }
+    if (identifier.tag === TagUniversal.OCTET_STRING) {
+      return readIA5String(this, length);
+    }
+    if (identifier.tag === TagUniversal.OBJECT_IDENTIFIER) {
+      return readObjectIdentifier(this, length);
+    }
     if (identifier.tag === TagUniversal.IA5STRING) {
+      return readIA5String(this, length);
+    }
+    if (identifier.tag === TagUniversal.GENERAL_STRING) {
       return readIA5String(this, length);
     }
     throw new Error(
