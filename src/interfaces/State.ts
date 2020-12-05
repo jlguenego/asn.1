@@ -1,5 +1,6 @@
 import {ActionType} from '../actions/ActionType';
 import {EncodingRule} from '../EncodingRule';
+import {ObjectCtxt} from './ObjectCtxt';
 import {Props} from './Props';
 
 export interface State {
@@ -9,5 +10,5 @@ export interface State {
   index: number;
   nextAction: ActionType;
   trees: Props[];
-  context: unknown;
+  context?: ObjectCtxt;
 }

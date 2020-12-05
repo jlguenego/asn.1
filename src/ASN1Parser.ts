@@ -28,7 +28,7 @@ export class ASN1Parser {
       index: 0,
       nextAction: ActionType.INIT,
       trees: [],
-      context: {},
+      context: undefined,
     };
     while (state.nextAction !== ActionType.NONE) {
       debug('state: ', state);

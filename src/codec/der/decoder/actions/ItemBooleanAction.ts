@@ -1,13 +1,13 @@
 import {Action} from '../../../../Action';
 import {ActionType} from '../../../../actions/ActionType';
-import {SequenceCtxt} from '../../../../interfaces/SequenceCtxt';
+import {ObjectCtxt} from '../../../../interfaces/ObjectCtxt';
 import {State} from '../../../../interfaces/State';
 import {readLengthOctets} from '../../../ber/decoder/misc';
 
 export class ItemBooleanAction extends Action {
   type = ActionType.TYPE_BOOLEAN;
   transform(state: State): void {
-    const context = state.context as SequenceCtxt;
+    const context = state.context as ObjectCtxt;
     const length = readLengthOctets(state);
     context.index++;
     if (length !== 1) {
