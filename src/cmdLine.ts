@@ -14,8 +14,8 @@ export function asn1Parse(): void {
       'specify a ASN.1 definition file (.asn1)'
     )
     .option(
-      '-t, --types <asn1-type>',
-      'specify one or more comma separated ASN.1 types. If empty or not specified, set to one type which is the first met in the asn1 file.'
+      '-t, --type <asn1-type>',
+      'specify one ASN.1 type. If empty or not specified, try to identify it via class.'
     )
     .option(
       '-f, --format <type>',
@@ -76,9 +76,9 @@ export function asn1Parse(): void {
   console.log('output: ', output);
 
   if (asn1Definition) {
-    const types = program['types'] ? program['types'].split(',') : [];
+    const type = program['type'];
 
     const asn1Validator = new ASN1Validator(asn1Definition);
-    asn1Validator.validate(output, types);
+    asn1Validator.validate(output, type);
   }
 }

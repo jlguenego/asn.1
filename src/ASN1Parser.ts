@@ -2,6 +2,7 @@ import dbg from 'debug';
 
 import {ActionFactory} from './actions/ActionFactory';
 import {ActionType} from './actions/ActionType';
+import {DERDecoder} from './codec/der/DERDecoder';
 import {DERRegister} from './encoding-rules/der/DERRegistration';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
@@ -19,7 +20,7 @@ export class ASN1Parser {
     this.options = {...this.options, ...opts};
   }
 
-  parse(input: ArrayBuffer): Props {
+  parseOld(input: ArrayBuffer): Props {
     this.register();
     const state: State = {
       encodingRule: this.options.encodingRule,
@@ -40,6 +41,11 @@ export class ASN1Parser {
       throw new Error('The parser did not return a valid state.root');
     }
     return state.root;
+  }
+
+  parse(input: ArrayBuffer): Props {
+    const decoder = new DERDecoder(input);
+    return decoder.decode() as Props;
   }
 
   register() {
