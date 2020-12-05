@@ -19,12 +19,12 @@ export class InitAction extends Action {
 
     if (identifier.tagClass === TagClass.UNIVERSAL) {
       if (identifier.tag === SEQUENCE) {
-        state.nextAction = ActionType.SEQUENCE;
+        state.nextAction = ActionType.OBJECT;
         return;
       }
     }
     if (identifier.tagClass !== TagClass.UNIVERSAL) {
-      state.nextAction = ActionType.SEQUENCE;
+      state.nextAction = ActionType.OBJECT;
       return;
     }
 

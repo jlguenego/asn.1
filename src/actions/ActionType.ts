@@ -32,7 +32,7 @@ BitStringType
 export enum ActionType {
   NONE = 'none',
   INIT = 'init',
-  SEQUENCE = 'sequence',
+  OBJECT = 'object',
   ITEM = 'item',
 
   TYPE_BOOLEAN = 'type boolean', // x01

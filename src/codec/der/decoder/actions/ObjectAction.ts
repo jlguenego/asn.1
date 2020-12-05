@@ -6,8 +6,8 @@ import {readLengthOctets} from '../../../ber/decoder/misc';
 
 const debug = dbg('asn.1:sequence');
 
-export class SequenceAction extends Action {
-  type = ActionType.SEQUENCE;
+export class ObjectAction extends Action {
+  type = ActionType.OBJECT;
   transform(state: State): void {
     if (!state.context) {
       state.context = {
