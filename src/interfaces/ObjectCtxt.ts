@@ -1,7 +1,7 @@
 import {Props} from './Props';
 
 export interface ObjectCtxt {
-  sequence: Props;
+  current: Props;
   length: number;
   index: number;
   parent?: ObjectCtxt;

@@ -14,8 +14,8 @@ export class ItemIntegerAction extends Action {
       const value = state.dataview.getUint8(state.index);
       state.index++;
       context.index++;
-      const key = Object.keys(context.sequence).length;
-      context.sequence[key] = value;
+      const key = Object.keys(context.current).length;
+      context.current[key] = value;
     } else {
       throw new Error('read integer length not understood');
     }

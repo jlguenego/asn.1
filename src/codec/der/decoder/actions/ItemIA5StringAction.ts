@@ -15,8 +15,8 @@ export class ItemIA5StringAction extends Action {
       state.index + length
     );
     const value = Buffer.from(buffer).toString('ascii');
-    const key = Object.keys(context.sequence).length;
-    context.sequence[key] = value;
+    const key = Object.keys(context.current).length;
+    context.current[key] = value;
     context.index += length;
     state.index += length;
     if (context.index === context.length) {

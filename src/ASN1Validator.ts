@@ -16,11 +16,11 @@ export class ASN1Validator {
     this.module = ASN1Module.compile(this.definition);
   }
 
-  validate(input: Props[], types: string[], encodingRule = EncodingRule.DER) {
-    const assignments = getAssignments(this.module, types);
+  validate(input: Props, types: string[], encodingRule = EncodingRule.DER) {
+    const assignment = getAssignments(this.module, types)[0];
     if (encodingRule === EncodingRule.DER) {
       const validator = new DERValidator();
-      validator.validateAll(assignments, input);
+      validator.validate(assignment, input);
       return;
     }
     throw new Error(

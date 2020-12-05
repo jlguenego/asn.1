@@ -9,6 +9,6 @@ export interface State {
   size: number;
   index: number;
   nextAction: ActionType;
-  trees: Props[];
+  root?: Props;
   context?: ObjectCtxt;
 }

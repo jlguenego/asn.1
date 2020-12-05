@@ -19,7 +19,7 @@ export class ASN1Parser {
     this.options = {...this.options, ...opts};
   }
 
-  parse(input: ArrayBuffer): Props[] {
+  parse(input: ArrayBuffer): Props {
     this.register();
     const state: State = {
       encodingRule: this.options.encodingRule,
@@ -27,7 +27,7 @@ export class ASN1Parser {
       size: input.byteLength,
       index: 0,
       nextAction: ActionType.INIT,
-      trees: [],
+      root: undefined,
       context: undefined,
     };
     while (state.nextAction !== ActionType.NONE) {
@@ -36,7 +36,10 @@ export class ASN1Parser {
       const action = ActionFactory.get(state.nextAction);
       action.transform(state);
     }
-    return state.trees;
+    if (!state.root) {
+      throw new Error('The parser did not return a valid state.root');
+    }
+    return state.root;
   }
 
   register() {

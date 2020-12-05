@@ -10,17 +10,20 @@ const debug = dbg('asn.1:sequence');
 export class SequenceAction extends Action {
   type = ActionType.SEQUENCE;
   transform(state: State): void {
-    const sequence = {};
-    state.context = {
-      sequence: sequence,
-      length: -1,
-      index: 0,
-    } as ObjectCtxt;
-    state.trees.push(sequence);
+    if (!state.context) {
+      state.context = {
+        current: {},
+        length: -1,
+        index: 0,
+      };
+      state.root = state.context.current;
+    } else {
+      // sequence inside sequence
+    }
 
     const length = readLengthOctets(state);
     debug('length: ', length);
-    const context = state.context as ObjectCtxt;
+    const context = state.context;
     context.length = length;
     if (length === 0) {
       state.nextAction = ActionType.INIT;

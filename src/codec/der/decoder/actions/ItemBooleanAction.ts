@@ -16,12 +16,12 @@ export class ItemBooleanAction extends Action {
     const value = state.dataview.getUint8(state.index);
     state.index++;
     context.index++;
-    const key = Object.keys(context.sequence).length;
+    const key = Object.keys(context.current).length;
     // X.690 (8.2.2 and 11.1)
     if (value !== 0 && value !== 0b1111_1111) {
       throw new Error('This DER message do not respect X.690 11.1 clause');
     }
-    context.sequence[key] = value !== 0;
+    context.current[key] = value !== 0;
 
     if (context.index === context.length) {
       // finish to read the sequence
