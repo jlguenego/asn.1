@@ -142,6 +142,11 @@ function readSimple(cdv: CursorDataView, identifier: Identifier): ASN1Message {
     return result;
   }
   if (identifier.tag === TagUniversal.OBJECT_IDENTIFIER.code) {
+    if (identifier.constructed) {
+      throw new Error(
+        'The encoding of an Object Identifier should be primitive (clause 8.19.1).'
+      );
+    }
     result.value = readObjectIdentifier(cdv, length);
     return result;
   }
