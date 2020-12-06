@@ -134,6 +134,8 @@ function readSimple(cdv: CursorDataView, identifier: Identifier): ASN1Message {
     return result;
   }
   if (identifier.tag === TagUniversal.BIT_STRING.code) {
+    // 8.6.1 The encoding of a bitstring value shall be either primitive
+    // or constructed at the option of the sender.
     result.value = readBitString(cdv, length);
     return result;
   }

@@ -1,11 +1,15 @@
 import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
+import {inspect} from 'util';
+import dbg from 'debug';
 
 import {asn1Parse} from '../src';
 import {EncodingRule} from '../src/EncodingRule';
 import {readEncodedFile, sanitize} from '../src/misc';
 import kerberosJson from './data/kerberos.json';
+
+const debug = dbg('asn.1:test');
 
 describe('Kerberos Protocol', () => {
   it('test hex base64 conv', () => {
@@ -30,6 +34,7 @@ describe('Kerberos Protocol', () => {
         encodingRule: EncodingRule.DER,
       }
     );
+    debug('output: ', inspect(output, false, null, true));
 
     assert.deepStrictEqual(output, kerberosJson);
   });

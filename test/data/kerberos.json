@@ -93,7 +93,7 @@
                   "tagLabel": "BIT_STRING",
                   "length": 5,
                   "lengthType": "DEFINITE",
-                  "value": "0020000000"
+                  "value": "0010_0000_0000_0000_0000_0000_0000_0000"
                 }
               ]
             },
