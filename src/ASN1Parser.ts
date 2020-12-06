@@ -2,10 +2,11 @@ import dbg from 'debug';
 
 import {ActionFactory} from './actions/ActionFactory';
 import {ActionType} from './actions/ActionType';
-import {DERDecoder} from './codec/der/DERDecoder';
+import {BERDecode} from './codec/ber/decoder/BERDecoder';
 import {DERRegister} from './encoding-rules/der/DERRegistration';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
+import {ASN1Message} from './interfaces/ASN1Message';
 import {Props} from './interfaces/Props';
 import {State} from './interfaces/State';
 
@@ -43,9 +44,17 @@ export class ASN1Parser {
     return state.root;
   }
 
-  parse(input: ArrayBuffer): Props {
-    const decoder = new DERDecoder(input);
-    return decoder.decode() as Props;
+  parse(input: ArrayBuffer): ASN1Message {
+    if (
+      [EncodingRule.BER, EncodingRule.CER, EncodingRule.DER].includes(
+        this.options.encodingRule
+      )
+    ) {
+      return BERDecode(input);
+    }
+    throw new Error(
+      'Encoding rule not yet implemented: ' + this.options.encodingRule
+    );
   }
 
   register() {

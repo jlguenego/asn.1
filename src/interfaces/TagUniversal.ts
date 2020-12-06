@@ -1,10 +1,10 @@
-export enum TagUniversal {
-  BOOLEAN = 1,
-  INTEGER = 2,
-  BIT_STRING = 3,
-  OCTET_STRING = 4,
-  OBJECT_IDENTIFIER = 6,
-  SEQUENCE = 16,
-  IA5STRING = 22,
-  GENERAL_STRING = 27,
-}
+export const TagUniversal: {[key: string]: {code: number; label: string}} = {
+  BOOLEAN: {code: 1, label: 'BOOLEAN'},
+  INTEGER: {code: 2, label: 'INTEGER'},
+  BIT_STRING: {code: 3, label: 'BIT_STRING'},
+  OCTET_STRING: {code: 4, label: 'OCTET_STRING'},
+  OBJECT_IDENTIFIER: {code: 6, label: 'OBJECT_IDENTIFIER'},
+  SEQUENCE: {code: 16, label: 'SEQUENCE'},
+  IA5STRING: {code: 22, label: 'IA5STRING'},
+  GENERAL_STRING: {code: 27, label: 'GENERAL_STRING'},
+};

@@ -1,7 +1,7 @@
 import {ASN1Module} from './asn1/ASN1Module';
 import {DERValidator} from './codec/der/DERValidator';
 import {EncodingRule} from './EncodingRule';
-import {Props} from './interfaces/Props';
+import {ASN1Message} from './interfaces/ASN1Message';
 
 const getAssignments = (module: ASN1Module, types: string[]) => {
   if (!types.length) {
@@ -16,7 +16,11 @@ export class ASN1Validator {
     this.module = ASN1Module.compile(this.definition);
   }
 
-  validate(input: Props, types: string[], encodingRule = EncodingRule.DER) {
+  validate(
+    input: ASN1Message,
+    types: string[],
+    encodingRule = EncodingRule.DER
+  ) {
     const assignment = getAssignments(this.module, types)[0];
     if (encodingRule === EncodingRule.DER) {
       const validator = new DERValidator();

@@ -5,6 +5,7 @@ import {resolve} from 'path';
 import {asn1Parse} from '../src';
 import {ASN1Validator} from '../src/ASN1Validator';
 import {EncodingRule} from '../src/EncodingRule';
+import {ASN1Message} from '../src/interfaces/ASN1Message';
 import {readEncodedFile} from '../src/misc';
 import fooQuestionDerJson from './data/foo-question.der.json';
 
@@ -25,6 +26,10 @@ describe('Foo Unit Test', () => {
       {encoding: 'utf8'}
     );
     const validator = new ASN1Validator(definition);
-    validator.validate(fooQuestionDerJson, ['FooQuestion'], EncodingRule.DER);
+    validator.validate(
+      fooQuestionDerJson as ASN1Message,
+      ['FooQuestion'],
+      EncodingRule.DER
+    );
   });
 });

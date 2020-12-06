@@ -21,9 +21,60 @@ describe('JLG Protocol', () => {
       encodingRule: EncodingRule.DER,
     });
     assert.deepStrictEqual(output, {
-      '0': false,
-      '1': true,
-      '2': {'0': true, '1': true},
+      tagClass: 'UNIVERSAL',
+      isConstructed: true,
+      tagCode: 16,
+      tagLabel: 'SEQUENCE',
+      length: 14,
+      lengthType: 'DEFINITE',
+      value: [
+        {
+          tagClass: 'UNIVERSAL',
+          isConstructed: false,
+          tagCode: 1,
+          tagLabel: 'BOOLEAN',
+          length: 1,
+          lengthType: 'DEFINITE',
+          value: false,
+        },
+        {
+          tagClass: 'UNIVERSAL',
+          isConstructed: false,
+          tagCode: 1,
+          tagLabel: 'BOOLEAN',
+          length: 1,
+          lengthType: 'DEFINITE',
+          value: true,
+        },
+        {
+          tagClass: 'UNIVERSAL',
+          isConstructed: true,
+          tagCode: 16,
+          tagLabel: 'SEQUENCE',
+          length: 6,
+          lengthType: 'DEFINITE',
+          value: [
+            {
+              tagClass: 'UNIVERSAL',
+              isConstructed: false,
+              tagCode: 1,
+              tagLabel: 'BOOLEAN',
+              length: 1,
+              lengthType: 'DEFINITE',
+              value: true,
+            },
+            {
+              tagClass: 'UNIVERSAL',
+              isConstructed: false,
+              tagCode: 1,
+              tagLabel: 'BOOLEAN',
+              length: 1,
+              lengthType: 'DEFINITE',
+              value: true,
+            },
+          ],
+        },
+      ],
     });
   });
 });

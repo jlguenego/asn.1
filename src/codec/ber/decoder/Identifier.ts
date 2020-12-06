@@ -10,7 +10,7 @@ export class Identifier {
     if (this.tagClass !== TagClass.UNIVERSAL) {
       return true;
     }
-    if (this.tag === TagUniversal.SEQUENCE) {
+    if (this.tag === TagUniversal.SEQUENCE.code) {
       return true;
     }
     return false;

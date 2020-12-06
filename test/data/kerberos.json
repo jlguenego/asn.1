@@ -1,1 +1,385 @@
-{}
+{
+  "tagClass": "APPLICATION",
+  "isConstructed": true,
+  "tagCode": 0,
+  "tagLabel": "0",
+  "length": 1631,
+  "lengthType": "DEFINITE",
+  "value": [
+    {
+      "tagClass": "UNIVERSAL",
+      "isConstructed": false,
+      "tagCode": 6,
+      "tagLabel": "OBJECT_IDENTIFIER",
+      "length": 9,
+      "lengthType": "DEFINITE",
+      "value": "2a864886f712010202"
+    },
+    {
+      "tagClass": "UNIVERSAL",
+      "isConstructed": false,
+      "tagCode": 1,
+      "tagLabel": "BOOLEAN",
+      "length": 0,
+      "lengthType": "DEFINITE",
+      "value": undefined
+    },
+    {
+      "tagClass": "APPLICATION",
+      "isConstructed": true,
+      "tagCode": 14,
+      "tagLabel": "14",
+      "length": 1614,
+      "lengthType": "DEFINITE",
+      "value": [
+        {
+          "tagClass": "UNIVERSAL",
+          "isConstructed": true,
+          "tagCode": 16,
+          "tagLabel": "SEQUENCE",
+          "length": 1610,
+          "lengthType": "DEFINITE",
+          "value": [
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 0,
+              "tagLabel": "0",
+              "length": 3,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": false,
+                  "tagCode": 2,
+                  "tagLabel": "INTEGER",
+                  "length": 1,
+                  "lengthType": "DEFINITE",
+                  "value": 5
+                }
+              ]
+            },
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 1,
+              "tagLabel": "1",
+              "length": 3,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": false,
+                  "tagCode": 2,
+                  "tagLabel": "INTEGER",
+                  "length": 1,
+                  "lengthType": "DEFINITE",
+                  "value": 14
+                }
+              ]
+            },
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 2,
+              "tagLabel": "2",
+              "length": 7,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": false,
+                  "tagCode": 3,
+                  "tagLabel": "BIT_STRING",
+                  "length": 5,
+                  "lengthType": "DEFINITE",
+                  "value": "0020000000"
+                }
+              ]
+            },
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 3,
+              "tagLabel": "3",
+              "length": 1180,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "APPLICATION",
+                  "isConstructed": true,
+                  "tagCode": 1,
+                  "tagLabel": "1",
+                  "length": 1176,
+                  "lengthType": "DEFINITE",
+                  "value": [
+                    {
+                      "tagClass": "UNIVERSAL",
+                      "isConstructed": true,
+                      "tagCode": 16,
+                      "tagLabel": "SEQUENCE",
+                      "length": 1172,
+                      "lengthType": "DEFINITE",
+                      "value": [
+                        {
+                          "tagClass": "CONTEXT_SPECIFIC",
+                          "isConstructed": true,
+                          "tagCode": 0,
+                          "tagLabel": "0",
+                          "length": 3,
+                          "lengthType": "DEFINITE",
+                          "value": [
+                            {
+                              "tagClass": "UNIVERSAL",
+                              "isConstructed": false,
+                              "tagCode": 2,
+                              "tagLabel": "INTEGER",
+                              "length": 1,
+                              "lengthType": "DEFINITE",
+                              "value": 5
+                            }
+                          ]
+                        },
+                        {
+                          "tagClass": "CONTEXT_SPECIFIC",
+                          "isConstructed": true,
+                          "tagCode": 1,
+                          "tagLabel": "1",
+                          "length": 11,
+                          "lengthType": "DEFINITE",
+                          "value": [
+                            {
+                              "tagClass": "UNIVERSAL",
+                              "isConstructed": false,
+                              "tagCode": 27,
+                              "tagLabel": "GENERAL_STRING",
+                              "length": 9,
+                              "lengthType": "DEFINITE",
+                              "value": "JLG.LOCAL"
+                            }
+                          ]
+                        },
+                        {
+                          "tagClass": "CONTEXT_SPECIFIC",
+                          "isConstructed": true,
+                          "tagCode": 2,
+                          "tagLabel": "2",
+                          "length": 28,
+                          "lengthType": "DEFINITE",
+                          "value": [
+                            {
+                              "tagClass": "UNIVERSAL",
+                              "isConstructed": true,
+                              "tagCode": 16,
+                              "tagLabel": "SEQUENCE",
+                              "length": 26,
+                              "lengthType": "DEFINITE",
+                              "value": [
+                                {
+                                  "tagClass": "CONTEXT_SPECIFIC",
+                                  "isConstructed": true,
+                                  "tagCode": 0,
+                                  "tagLabel": "0",
+                                  "length": 3,
+                                  "lengthType": "DEFINITE",
+                                  "value": [
+                                    {
+                                      "tagClass": "UNIVERSAL",
+                                      "isConstructed": false,
+                                      "tagCode": 2,
+                                      "tagLabel": "INTEGER",
+                                      "length": 1,
+                                      "lengthType": "DEFINITE",
+                                      "value": 2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagClass": "CONTEXT_SPECIFIC",
+                                  "isConstructed": true,
+                                  "tagCode": 1,
+                                  "tagLabel": "1",
+                                  "length": 19,
+                                  "lengthType": "DEFINITE",
+                                  "value": [
+                                    {
+                                      "tagClass": "UNIVERSAL",
+                                      "isConstructed": true,
+                                      "tagCode": 16,
+                                      "tagLabel": "SEQUENCE",
+                                      "length": 17,
+                                      "lengthType": "DEFINITE",
+                                      "value": [
+                                        {
+                                          "tagClass": "UNIVERSAL",
+                                          "isConstructed": false,
+                                          "tagCode": 27,
+                                          "tagLabel": "GENERAL_STRING",
+                                          "length": 4,
+                                          "lengthType": "DEFINITE",
+                                          "value": "HTTP"
+                                        },
+                                        {
+                                          "tagClass": "UNIVERSAL",
+                                          "isConstructed": false,
+                                          "tagCode": 27,
+                                          "tagLabel": "GENERAL_STRING",
+                                          "length": 9,
+                                          "lengthType": "DEFINITE",
+                                          "value": "localhost"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "tagClass": "CONTEXT_SPECIFIC",
+                          "isConstructed": true,
+                          "tagCode": 3,
+                          "tagLabel": "3",
+                          "length": 1120,
+                          "lengthType": "DEFINITE",
+                          "value": [
+                            {
+                              "tagClass": "UNIVERSAL",
+                              "isConstructed": true,
+                              "tagCode": 16,
+                              "tagLabel": "SEQUENCE",
+                              "length": 1116,
+                              "lengthType": "DEFINITE",
+                              "value": [
+                                {
+                                  "tagClass": "CONTEXT_SPECIFIC",
+                                  "isConstructed": true,
+                                  "tagCode": 0,
+                                  "tagLabel": "0",
+                                  "length": 3,
+                                  "lengthType": "DEFINITE",
+                                  "value": [
+                                    {
+                                      "tagClass": "UNIVERSAL",
+                                      "isConstructed": false,
+                                      "tagCode": 2,
+                                      "tagLabel": "INTEGER",
+                                      "length": 1,
+                                      "lengthType": "DEFINITE",
+                                      "value": 23
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagClass": "CONTEXT_SPECIFIC",
+                                  "isConstructed": true,
+                                  "tagCode": 1,
+                                  "tagLabel": "1",
+                                  "length": 3,
+                                  "lengthType": "DEFINITE",
+                                  "value": [
+                                    {
+                                      "tagClass": "UNIVERSAL",
+                                      "isConstructed": false,
+                                      "tagCode": 2,
+                                      "tagLabel": "INTEGER",
+                                      "length": 1,
+                                      "lengthType": "DEFINITE",
+                                      "value": 2
+                                    }
+                                  ]
+                                },
+                                {
+                                  "tagClass": "CONTEXT_SPECIFIC",
+                                  "isConstructed": true,
+                                  "tagCode": 2,
+                                  "tagLabel": "2",
+                                  "length": 1102,
+                                  "lengthType": "DEFINITE",
+                                  "value": [
+                                    {
+                                      "tagClass": "UNIVERSAL",
+                                      "isConstructed": false,
+                                      "tagCode": 4,
+                                      "tagLabel": "OCTET_STRING",
+                                      "length": 1098,
+                                      "lengthType": "DEFINITE",
+                                      "value": "2d368b256922a3bd807ae6afff04c61f063da839a8d921df6d4889cd63ab1d441edd9ebe39fe0928c854ce872413e4edf9f228875fa2b5a3179237a3be6daa2966d7e9a7355bcfd9feec936813480e32bdba430452c6e54f1ad04797a0cb8037d34614360ace781bf9a425cee8848257bfae751c7473cff13d44e2f158b5fb655331a7517d198a31e275fe6e1b9705e25f0b8c7d11cd99c12c2b6613781b33d9d6991270bb0833d1e639551061f50b0544cee226d860663a7922490603f61e615bb4abf243a9ccfc218257fbdda3e2f807c7d6301ae2d0675ea526b5c23a6dc7c7f08fae9f6fdae261f493a46533c4f2dc2b24c21368b35804f7114db48d74dfd372532dc79d2d12ccae677690cf42b1a5c70e8a3b01e76c2fa74bda6958cef5684f3574df700ed5106333d53f59477bef8eabac6c59d74f7ab44b493da0b75df246fd61ce5bef30266ea90953b9552f0dfdb59a1e6d325cda1286f0a737a8f349ea8c6450e391c6f628b8796afe44f17352647d8adc5c7b82a5be87e4f834ea601ef20d05f03a91c7ebdd5b505387ddf018bd38d4d5c6c0af10e1b68e627a5300b84c41d78bda96493ef47a261db2aa51cff929ef826eada07fe8ddd20224688dbc71c864cec896de64423ff8c483b1f282227bee2e9afdf154a898175f0eef8118de4a08d2a7542024d81b6c8c04c38b729804af1e9b1072859cd6f618f67ad70b82c09bfb70670a468254b1aa7c816d9537f92145861ec545e74cd1376c03f93dd2869fbbc42642f2ddf272f6f8cae7a04b8341a0287645e8772520785f0ca2bad090353700f92d5381b8d5a850c209b2c3f6ca879ef5a165ca3682cdc497a9181596713f43e6de1cf8acfa72d5348256e4acdaae0a9eb8e68aca3ea6dfc7342ca36c0a748d8baa3e345414c184218092a96022f9b448e56982fa811ea7457e8f1be0ed5682eed51cda219555edf14b8bed0353c832b32c1fde2c05d8b3ac5d1c47e8cf6887e444687ba848e1e75732fb8b33968c3ce9f62b066f93a020657db3cbc2f1766508de8da0d62ebb2af644d19a1e283f6c8e94052d48fbf8a64ffa9e5d4d1a2b36549103cf2740eaee0cd3ee133d8c18b3959e6456196431608ff172b4bac136b2d06dd9adf1d842ec951286c45f0fc4df7572361a54dce7dc1542f43d93f7c439c1ba70d5718ad1ed8d64905fcef09ce21ee222aa414dc2ec3d062852e86bdd3ce6237ceaa9b2f2bcc7bdb11db2a92657d1c8c29692553534da14325e405ccb34ccaa3ad2a39a8eb0d1b5b58ac11dda36a040651d8941f8239ab928eda00301a5fdc6c60d9637eb7658266313c2da1a07aa0c95b40cb245cd51d12a9229311f4bd44e501eb5363b5e698f58fff66ec0dd0460619a782a3999d507d7bf1b0a29c73ff6c194ec4ac851942fa2ba29769395249879c84e58d5219f3230e2266ca4991500b18418f3c07e46c0fb92e6082217ee732f5c2e5756caffb90ae7f0fadcefad3aa795816062bae3e7abb382059e907c0109d21becc034c7a5215e3471e1aeefae5f"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 4,
+              "tagLabel": "4",
+              "length": 403,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": true,
+                  "tagCode": 16,
+                  "tagLabel": "SEQUENCE",
+                  "length": 399,
+                  "lengthType": "DEFINITE",
+                  "value": [
+                    {
+                      "tagClass": "CONTEXT_SPECIFIC",
+                      "isConstructed": true,
+                      "tagCode": 0,
+                      "tagLabel": "0",
+                      "length": 3,
+                      "lengthType": "DEFINITE",
+                      "value": [
+                        {
+                          "tagClass": "UNIVERSAL",
+                          "isConstructed": false,
+                          "tagCode": 2,
+                          "tagLabel": "INTEGER",
+                          "length": 1,
+                          "lengthType": "DEFINITE",
+                          "value": 23
+                        }
+                      ]
+                    },
+                    {
+                      "tagClass": "CONTEXT_SPECIFIC",
+                      "isConstructed": true,
+                      "tagCode": 2,
+                      "tagLabel": "2",
+                      "length": 390,
+                      "lengthType": "DEFINITE",
+                      "value": [
+                        {
+                          "tagClass": "UNIVERSAL",
+                          "isConstructed": false,
+                          "tagCode": 4,
+                          "tagLabel": "OCTET_STRING",
+                          "length": 386,
+                          "lengthType": "DEFINITE",
+                          "value": "e3b2a6e86c7d93aa2f64e56fbcd944ca96d9c24f145dd6cc580478ae50a4223d5d3021f3620afba444a78cf03ca015ab616fef5c88fe68bcd10d453eb2913a9709eb9197932f73061098b0e7073cc9c0b1e2a6197d83eb46076066aee286fe1c613a0e1e08d216f2c46af2dda56f721895f5245e031dd49bb14ca5c39b1444b8c6b55fce09535b5c4cf3adf179ea4737ffaa4658cc73a55dc36b381948fbd75174e3439200041719cd7796a7a80bfd601af7419863a0167954a630f6b6029e6b5c68d053e8f3e22570d9258cc536f0a2051201adc710285f3284be19429533bd48a4aa10f455352d7f928207ee763401fa92dd7959f30e2b19efee4f68f3884d0b5ad13850e38128b0197c999419eae0fefcafd716c5dedd084945cab65e7185579ba7043ce35da40ba324839cdddf44f0e1d5a5b66ecd3bddf5ae5722246eacc45363e3cc8b5159534cef2f7749f211c72b1e1d6007afdf2ea74005b8c7dce3577580e53b19f76a6c8d2758862e5c6e685a3a3bb595cbfd64e00d1a9a8e9b3e9ce0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
