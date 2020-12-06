@@ -13,7 +13,7 @@
       "tagLabel": "OBJECT_IDENTIFIER",
       "length": 9,
       "lengthType": "DEFINITE",
-      "value": "2a864886f712010202"
+      "value": "1.2.840.113554.1.2.2"
     },
     {
       "tagClass": "UNIVERSAL",
