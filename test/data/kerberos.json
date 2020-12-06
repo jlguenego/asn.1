@@ -22,7 +22,7 @@
       "tagLabel": "BOOLEAN",
       "length": 0,
       "lengthType": "DEFINITE",
-      "value": undefined
+      "value": null
     },
     {
       "tagClass": "APPLICATION",

@@ -1,7 +1,6 @@
 import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import {inspect} from 'util';
 
 import {asn1Parse} from '../src';
 import {EncodingRule} from '../src/EncodingRule';
@@ -32,7 +31,6 @@ describe('Kerberos Protocol', () => {
       }
     );
 
-    console.log('output: ', inspect(output, false, null, true));
     assert.deepStrictEqual(output, kerberosJson);
   });
 });

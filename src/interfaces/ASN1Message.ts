@@ -11,6 +11,6 @@ export interface ASN1Message {
   value: ASN1Type;
 }
 
-export type ASN1PrimitiveType = string | number | boolean | undefined;
+export type ASN1PrimitiveType = string | number | boolean | null;
 
 export type ASN1Type = ASN1Message[] | ASN1PrimitiveType;

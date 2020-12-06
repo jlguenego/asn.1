@@ -92,7 +92,7 @@ function readComposed(
     tagLabel: TagDecoder.getLabel(identifier.tagClass, identifier.tag),
     length: length,
     lengthType: type,
-    value: undefined,
+    value: null,
   };
   if (length === 0) {
     return result;
@@ -122,7 +122,7 @@ function readSimple(cdv: CursorDataView, identifier: Identifier): ASN1Message {
     tagLabel: TagDecoder.getLabel(identifier.tagClass, identifier.tag),
     length: length,
     lengthType: type,
-    value: undefined,
+    value: null,
   };
 
   if (identifier.tag === TagUniversal.BOOLEAN.code) {
