@@ -6,12 +6,61 @@
     01 # Type BOOLEAN
       00 # Length is 0 (not specified) WARNING: the GSSAPI define 0100 for
       # being the TOK_ID message. 0100 means the KRB_AP_REQ message.
-    6e #
+    6e # APPLICATION 14
       82 06 4e # Length 0x64e (1614)
-        30 # Type 
-        82064aa003020105a10302010ea20703050
-020000000a382049c6182049830820494a003020105a10b1b094a4c472e4c4f43414ca21c301aa0
-03020102a11330111b04485454501b096c6f63616c686f7374a38204603082045ca003020117a10
+        30 # Type Sequence Constructed
+          82 06 4a # Length 0x064a (1610)
+            a0 # CONTEXT SPECIFIC 0
+              03 # Length 3
+                02 # Type integer
+                  01 # Length 1
+                    05 # Integer 5
+            a1 # CONTECT SPECIFIC 1
+              03 # Length 3
+                02 # Type integer
+                  01 # Length 1
+                    0e # 14 (constant KRB_AP_REQ)
+            a2 # CONTEXT SPECIFIC 2
+              07 # Length 7
+                03 # Bitstring
+                  05 # Length 5
+                    0020000000 # Flag Mutual Required (the server must provide an answer message)
+            a3 # CONTEXT SPECIFIC 3
+              82 04 9c # Length (1180)
+                61 # APPLICATION 1 (Ticket)
+                  82 04 98 # Length 1176
+                    30 # Sequence Constructed
+                      82 04 94 # Length 1172
+                        a0 # CONTEXT SPECIFIC 0 (tkt-vno)
+                          03 # Length 3
+                            02 # Integer
+                              01 # Length 1
+                                05 # value 5
+                        a1 # CONTEXT SPECIFIC 1 (realm)
+                          0b # Length 11
+                            1b # Type GeneralString
+                              09 # Length 9
+                                4a 4c 47 2e  4c 4f 43 41  4c # String "JLG.LOCAL"
+                        a2 # CONTEXT SPECIFIC 2 (PrincipalName)
+                          1c # Length 28
+                            30 # Sequence Constructed
+                              1a # Length 26
+                                a0 # CONTEXT SPECIFIC 0 (name-type)
+                                  03 # Length 3
+                                    02 # Type Integer
+                                      01 # Length 1
+                                        02 # Value 2 (NT-SRV-INST = service and other unique instance)
+                                a1 # CONTEXT SPECIFIC 1 (name-string)
+                                  13 # Length 19
+                                    30 # Constructed SEQUENCE
+                                      11 # Length 17
+                                        1b # Type GeneralString
+                                          04 # Length 4
+                                            48 54 54 50  # HTTP
+                                        1b # Type GeneralString
+                                          09 # Length 9
+                                            6c 6f 63 61 6c 68 6f 73 74 # localhost
+                                a38204603082045ca003020117a10
 3020102a282044e0482044a2d368b256922a3bd807ae6afff04c61f063da839a8d921df6d4889cd
 63ab1d441edd9ebe39fe0928c854ce872413e4edf9f228875fa2b5a3179237a3be6daa2966d7e9a
 7355bcfd9feec936813480e32bdba430452c6e54f1ad04797a0cb8037d34614360ace781bf9a425
