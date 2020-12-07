@@ -60,7 +60,10 @@
                                         1b # Type GeneralString
                                           09 # Length 9
                                             6c 6f 63 61 6c 68 6f 73 74 # localhost
-                                a38204603082045ca003020117a10
+                        a3 # CONTEXT SPECIFIC 3 (EncryptedData)
+                          82 04 60 # Length 1120
+                            30 # Constructed SEQUENCE
+                            82045ca003020117a10
 3020102a282044e0482044a2d368b256922a3bd807ae6afff04c61f063da839a8d921df6d4889cd
 63ab1d441edd9ebe39fe0928c854ce872413e4edf9f228875fa2b5a3179237a3be6daa2966d7e9a
 7355bcfd9feec936813480e32bdba430452c6e54f1ad04797a0cb8037d34614360ace781bf9a425
