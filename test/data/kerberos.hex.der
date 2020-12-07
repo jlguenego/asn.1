@@ -4,7 +4,8 @@
       09 # Length (9)
         2a 86 48 86 f7  12 01 02 02  # (1.2.840.113554.1.2.2 = GSSAPI)      
     01 # Type BOOLEAN
-      00 # Length is 0 (not specified)
+      00 # Length is 0 (not specified) WARNING: the GSSAPI define 0100 for
+      # being the TOK_ID message. 0100 means the KRB_AP_REQ message.
     6e #
       82 06 4e # Length 0x64e (1614)
         30 # Type 
