@@ -140,6 +140,8 @@ function readSimple(cdv: CursorDataView, identifier: Identifier): ASN1Message {
     return result;
   }
   if (identifier.tag === TagUniversal.OCTET_STRING.code) {
+    // 8.7.1 The encoding of an octetstring value shall be either primitive
+    // or constructed at the option of the sender.
     result.value = readOctetString(cdv, length);
     return result;
   }

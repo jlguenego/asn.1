@@ -2,12 +2,7 @@
   82 06 5f # length is 0x065f (1631)
     06 # Type OBJECT IDENTIFIER
       09 # Length (9)
-        2a        # iso(1)
-        86 48     # identified-organization(3)
-        86 f7 12  # dod(6)
-        01        # internet(1)
-        02        # security(5)
-        02        # kerberosV5(2)
+        2a 86 48 86 f7  12 01 02 02  # (1.2.840.113554.1.2.2 = GSSAPI)      
     01 # Type BOOLEAN
       00 # Length is 0 (not specified)
     6e #
