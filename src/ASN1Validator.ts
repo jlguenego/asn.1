@@ -3,25 +3,14 @@ import {DERValidator} from './codec/der/DERValidator';
 import {EncodingRule} from './EncodingRule';
 import {ASN1Message} from './interfaces/ASN1Message';
 
-const getAssignments = (module: ASN1Module, types: string[]) => {
-  if (!types.length) {
-    return [module.assignments[0]];
-  }
-  return types.map(type => module.getAssignment(type));
-};
-
 export class ASN1Validator {
   module: ASN1Module;
   constructor(private definition: string) {
     this.module = ASN1Module.compile(this.definition);
   }
 
-  validate(
-    input: ASN1Message,
-    types: string[],
-    encodingRule = EncodingRule.DER
-  ) {
-    const assignment = getAssignments(this.module, types)[0];
+  validate(input: ASN1Message, type: string, encodingRule = EncodingRule.DER) {
+    const assignment = this.module.getAssignment(type);
     if (encodingRule === EncodingRule.DER) {
       const validator = new DERValidator();
       validator.validate(assignment, input);

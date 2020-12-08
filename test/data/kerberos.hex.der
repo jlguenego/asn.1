@@ -63,8 +63,25 @@
                         a3 # CONTEXT SPECIFIC 3 (EncryptedData)
                           82 04 60 # Length 1120
                             30 # Constructed SEQUENCE
-                            82045ca003020117a10
-3020102a282044e0482044a2d368b256922a3bd807ae6afff04c61f063da839a8d921df6d4889cd
+                              82 04 5c # Length 1116
+                                a0 # CONTEXT SPECIFIC 0 (etype) 
+                                # This field identifies which encryption algorithm
+                                # was used to encipher the cipher.
+                                  03 # Length 3
+                                    02 # Integer
+                                      01 # Length 1
+                                        17 # 0x17 = 23
+                                a1 # CONTEXT SPECIFIC 1 (kvno) key version number
+                                  03  # Length 3
+                                    02 # Integer
+                                      01 # Length 1
+                                        02 # Value 2
+                                a2 # CONTEXT SPECIFIC 2 (cipher) The encrypted data.
+                                  82 04 4e # Length 1102
+                                    04 # Type Octet String
+                                      82 04 4a # Length 1098
+########################
+2d368b256922a3bd807ae6afff04c61f063da839a8d921df6d4889cd
 63ab1d441edd9ebe39fe0928c854ce872413e4edf9f228875fa2b5a3179237a3be6daa2966d7e9a
 7355bcfd9feec936813480e32bdba430452c6e54f1ad04797a0cb8037d34614360ace781bf9a425
 cee8848257bfae751c7473cff13d44e2f158b5fb655331a7517d198a31e275fe6e1b9705e25f0b8
@@ -92,7 +109,9 @@ c45f0fc4df7572361a54dce7dc1542f43d93f7c439c1ba70d5718ad1ed8d64905fcef09ce21ee22
 8f58fff66ec0dd0460619a782a3999d507d7bf1b0a29c73ff6c194ec4ac851942fa2ba297693952
 49879c84e58d5219f3230e2266ca4991500b18418f3c07e46c0fb92e6082217ee732f5c2e5756ca
 ffb90ae7f0fadcefad3aa795816062bae3e7abb382059e907c0109d21becc034c7a5215e3471e1a
-eefae5fa48201933082018fa003020117a282018604820182e3b2a6e86c7d93aa2f64e56fbcd944
+eefae5f
+#########################
+a48201933082018fa003020117a282018604820182e3b2a6e86c7d93aa2f64e56fbcd944
 ca96d9c24f145dd6cc580478ae50a4223d5d3021f3620afba444a78cf03ca015ab616fef5c88fe6
 8bcd10d453eb2913a9709eb9197932f73061098b0e7073cc9c0b1e2a6197d83eb46076066aee286
 fe1c613a0e1e08d216f2c46af2dda56f721895f5245e031dd49bb14ca5c39b1444b8c6b55fce095

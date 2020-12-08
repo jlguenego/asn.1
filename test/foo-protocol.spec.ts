@@ -28,7 +28,7 @@ describe('Foo Unit Test', () => {
     const validator = new ASN1Validator(definition);
     validator.validate(
       fooQuestionDerJson as ASN1Message,
-      ['FooQuestion'],
+      'FooQuestion',
       EncodingRule.DER
     );
   });
