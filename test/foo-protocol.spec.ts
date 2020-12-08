@@ -8,6 +8,7 @@ import {EncodingRule} from '../src/EncodingRule';
 import {ASN1Message} from '../src/interfaces/ASN1Message';
 import {readEncodedFile} from '../src/misc';
 import fooQuestionDerJson from './data/foo-question.der.json';
+import fooQuestionDerValidatedJson from './data/foo-question.validated.der.json';
 
 describe('Foo Unit Test', () => {
   it('should parse the foo message', () => {
@@ -31,5 +32,6 @@ describe('Foo Unit Test', () => {
       'FooQuestion',
       EncodingRule.DER
     );
+    assert.deepStrictEqual(fooQuestionDerJson, fooQuestionDerValidatedJson);
   });
 });

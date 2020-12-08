@@ -9,6 +9,7 @@ export interface ASN1Message {
   lengthType: LengthType;
   length: number;
   value: ASN1Type;
+  tagName?: string;
 }
 
 export type ASN1PrimitiveType = string | number | boolean | null;

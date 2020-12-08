@@ -1,0 +1,31 @@
+{
+  "tagClass": "UNIVERSAL",
+  "tagName": "FooQuestion",
+  "isConstructed": true,
+  "tagCode": 16,
+  "tagLabel": "SEQUENCE",
+  "length": 19,
+  "lengthType": "DEFINITE",
+  "value": [
+    {
+      "tagClass": "UNIVERSAL",
+      "tagName": "trackingNumber",
+      "isConstructed": false,
+      "tagCode": 2,
+      "tagLabel": "INTEGER",
+      "length": 1,
+      "lengthType": "DEFINITE",
+      "value": 5
+    },
+    {
+      "tagClass": "UNIVERSAL",
+      "tagName": "question",
+      "isConstructed": false,
+      "tagCode": 22,
+      "tagLabel": "IA5STRING",
+      "length": 14,
+      "lengthType": "DEFINITE",
+      "value": "Anybody there?"
+    }
+  ]
+}

@@ -9,6 +9,7 @@ export class DERValidator {
     if (assignment.type instanceof ASN1Sequence) {
       this.validateSequence(assignment.type, input);
     }
+    input.tagName = assignment.name;
     return;
   }
 
@@ -44,5 +45,6 @@ export class DERValidator {
       default:
         break;
     }
+    input.tagName = component.name;
   }
 }
