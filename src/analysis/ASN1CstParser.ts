@@ -27,45 +27,56 @@ import {
 } from './ASN1Lexer';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
 
+type Rule = (idx?: number) => CstNode;
+
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
-  public ModuleDefinition!: () => CstNode;
-  public TagDefault!: () => CstNode;
-  public ModuleBody!: (idx: number) => CstNode;
-  public AssignmentList!: (idx: number) => CstNode;
-  public Assignment!: (idx: number) => CstNode;
-  public TypeAssignment!: (idx: number) => CstNode;
-  public ValueAssignment!: (idx: number) => CstNode;
-  public ValueReference!: (idx: number) => CstNode;
-  public Value!: (idx: number) => CstNode;
-  public BuiltinValue!: (idx: number) => CstNode;
-  public ObjectIdentifierValue!: (idx: number) => CstNode;
-  public ObjIdComponentsList!: (idx: number) => CstNode;
-  public ObjIdComponents!: (idx: number) => CstNode;
-  public NameAndNumberForm!: (idx: number) => CstNode;
-  public NumberForm!: (idx: number) => CstNode;
-  public Type!: (idx: number) => CstNode;
-  public BuiltinType!: (idx: number) => CstNode;
-  public SequenceType!: (idx: number) => CstNode;
-  public IntegerType!: (idx: number) => CstNode;
-  public BooleanType!: (idx: number) => CstNode;
-  public ObjectIdentifierType!: (idx: number) => CstNode;
-  public CharacterStringType!: (idx: number) => CstNode;
-  public RestrictedCharacterStringType!: (idx: number) => CstNode;
-  public ComponentTypeLists!: (idx: number) => CstNode;
-  public ComponentTypeList!: (idx: number) => CstNode;
-  public ComponentType!: (idx: number) => CstNode;
-  public NamedType!: (idx: number) => CstNode;
+  public ModuleDefinition!: Rule;
+  public TagDefault!: Rule;
+  public ModuleBody!: Rule;
+  public AssignmentList!: Rule;
+  public Assignment!: Rule;
+  public TypeAssignment!: Rule;
+  public ValueAssignment!: Rule;
+  public ValueReference!: Rule;
+  public Value!: Rule;
+  public BuiltinValue!: Rule;
+  public ObjectIdentifierValue!: Rule;
+  public ObjIdComponentsList!: Rule;
+  public ObjIdComponents!: Rule;
+  public NameAndNumberForm!: Rule;
+  public NumberForm!: Rule;
+  public Type!: Rule;
+  public BuiltinType!: Rule;
+  public SequenceType!: Rule;
+  public IntegerType!: Rule;
+  public BooleanType!: Rule;
+  public ObjectIdentifierType!: Rule;
+  public CharacterStringType!: Rule;
+  public RestrictedCharacterStringType!: Rule;
+  public ComponentTypeLists!: Rule;
+  public ComponentTypeList!: Rule;
+  public ComponentType!: Rule;
+  public NamedType!: Rule;
 
   addRule(name: string, implementation: (...implArgs: unknown[]) => unknown) {
     this.RULE(name, implementation);
   }
 
-  addSubrule(rule: (idx: number) => CstNode) {
+  addSubrule(rule: Rule) {
     this.SUBRULE(rule);
   }
 
   addConsume(token: TokenType) {
     this.CONSUME(token);
+  }
+
+  addOr(names: (keyof ASN1CstParser)[]) {
+    const array = names.map(name => ({
+      ALT: () => {
+        this.SUBRULE(this[name] as (idx: number) => CstNode);
+      },
+    }));
+    this.OR(array);
   }
 
   constructor() {
@@ -222,32 +233,12 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     });
 
     this.RULE('BuiltinType', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.BooleanType);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.ObjectIdentifierType);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.CharacterStringType);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.IntegerType);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.SequenceType);
-          },
-        },
+      this.addOr([
+        'BooleanType',
+        'ObjectIdentifierType',
+        'CharacterStringType',
+        'IntegerType',
+        'SequenceType',
       ]);
     });
 
