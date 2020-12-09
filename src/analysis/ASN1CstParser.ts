@@ -1,4 +1,5 @@
 import {CstNode, TokenType} from 'chevrotain';
+import {Rule} from '../interfaces/Rule';
 
 import {
   AFFECTATION,
@@ -26,8 +27,6 @@ import {
   IDENTIFIER,
 } from './ASN1Lexer';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
-
-type Rule = (idx?: number) => CstNode;
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ModuleDefinition!: Rule;
