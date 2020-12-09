@@ -1,32 +1,63 @@
 import {Lexer, createToken} from 'chevrotain';
 
-// using createToken API
+export const Comment = createToken({
+  name: 'Comment',
+  pattern: /--.*(?:\n|--)/,
+  group: Lexer.SKIPPED,
+});
+
 export const WhiteSpace = createToken({
   name: 'WhiteSpace',
   pattern: /[ \t\n\r]+/,
   group: Lexer.SKIPPED,
 });
+
+// Keywords
+export const AUTOMATIC = createToken({name: 'AUTOMATIC', pattern: /AUTOMATIC/});
+export const BEGIN = createToken({name: 'BEGIN', pattern: /BEGIN/});
+export const BOOLEAN = createToken({name: 'BOOLEAN', pattern: /BOOLEAN/});
 export const DEFINITIONS = createToken({
-  name: 'Definitions',
+  name: 'DEFINITIONS',
   pattern: /DEFINITIONS/,
 });
+export const END = createToken({name: 'END', pattern: /END/});
+export const EXPLICIT = createToken({
+  name: 'EXPLICIT',
+  pattern: /EXPLICIT/,
+});
+export const IMPLICIT = createToken({
+  name: 'IMPLICIT',
+  pattern: /IMPLICIT/,
+});
+export const IDENTIFIER = createToken({
+  name: 'IDENTIFIER',
+  pattern: /IDENTIFIER/,
+});
+export const INTEGER = createToken({name: 'INTEGER', pattern: /INTEGER/});
+export const OBJECT = createToken({name: 'OBJECT', pattern: /OBJECT/});
 export const SEQUENCE = createToken({
   name: 'Sequence',
   pattern: /SEQUENCE/,
 });
-export const AFFECTATION = createToken({name: 'Affectation', pattern: /::=/});
-export const BEGIN = createToken({name: 'Begin', pattern: /BEGIN/});
-export const END = createToken({name: 'End', pattern: /END/});
-export const INTEGER = createToken({name: 'Integer', pattern: /INTEGER/});
+export const TAGS = createToken({
+  name: 'TAGS',
+  pattern: /TAGS/,
+});
+
+export const AFFECTATION = createToken({name: 'AFFECTATION', pattern: /::=/});
+
 export const IA5String = createToken({name: 'IA5String', pattern: /IA5String/});
 export const UTF8String = createToken({
   name: 'UTF8String',
   pattern: /UTF8String/,
 });
-export const BOOLEAN = createToken({name: 'Boolean', pattern: /BOOLEAN/});
+
 export const L_CURLY = createToken({name: 'LCurly', pattern: /{/});
 export const R_CURLY = createToken({name: 'RCurly', pattern: /}/});
+export const L_PARENTHESIS = createToken({name: 'LParenthesis', pattern: /\(/});
+export const R_PARENTHESIS = createToken({name: 'RParenthesis', pattern: /\)/});
 export const COMMA = createToken({name: 'Comma', pattern: /,/});
+
 export const TypeReference = createToken({
   name: 'TypeReference',
   // 12.2.1
@@ -39,24 +70,42 @@ export const Identifier = createToken({
   pattern: /[a-z](?:-?\w+)*/,
 });
 
+export const NumberToken = createToken({
+  name: 'Number',
+  // 12.8
+  pattern: /(?:[1-9][0-9]*)|0/,
+});
+
 export const allASN1Tokens = [
+  Comment,
   WhiteSpace,
+
   // "keywords" appear before the Identifier
-  DEFINITIONS,
-  AFFECTATION,
+  AUTOMATIC,
   BEGIN,
+  BOOLEAN,
+  DEFINITIONS,
   END,
+  EXPLICIT,
+  IA5String,
+  IDENTIFIER,
+  IMPLICIT,
+  INTEGER,
+  OBJECT,
   SEQUENCE,
+  TAGS,
+
+  AFFECTATION,
   L_CURLY,
   R_CURLY,
+  L_PARENTHESIS,
+  R_PARENTHESIS,
   COMMA,
-  INTEGER,
-  IA5String,
-  BOOLEAN,
 
   // The Identifier must appear after the keywords because all keywords are valid identifiers.
   Identifier,
   TypeReference,
+  NumberToken,
 ];
 
 export const ASN1Lexer = new Lexer(allASN1Tokens);
