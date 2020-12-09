@@ -10,7 +10,6 @@ import {
   TypeReference,
   IA5String,
   UTF8String,
-  INTEGER,
   BOOLEAN,
   EXPLICIT,
   TAGS,
@@ -18,7 +17,11 @@ import {
   AUTOMATIC,
   OBJECT,
   IDENTIFIER,
+  NumberToken,
+  NegativeNumberToken,
 } from './ASN1Lexer';
+import {initConstrainedTypeRules} from './parser/ASN1ConstrainedTypeRules';
+import {initIntegerTypeRules} from './parser/ASN1IntegerTypeRules';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
 import {initObjectIdentifierValueRules} from './parser/ASN1ObjectIdentifierValueRules';
 import {initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
@@ -34,6 +37,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ValueReference!: Rule;
   public Value!: Rule;
   public BuiltinValue!: Rule;
+  public IntegerValue!: Rule;
   public ObjectIdentifierValue!: Rule;
   public ObjIdComponentsList!: Rule;
   public ObjIdComponents!: Rule;
@@ -41,8 +45,28 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public NumberForm!: Rule;
   public Type!: Rule;
   public BuiltinType!: Rule;
+
+  public ConstrainedType!: Rule;
+  public Constraint!: Rule;
+  public TypeWithConstraint!: Rule;
+  public ConstraintSpec!: Rule;
+  public ExceptionSpec!: Rule;
+  public SubtypeConstraint!: Rule;
+  public ElementSetSpecs!: Rule;
+  public SubtypeElements!: Rule;
+  public GeneralConstraint!: Rule;
+  public ValueRange!: Rule;
+  public LowerEndpoint!: Rule;
+  public UpperEndpoint!: Rule;
+  public LowerEndValue!: Rule;
+  public UpperEndValue!: Rule;
+
   public SequenceType!: Rule;
   public IntegerType!: Rule;
+  public NamedNumberList!: Rule;
+  public NamedNumber!: Rule;
+  public SignedNumber!: Rule;
+  public DefinedValue!: Rule;
   public BooleanType!: Rule;
   public ObjectIdentifierType!: Rule;
   public CharacterStringType!: Rule;
@@ -80,6 +104,15 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     const array = names.map(name => ({
       ALT: () => {
         this.SUBRULE(this[name] as (idx: number) => CstNode);
+      },
+    }));
+    this.OR(array);
+  }
+
+  addOrTokenList(tokens: TokenType[]) {
+    const array = tokens.map(t => ({
+      ALT: () => {
+        this.CONSUME(t);
       },
     }));
     this.OR(array);
@@ -168,23 +201,22 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     });
 
     this.RULE('BuiltinValue', () => {
-      this.addOrList(['ObjectIdentifierValue']);
+      this.addOrList(['ObjectIdentifierValue', 'IntegerValue']);
+    });
+
+    this.RULE('IntegerValue', () => {
+      this.addOrTokenList([Identifier, NumberToken, NegativeNumberToken]);
     });
 
     this.RULE('TypeAssignment', () => {
+      // 16.1
       this.CONSUME(TypeReference);
       this.CONSUME(AFFECTATION);
       this.SUBRULE(this.Type);
     });
 
     this.RULE('Type', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.BuiltinType);
-          },
-        },
-      ]);
+      this.addOrList(['ConstrainedType']);
     });
 
     this.RULE('BuiltinType', () => {
@@ -231,16 +263,12 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
       ]);
     });
 
-    this.RULE('IntegerType', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(INTEGER);
-          },
-        },
-      ]);
+    this.RULE('DefinedValue', () => {
+      this.addOrList(['ValueReference']);
     });
 
+    initConstrainedTypeRules(this);
+    initIntegerTypeRules(this);
     initObjectIdentifierValueRules(this);
     initSequenceTypeRules(this);
     this.performSelfAnalysis();

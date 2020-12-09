@@ -34,6 +34,8 @@ export const IDENTIFIER = createToken({
   pattern: /IDENTIFIER/,
 });
 export const INTEGER = createToken({name: 'INTEGER', pattern: /INTEGER/});
+export const MAX = createToken({name: 'MAX', pattern: /MAX/});
+export const MIN = createToken({name: 'MIN', pattern: /MIN/});
 export const OBJECT = createToken({name: 'OBJECT', pattern: /OBJECT/});
 export const SEQUENCE = createToken({
   name: 'Sequence',
@@ -57,6 +59,10 @@ export const R_CURLY = createToken({name: 'RCurly', pattern: /}/});
 export const L_PARENTHESIS = createToken({name: 'LParenthesis', pattern: /\(/});
 export const R_PARENTHESIS = createToken({name: 'RParenthesis', pattern: /\)/});
 export const COMMA = createToken({name: 'Comma', pattern: /,/});
+export const RANGE_SEPARATOR = createToken({
+  name: 'RangeSeparator',
+  pattern: /[.][.]/,
+});
 
 export const TypeReference = createToken({
   name: 'TypeReference',
@@ -68,6 +74,12 @@ export const Identifier = createToken({
   name: 'Identifier',
   // 12.3
   pattern: /[a-z](?:-?\w+)*/,
+});
+
+export const NegativeNumberToken = createToken({
+  name: 'NegativeNumber',
+  // 12.8 and 19.1
+  pattern: /-[1-9][0-9]*/,
 });
 
 export const NumberToken = createToken({
@@ -91,11 +103,17 @@ export const allASN1Tokens = [
   IDENTIFIER,
   IMPLICIT,
   INTEGER,
+  MAX,
+  MIN,
   OBJECT,
   SEQUENCE,
   TAGS,
 
+  // 3 chars
   AFFECTATION,
+  // 2 chars
+  RANGE_SEPARATOR,
+  // 1 chars
   L_CURLY,
   R_CURLY,
   L_PARENTHESIS,
@@ -105,6 +123,7 @@ export const allASN1Tokens = [
   // The Identifier must appear after the keywords because all keywords are valid identifiers.
   Identifier,
   TypeReference,
+  NegativeNumberToken,
   NumberToken,
 ];
 

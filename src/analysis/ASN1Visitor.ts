@@ -18,6 +18,7 @@ import {
   NamedTypeCstNode,
   ComponentTypeCstNode,
   CharacterStringTypeCstNode,
+  ConstrainedTypeCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -46,12 +47,16 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   TypeAssignment(ctx: TypeAssignmentCstNode, module: ASN1Module) {
     const name = ctx.TypeReference[0].image;
     const assignment = new ASN1Assignment(name);
-    const type = this.visit(ctx.Type, assignment);
+    const type = this.visit(ctx.Type);
     assignment.setType(type);
     module.addAssignment(assignment);
   }
 
   Type(ctx: TypeCstNode) {
+    return this.visit(ctx.ConstrainedType);
+  }
+
+  ConstrainedType(ctx: ConstrainedTypeCstNode) {
     return this.visit(ctx.BuiltinType);
   }
 

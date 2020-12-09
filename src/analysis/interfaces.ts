@@ -14,8 +14,12 @@ export interface TypeAssignmentCstNode extends CstNode {
   Type: TypeCstNode;
 }
 
-export interface TypeCstNode extends CstNode {
+export interface ConstrainedTypeCstNode extends CstNode {
   BuiltinType: CstNode;
+}
+
+export interface TypeCstNode extends CstNode {
+  ConstrainedType: CstNode;
 }
 
 export interface BuiltinTypeCstNode extends CstNode {
