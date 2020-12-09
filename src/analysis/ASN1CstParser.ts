@@ -1,4 +1,4 @@
-import {CstNode, TokenType} from 'chevrotain';
+import {CstNode, GrammarAction, IOrAlt, TokenType} from 'chevrotain';
 import {Rule} from '../interfaces/Rule';
 
 import {
@@ -15,7 +15,6 @@ import {
   SEQUENCE,
   L_CURLY,
   R_CURLY,
-  COMMA,
   EXPLICIT,
   TAGS,
   IMPLICIT,
@@ -27,6 +26,7 @@ import {
   IDENTIFIER,
 } from './ASN1Lexer';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
+import {initRules} from './parser/ASN1Rules';
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ModuleDefinition!: Rule;
@@ -69,7 +69,15 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     this.CONSUME(token);
   }
 
-  addOr(names: (keyof ASN1CstParser)[]) {
+  addOr(altsOrOpts: IOrAlt<void>[]) {
+    this.OR(altsOrOpts);
+  }
+
+  addOption(actionORMethodDef: GrammarAction<void>) {
+    this.OPTION(actionORMethodDef);
+  }
+
+  addOrList(names: (keyof ASN1CstParser)[]) {
     const array = names.map(name => ({
       ALT: () => {
         this.SUBRULE(this[name] as (idx: number) => CstNode);
@@ -232,7 +240,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     });
 
     this.RULE('BuiltinType', () => {
-      this.addOr([
+      this.addOrList([
         'BooleanType',
         'ObjectIdentifierType',
         'CharacterStringType',
@@ -310,29 +318,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
       ]);
     });
 
-    this.RULE('ComponentTypeList', () => {
-      this.SUBRULE(this.ComponentType);
-      this.OPTION(() => {
-        this.CONSUME(COMMA);
-        this.SUBRULE(this.ComponentTypeList);
-      });
-    });
-
-    this.RULE('ComponentType', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.NamedType);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('NamedType', () => {
-      this.CONSUME(Identifier);
-      this.SUBRULE(this.Type);
-    });
-
+    initRules(this);
     this.performSelfAnalysis();
   }
 }
