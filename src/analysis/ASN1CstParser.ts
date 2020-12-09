@@ -12,7 +12,6 @@ import {
   UTF8String,
   INTEGER,
   BOOLEAN,
-  SEQUENCE,
   L_CURLY,
   R_CURLY,
   EXPLICIT,
@@ -26,7 +25,7 @@ import {
   IDENTIFIER,
 } from './ASN1Lexer';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
-import {initRules} from './parser/ASN1Rules';
+import {initRules as initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ModuleDefinition!: Rule;
@@ -293,32 +292,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
       ]);
     });
 
-    this.RULE('SequenceType', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(SEQUENCE);
-            this.CONSUME(L_CURLY);
-            this.OPTION(() => {
-              this.SUBRULE(this.ComponentTypeLists);
-            });
-            this.CONSUME(R_CURLY);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('ComponentTypeLists', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.ComponentTypeList);
-          },
-        },
-      ]);
-    });
-
-    initRules(this);
+    initSequenceTypeRules(this);
     this.performSelfAnalysis();
   }
 }
