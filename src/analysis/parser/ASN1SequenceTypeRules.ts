@@ -1,7 +1,7 @@
 import {ASN1CstParser} from '../ASN1CstParser';
 import {COMMA, Identifier, L_CURLY, R_CURLY, SEQUENCE} from '../ASN1Lexer';
 
-export function initRules($: ASN1CstParser) {
+export function initSequenceTypeRules($: ASN1CstParser) {
   $.addRule('SequenceType', () => {
     $.addOr([
       {

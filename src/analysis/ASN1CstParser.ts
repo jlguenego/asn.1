@@ -12,20 +12,16 @@ import {
   UTF8String,
   INTEGER,
   BOOLEAN,
-  L_CURLY,
-  R_CURLY,
   EXPLICIT,
   TAGS,
   IMPLICIT,
   AUTOMATIC,
-  L_PARENTHESIS,
-  R_PARENTHESIS,
-  NumberToken,
   OBJECT,
   IDENTIFIER,
 } from './ASN1Lexer';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
-import {initRules as initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
+import {initObjectIdentifierValueRules} from './parser/ASN1ObjectIdentifierValueRules';
+import {initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ModuleDefinition!: Rule;
@@ -74,6 +70,10 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
 
   addOption(actionORMethodDef: GrammarAction<void>) {
     this.OPTION(actionORMethodDef);
+  }
+
+  addMany(actionORMethodDef: GrammarAction<void>) {
+    this.MANY(actionORMethodDef);
   }
 
   addOrList(names: (keyof ASN1CstParser)[]) {
@@ -168,58 +168,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     });
 
     this.RULE('BuiltinValue', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.ObjectIdentifierValue);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('ObjectIdentifierValue', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(L_CURLY);
-            this.SUBRULE(this.ObjIdComponentsList);
-            this.CONSUME(R_CURLY);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('ObjIdComponentsList', () => {
-      this.MANY(() => {
-        this.SUBRULE(this.ObjIdComponents);
-      });
-    });
-
-    this.RULE('ObjIdComponents', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.NameAndNumberForm);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('NameAndNumberForm', () => {
-      this.CONSUME(Identifier);
-      this.CONSUME(L_PARENTHESIS);
-      this.SUBRULE(this.NumberForm);
-      this.CONSUME(R_PARENTHESIS);
-    });
-
-    this.RULE('NumberForm', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(NumberToken);
-          },
-        },
-      ]);
+      this.addOrList(['ObjectIdentifierValue']);
     });
 
     this.RULE('TypeAssignment', () => {
@@ -292,6 +241,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
       ]);
     });
 
+    initObjectIdentifierValueRules(this);
     initSequenceTypeRules(this);
     this.performSelfAnalysis();
   }
