@@ -29,11 +29,14 @@ export const R_CURLY = createToken({name: 'RCurly', pattern: /}/});
 export const COMMA = createToken({name: 'Comma', pattern: /,/});
 export const TypeReference = createToken({
   name: 'TypeReference',
-  pattern: /[A-Z]\w*/,
+  // 12.2.1
+  // Note: use of non capturing group. (?:xxx)
+  pattern: /[A-Z](?:-?\w+)*/,
 });
 export const Identifier = createToken({
   name: 'Identifier',
-  pattern: /[a-z]\w*/,
+  // 12.3
+  pattern: /[a-z](?:-?\w+)*/,
 });
 
 export const allASN1Tokens = [

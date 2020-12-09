@@ -8,6 +8,9 @@ import {asn1Parse} from '../src';
 import {EncodingRule} from '../src/EncodingRule';
 import {readEncodedFile, sanitize} from '../src/misc';
 import kerberosJson from './data/kerberos.json';
+import kerberosValidatedJson from './data/kerberos.validated.json';
+import {ASN1Validator} from '../src/ASN1Validator';
+import {ASN1Message} from '../src/interfaces/ASN1Message';
 
 const debug = dbg('asn.1:test');
 
@@ -37,5 +40,14 @@ describe('Kerberos Protocol', () => {
     debug('output: ', inspect(output, false, null, true));
 
     assert.deepStrictEqual(output, kerberosJson);
+  });
+
+  it('test kerberos asn.1 file from the RFC4120', () => {
+    const definition = readFileSync(resolve(__dirname, 'data/kerberos.asn1'), {
+      encoding: 'utf8',
+    });
+    const validator = new ASN1Validator(definition);
+    validator.validate(kerberosJson as ASN1Message, 'AP-REQ', EncodingRule.DER);
+    assert.deepStrictEqual(kerberosJson, kerberosValidatedJson);
   });
 });
