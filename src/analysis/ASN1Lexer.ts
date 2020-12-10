@@ -62,6 +62,8 @@ export const L_CURLY = createToken({name: 'LCurly', pattern: /{/});
 export const R_CURLY = createToken({name: 'RCurly', pattern: /}/});
 export const L_PARENTHESIS = createToken({name: 'LParenthesis', pattern: /\(/});
 export const R_PARENTHESIS = createToken({name: 'RParenthesis', pattern: /\)/});
+export const L_SQUARE = createToken({name: 'LSquareBracket', pattern: /\[/});
+export const R_SQUARE = createToken({name: 'RSquareBracket', pattern: /\]/});
 export const COMMA = createToken({name: 'Comma', pattern: /,/});
 export const RANGE_SEPARATOR = createToken({
   name: 'RangeSeparator',
@@ -123,6 +125,8 @@ export const allASN1Tokens = [
   R_CURLY,
   L_PARENTHESIS,
   R_PARENTHESIS,
+  L_SQUARE,
+  R_SQUARE,
   COMMA,
 
   // The Identifier must appear after the keywords because all keywords are valid identifiers.
