@@ -1,11 +1,6 @@
 import {ASN1CstParser} from '../ASN1CstParser';
-import {
-  L_PARENTHESIS,
-  MAX,
-  MIN,
-  RANGE_SEPARATOR,
-  R_PARENTHESIS,
-} from '../ASN1Lexer';
+import {L_PARENTHESIS, RANGE_SEPARATOR, R_PARENTHESIS} from '../ASN1Lexer';
+import {k} from '../lexer/ASN1Keyword';
 
 export function initConstrainedTypeRules(this: ASN1CstParser) {
   this.RULE('Constraint', () => {
@@ -68,7 +63,7 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
       },
       {
         ALT: () => {
-          this.CONSUME(MIN);
+          this.CONSUME(k.MIN);
         },
       },
     ]);
@@ -82,7 +77,7 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
       },
       {
         ALT: () => {
-          this.CONSUME(MAX);
+          this.CONSUME(k.MAX);
         },
       },
     ]);

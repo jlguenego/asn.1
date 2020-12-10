@@ -1,12 +1,13 @@
 import {ASN1CstParser} from '../ASN1CstParser';
-import {COMMA, Identifier, L_CURLY, R_CURLY, SEQUENCE} from '../ASN1Lexer';
+import {COMMA, Identifier, L_CURLY, R_CURLY} from '../ASN1Lexer';
+import {k} from '../lexer/ASN1Keyword';
 
 export function initSequenceTypeRules(this: ASN1CstParser) {
   this.RULE('SequenceType', () => {
     this.OR([
       {
         ALT: () => {
-          this.CONSUME(SEQUENCE);
+          this.CONSUME(k.SEQUENCE);
           this.CONSUME(L_CURLY);
           this.OPTION(() => {
             this.SUBRULE(this.ComponentTypeLists);

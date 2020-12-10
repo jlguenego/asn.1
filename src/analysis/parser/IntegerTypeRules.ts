@@ -2,7 +2,6 @@ import {ASN1CstParser} from '../ASN1CstParser';
 import {
   COMMA,
   Identifier,
-  INTEGER,
   L_CURLY,
   L_PARENTHESIS,
   NegativeNumberToken,
@@ -10,10 +9,11 @@ import {
   R_CURLY,
   R_PARENTHESIS,
 } from '../ASN1Lexer';
+import {k} from '../lexer/ASN1Keyword';
 
 export function initIntegerTypeRules(this: ASN1CstParser) {
   this.RULE('IntegerType', () => {
-    this.CONSUME(INTEGER);
+    this.CONSUME(k.INTEGER);
     this.OPTION(() => {
       this.CONSUME(L_CURLY);
       this.SUBRULE(this.NamedNumberList);

@@ -1,4 +1,5 @@
 import {Lexer, createToken} from 'chevrotain';
+import {k} from './lexer/ASN1Keyword';
 
 export const Comment = createToken({
   name: 'Comment',
@@ -13,58 +14,7 @@ export const WhiteSpace = createToken({
 });
 
 // Keywords
-export const AUTOMATIC = createToken({name: 'AUTOMATIC', pattern: /AUTOMATIC/});
-export const BEGIN = createToken({name: 'BEGIN', pattern: /BEGIN/});
-export const BIT = createToken({name: 'BIT', pattern: /BIT/});
-export const BOOLEAN = createToken({name: 'BOOLEAN', pattern: /BOOLEAN/});
-export const DEFINITIONS = createToken({
-  name: 'DEFINITIONS',
-  pattern: /DEFINITIONS/,
-});
-export const END = createToken({name: 'END', pattern: /END/});
-export const EXPLICIT = createToken({
-  name: 'EXPLICIT',
-  pattern: /EXPLICIT/,
-});
-export const GeneralString = createToken({
-  name: 'GeneralString',
-  pattern: /GeneralString/,
-});
-export const IA5String = createToken({name: 'IA5String', pattern: /IA5String/});
-export const IMPLICIT = createToken({
-  name: 'IMPLICIT',
-  pattern: /IMPLICIT/,
-});
-export const IDENTIFIER = createToken({
-  name: 'IDENTIFIER',
-  pattern: /IDENTIFIER/,
-});
-export const INTEGER = createToken({name: 'INTEGER', pattern: /INTEGER/});
-export const MAX = createToken({name: 'MAX', pattern: /MAX/});
-export const MIN = createToken({name: 'MIN', pattern: /MIN/});
-export const OBJECT = createToken({name: 'OBJECT', pattern: /OBJECT/});
-export const OCTET = createToken({name: 'OCTET', pattern: /OCTET/});
-export const OF = createToken({name: 'OF', pattern: /OF/});
-export const SEQUENCE = createToken({
-  name: 'SEQUENCE',
-  pattern: /SEQUENCE/,
-});
-export const SIZE = createToken({
-  name: 'SIZE',
-  pattern: /SIZE/,
-});
-export const TAGS = createToken({
-  name: 'TAGS',
-  pattern: /TAGS/,
-});
-
 export const AFFECTATION = createToken({name: 'AFFECTATION', pattern: /::=/});
-
-export const STRING = createToken({name: 'STRING', pattern: /STRING/});
-export const UTF8String = createToken({
-  name: 'UTF8String',
-  pattern: /UTF8String/,
-});
 
 export const L_CURLY = createToken({name: 'LCurly', pattern: /{/});
 export const R_CURLY = createToken({name: 'RCurly', pattern: /}/});
@@ -106,28 +56,7 @@ export const allASN1Tokens = [
   Comment,
   WhiteSpace,
 
-  // "keywords" appear before the Identifier
-  AUTOMATIC,
-  BEGIN,
-  BIT,
-  BOOLEAN,
-  DEFINITIONS,
-  END,
-  EXPLICIT,
-  GeneralString,
-  IA5String,
-  IDENTIFIER,
-  IMPLICIT,
-  INTEGER,
-  MAX,
-  MIN,
-  OBJECT,
-  OCTET,
-  OF,
-  SEQUENCE,
-  SIZE,
-  STRING,
-  TAGS,
+  ...Object.values(k),
 
   // 3 chars
   AFFECTATION,

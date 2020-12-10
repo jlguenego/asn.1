@@ -1,17 +1,8 @@
 import {CstNode, CstParser, TokenType} from 'chevrotain';
 import {Rule} from '../interfaces/Rule';
 
-import {
-  AFFECTATION,
-  BEGIN,
-  DEFINITIONS,
-  END,
-  EXPLICIT,
-  TAGS,
-  IMPLICIT,
-  AUTOMATIC,
-  allASN1Tokens,
-} from './ASN1Lexer';
+import {AFFECTATION, allASN1Tokens} from './ASN1Lexer';
+import {k} from './lexer/ASN1Keyword';
 import {initBuiltinTypeRules} from './parser/BuiltinTypeRules';
 import {initBuiltinValueRules} from './parser/BuiltinValueRules';
 import {initConstrainedTypeRules} from './parser/ConstrainedTypeRules';
@@ -127,18 +118,18 @@ export class ASN1CstParser extends CstParser {
 
     this.RULE('ModuleDefinition', () => {
       this.SUBRULE(this.ModuleIdentifier);
-      this.CONSUME(DEFINITIONS);
+      this.CONSUME(k.DEFINITIONS);
       this.SUBRULE(this.TagDefault);
       this.CONSUME(AFFECTATION);
-      this.CONSUME(BEGIN);
+      this.CONSUME(k.BEGIN);
       this.SUBRULE(this.ModuleBody);
-      this.CONSUME(END);
+      this.CONSUME(k.END);
     });
 
     this.RULE('TagDefault', () => {
       this.OPTION(() => {
-        this.addOrTokenList([EXPLICIT, IMPLICIT, AUTOMATIC]);
-        this.CONSUME(TAGS);
+        this.addOrTokenList([k.EXPLICIT, k.IMPLICIT, k.AUTOMATIC]);
+        this.CONSUME(k.TAGS);
       });
     });
 

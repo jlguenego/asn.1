@@ -1,10 +1,10 @@
 import {ASN1CstParser} from '../ASN1CstParser';
-import {OF, SEQUENCE} from '../ASN1Lexer';
+import {k} from '../lexer/ASN1Keyword';
 
 export function initSequenceOfTypeRules(this: ASN1CstParser) {
   this.RULE('SequenceOfType', () => {
-    this.CONSUME(SEQUENCE);
-    this.CONSUME(OF);
+    this.CONSUME(k.SEQUENCE);
+    this.CONSUME(k.OF);
     this.SUBRULE(this.Type);
   });
 }

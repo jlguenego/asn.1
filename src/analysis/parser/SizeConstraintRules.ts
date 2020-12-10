@@ -1,9 +1,9 @@
 import {ASN1CstParser} from '../ASN1CstParser';
-import {SIZE} from '../ASN1Lexer';
+import {k} from '../lexer/ASN1Keyword';
 
 export function initSizeConstraintRules(this: ASN1CstParser) {
   this.RULE('SizeConstraint', () => {
-    this.CONSUME(SIZE);
+    this.CONSUME(k.SIZE);
     this.SUBRULE(this.Constraint);
   });
 }
