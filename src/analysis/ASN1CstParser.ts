@@ -20,14 +20,14 @@ import {
   NegativeNumberToken,
   GeneralString,
 } from './ASN1Lexer';
-import {initConstrainedTypeRules} from './parser/ASN1ConstrainedTypeRules';
-import {initIntegerTypeRules} from './parser/ASN1IntegerTypeRules';
-import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
-import {initObjectIdentifierValueRules} from './parser/ASN1ObjectIdentifierValueRules';
-import {initReferencedTypeRules} from './parser/ASN1ReferencedTypeRules';
-import {initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
-import {initTaggedTypeRules} from './parser/ASN1TaggedTypeRules';
-import {initTypeRules} from './parser/ASN1TypeRules';
+import {initConstrainedTypeRules} from './parser/ConstrainedTypeRules';
+import {initIntegerTypeRules} from './parser/IntegerTypeRules';
+import {ASN1ModuleIdentifierCstParser} from './parser/ModuleIdentifierCstParser';
+import {initObjectIdentifierValueRules} from './parser/ObjectIdentifierValueRules';
+import {initReferencedTypeRules} from './parser/ReferencedTypeRules';
+import {initSequenceTypeRules} from './parser/SequenceTypeRules';
+import {initTaggedTypeRules} from './parser/TaggedTypeRules';
+import {initTypeRules} from './parser/TypeRules';
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ModuleDefinition!: Rule;
