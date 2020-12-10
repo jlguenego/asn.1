@@ -11,41 +11,41 @@ import {
   R_PARENTHESIS,
 } from '../ASN1Lexer';
 
-export function initIntegerTypeRules($: ASN1CstParser) {
-  $.addRule('IntegerType', () => {
-    $.addConsume(INTEGER);
-    $.addOption(() => {
-      $.addConsume(L_CURLY);
-      $.addSubrule($.NamedNumberList);
-      $.addConsume(R_CURLY);
+export function initIntegerTypeRules(this: ASN1CstParser) {
+  this.RULE('IntegerType', () => {
+    this.CONSUME(INTEGER);
+    this.OPTION(() => {
+      this.CONSUME(L_CURLY);
+      this.SUBRULE(this.NamedNumberList);
+      this.CONSUME(R_CURLY);
     });
   });
 
-  $.addRule('NamedNumberList', () => {
-    $.addSubrule($.NamedNumber);
-    $.addOption(() => {
-      $.addConsume(COMMA);
-      $.addSubrule($.NamedNumberList);
+  this.RULE('NamedNumberList', () => {
+    this.SUBRULE(this.NamedNumber);
+    this.OPTION(() => {
+      this.CONSUME(COMMA);
+      this.SUBRULE(this.NamedNumberList);
     });
   });
 
-  $.addRule('NamedNumber', () => {
-    $.addConsume(Identifier);
-    $.addConsume(L_PARENTHESIS);
-    $.addOrList(['SignedNumber', 'DefinedValue']);
-    $.addConsume(R_PARENTHESIS);
+  this.RULE('NamedNumber', () => {
+    this.CONSUME(Identifier);
+    this.CONSUME(L_PARENTHESIS);
+    this.addOrList(['SignedNumber', 'DefinedValue']);
+    this.CONSUME(R_PARENTHESIS);
   });
 
-  $.addRule('SignedNumber', () => {
-    $.addOr([
+  this.RULE('SignedNumber', () => {
+    this.addOr([
       {
         ALT: () => {
-          $.addConsume(NumberToken);
+          this.CONSUME(NumberToken);
         },
       },
       {
         ALT: () => {
-          $.addConsume(NegativeNumberToken);
+          this.CONSUME(NegativeNumberToken);
         },
       },
     ]);

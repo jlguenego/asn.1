@@ -274,7 +274,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     });
 
     initConstrainedTypeRules.call(this);
-    initIntegerTypeRules(this);
+    initIntegerTypeRules.call(this);
     initObjectIdentifierValueRules(this);
     initSequenceTypeRules(this);
     this.performSelfAnalysis();
