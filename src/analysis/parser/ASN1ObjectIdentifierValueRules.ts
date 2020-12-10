@@ -8,47 +8,47 @@ import {
   R_PARENTHESIS,
 } from '../ASN1Lexer';
 
-export function initObjectIdentifierValueRules($: ASN1CstParser) {
-  $.addRule('ObjectIdentifierValue', () => {
-    $.addOr([
+export function initObjectIdentifierValueRules(this: ASN1CstParser) {
+  this.RULE('ObjectIdentifierValue', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addConsume(L_CURLY);
-          $.addSubrule($.ObjIdComponentsList);
-          $.addConsume(R_CURLY);
+          this.CONSUME(L_CURLY);
+          this.SUBRULE(this.ObjIdComponentsList);
+          this.CONSUME(R_CURLY);
         },
       },
     ]);
   });
 
-  $.addRule('ObjIdComponentsList', () => {
-    $.addMany(() => {
-      $.addSubrule($.ObjIdComponents);
+  this.RULE('ObjIdComponentsList', () => {
+    this.MANY(() => {
+      this.SUBRULE(this.ObjIdComponents);
     });
   });
 
-  $.addRule('ObjIdComponents', () => {
-    $.addOr([
+  this.RULE('ObjIdComponents', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addSubrule($.NameAndNumberForm);
+          this.SUBRULE(this.NameAndNumberForm);
         },
       },
     ]);
   });
 
-  $.addRule('NameAndNumberForm', () => {
-    $.addConsume(Identifier);
-    $.addConsume(L_PARENTHESIS);
-    $.addSubrule($.NumberForm);
-    $.addConsume(R_PARENTHESIS);
+  this.RULE('NameAndNumberForm', () => {
+    this.CONSUME(Identifier);
+    this.CONSUME(L_PARENTHESIS);
+    this.SUBRULE(this.NumberForm);
+    this.CONSUME(R_PARENTHESIS);
   });
 
-  $.addRule('NumberForm', () => {
-    $.addOr([
+  this.RULE('NumberForm', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addConsume(NumberToken);
+          this.CONSUME(NumberToken);
         },
       },
     ]);
