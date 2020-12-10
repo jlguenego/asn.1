@@ -7,89 +7,89 @@ import {
   R_PARENTHESIS,
 } from '../ASN1Lexer';
 
-export function initConstrainedTypeRules($: ASN1CstParser) {
-  $.addRule('ConstrainedType', () => {
+export function initConstrainedTypeRules(this: ASN1CstParser) {
+  this.RULE('ConstrainedType', () => {
     // 49.1
     //     Type Constraint
     // | TypeWithConstraint
 
     // chevrotain does not allow rules recursion.
-    // $.addOr([
+    // this.addOr([
     //   {
     //     ALT: () => {
-    $.addSubrule($.BuiltinType);
-    $.addOption(() => {
-      $.addSubrule($.Constraint);
+    this.SUBRULE(this.BuiltinType);
+    this.OPTION(() => {
+      this.SUBRULE(this.Constraint);
     });
     //   },
     // },
     // {
     //   ALT: () => {
-    //     $.addSubrule($.TypeWithConstraint);
+    //     this.SUBRULE(this.TypeWithConstraint);
     //   },
     // },
     // ]);
   });
 
-  $.addRule('Constraint', () => {
+  this.RULE('Constraint', () => {
     // 49.6 Constraint ::= "(" ConstraintSpec ExceptionSpec ")"
-    $.addConsume(L_PARENTHESIS);
-    $.addSubrule($.ConstraintSpec);
-    // $.addSubrule($.ExceptionSpec);
-    $.addConsume(R_PARENTHESIS);
+    this.CONSUME(L_PARENTHESIS);
+    this.SUBRULE(this.ConstraintSpec);
+    // this.addSubrule(this.ExceptionSpec);
+    this.CONSUME(R_PARENTHESIS);
   });
-  $.addRule('ConstraintSpec', () => {
+  this.RULE('ConstraintSpec', () => {
     // 49.6 ConstraintSpec ::=
     // SubtypeConstraint
     // | GeneralConstraint
-    $.addSubrule($.SubtypeConstraint);
-    $.addSubrule($.GeneralConstraint);
+    this.SUBRULE(this.SubtypeConstraint);
+    this.SUBRULE(this.GeneralConstraint);
   });
-  $.addRule('SubtypeConstraint', () => {
-    $.addSubrule($.ElementSetSpecs);
+  this.RULE('SubtypeConstraint', () => {
+    this.SUBRULE(this.ElementSetSpecs);
   });
-  $.addRule('ElementSetSpecs', () => {
-    $.addSubrule($.ValueRange);
+  this.RULE('ElementSetSpecs', () => {
+    this.SUBRULE(this.ValueRange);
   });
-  $.addRule('GeneralConstraint', () => {});
-  $.addRule('ExceptionSpec', () => {});
-  $.addRule('TypeWithConstraint', () => {});
+  this.RULE('GeneralConstraint', () => {});
+  this.RULE('ExceptionSpec', () => {});
+  this.RULE('TypeWithConstraint', () => {});
 
-  $.addRule('ValueRange', () => {
-    $.addSubrule($.LowerEndpoint);
-    $.addConsume(RANGE_SEPARATOR);
-    $.addSubrule($.UpperEndpoint);
+  this.RULE('ValueRange', () => {
+    this.SUBRULE(this.LowerEndpoint);
+    this.CONSUME(RANGE_SEPARATOR);
+    this.SUBRULE(this.UpperEndpoint);
   });
-  $.addRule('LowerEndpoint', () => {
-    $.addSubrule($.LowerEndValue);
+  this.RULE('LowerEndpoint', () => {
+    this.SUBRULE(this.LowerEndValue);
   });
-  $.addRule('UpperEndpoint', () => {
-    $.addSubrule($.UpperEndValue);
+  this.RULE('UpperEndpoint', () => {
+    this.SUBRULE(this.UpperEndValue);
   });
-  $.addRule('LowerEndValue', () => {
-    $.addOr([
+  this.RULE('LowerEndValue', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addSubrule($.Value);
+          this.SUBRULE(this.Value);
         },
       },
       {
         ALT: () => {
-          $.addConsume(MIN);
+          this.CONSUME(MIN);
         },
       },
     ]);
   });
-  $.addRule('UpperEndValue', () => {
-    $.addOr([
+  this.RULE('UpperEndValue', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addSubrule($.Value);
+          this.SUBRULE(this.Value);
         },
       },
       {
         ALT: () => {
-          $.addConsume(MAX);
+          this.CONSUME(MAX);
         },
       },
     ]);
