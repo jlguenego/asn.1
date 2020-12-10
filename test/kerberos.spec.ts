@@ -47,7 +47,15 @@ describe('Kerberos Protocol', () => {
       encoding: 'utf8',
     });
     const validator = new ASN1Validator(definition);
-    validator.validate(kerberosJson as ASN1Message, 'AP-REQ', EncodingRule.DER);
-    assert.deepStrictEqual(kerberosJson, kerberosValidatedJson);
+    validator.validate(
+      kerberosJson.value[2] as ASN1Message,
+      'AP-REQ',
+      EncodingRule.DER
+    );
+    // console.log(
+    //   'kerberosJson.value[2]: ',
+    //   inspect(kerberosJson.value[2], false, null, true)
+    // );
+    assert.deepStrictEqual(kerberosJson.value[2], kerberosValidatedJson);
   });
 });

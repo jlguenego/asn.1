@@ -11,6 +11,7 @@ export class ASN1Validator {
 
   validate(input: ASN1Message, type: string, encodingRule = EncodingRule.DER) {
     const assignment = this.module.getAssignment(type);
+    console.log('assignment: ', assignment);
     if (encodingRule === EncodingRule.DER) {
       const validator = new DERValidator();
       validator.validate(assignment, input);

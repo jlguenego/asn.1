@@ -27,6 +27,29 @@ export interface BuiltinTypeCstNode extends CstNode {
   BooleanType: CstNode;
   IntegerType: CstNode;
   CharacterStringType: CstNode;
+  PrefixedType: CstNode;
+}
+
+export interface PrefixedTypeCstNode extends CstNode {
+  TaggedType: CstNode;
+}
+
+export interface TaggedTypeCstNode extends CstNode {
+  Tag: CstNode;
+  Type: CstNode;
+}
+
+export interface TagCstNode extends CstNode {
+  Class: CstNode;
+  ClassNumber: CstNode;
+}
+
+export interface ClassCstNode extends CstNode {
+  APPLICATION: CstNode;
+}
+
+export interface ClassNumberCstNode extends CstNode {
+  Number: IToken[];
 }
 
 export interface SequenceTypeCstNode extends CstNode {

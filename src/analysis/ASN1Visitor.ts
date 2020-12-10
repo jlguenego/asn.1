@@ -2,11 +2,15 @@ import {ASN1Assignment} from '../asn1/ASN1Assignment';
 import {ASN1Module} from '../asn1/ASN1Module';
 import {ASN1NamedType} from '../asn1/ASN1NamedType';
 import {ASN1Sequence} from '../asn1/ASN1Sequence';
+import {ASN1Tag} from '../asn1/ASN1Tag';
+import {ASN1TaggedType} from '../asn1/ASN1TaggedType';
+import {ASN1Type} from '../asn1/ASN1Type';
 import {
   ASN1BooleanType,
   ASN1IA5StringType,
   ASN1IntegerType,
 } from '../asn1/types/builtin';
+import {TagClass} from '../interfaces/TagClass';
 import {ASN1CstParser} from './ASN1CstParser';
 import {
   ASN1CstNode,
@@ -19,6 +23,11 @@ import {
   ComponentTypeCstNode,
   CharacterStringTypeCstNode,
   ConstrainedTypeCstNode,
+  PrefixedTypeCstNode,
+  TaggedTypeCstNode,
+  TagCstNode,
+  ClassCstNode,
+  ClassNumberCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -61,6 +70,9 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   BuiltinType(ctx: BuiltinTypeCstNode) {
+    if (ctx.PrefixedType) {
+      return this.visit(ctx.PrefixedType);
+    }
     if (ctx.SequenceType) {
       return this.visit(ctx.SequenceType);
     }
@@ -74,6 +86,33 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
       return this.visit(ctx.CharacterStringType);
     }
     return null;
+  }
+
+  PrefixedType(ctx: PrefixedTypeCstNode) {
+    return this.visit(ctx.TaggedType);
+  }
+
+  TaggedType(ctx: TaggedTypeCstNode) {
+    const tag = this.visit(ctx.Tag) as ASN1Tag;
+    const type = this.visit(ctx.Type) as ASN1Type;
+    return new ASN1TaggedType(tag, type);
+  }
+
+  Tag(ctx: TagCstNode) {
+    const tagClass = this.visit(ctx.Class) as TagClass;
+    const tagCode = this.visit(ctx.ClassNumber) as number;
+    return new ASN1Tag(tagClass, tagCode);
+  }
+
+  Class(ctx: ClassCstNode) {
+    if (ctx.APPLICATION) {
+      return TagClass.APPLICATION;
+    }
+    return TagClass.CONTEXT_SPECIFIC;
+  }
+
+  ClassNumber(ctx: ClassNumberCstNode) {
+    return +ctx.Number[0].image;
   }
 
   SequenceType(ctx: SequenceTypeCstNode) {
