@@ -2,7 +2,7 @@ import {Lexer, createToken} from 'chevrotain';
 
 export const Comment = createToken({
   name: 'Comment',
-  pattern: /--.*(?:\n|--)/,
+  pattern: /--.*?(?:\n|--)/,
   group: Lexer.SKIPPED,
 });
 

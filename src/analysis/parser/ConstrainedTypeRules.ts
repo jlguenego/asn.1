@@ -38,7 +38,7 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
     this.SUBRULE(this.SubtypeElements);
   });
   this.RULE('SubtypeElements', () => {
-    this.addOrList(['ContainedSubType', 'ValueRange']);
+    this.addOrList(['ContainedSubType', 'SizeConstraint', 'ValueRange']);
   });
   this.RULE('ContainedSubType', () => {
     this.SUBRULE(this.Type);

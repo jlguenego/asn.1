@@ -21,6 +21,7 @@ import {initObjectIdentifierValueRules} from './parser/ObjectIdentifierValueRule
 import {initReferencedTypeRules} from './parser/ReferencedTypeRules';
 import {initSequenceOfTypeRules} from './parser/SequenceOfTypeRules';
 import {initSequenceTypeRules} from './parser/SequenceTypeRules';
+import {initSizeConstraintRules} from './parser/SizeConstraintRules';
 import {initTaggedTypeRules} from './parser/TaggedTypeRules';
 import {initTypeRules} from './parser/TypeRules';
 
@@ -101,6 +102,8 @@ export class ASN1CstParser extends CstParser {
   public ComponentType!: Rule;
   public NamedType!: Rule;
 
+  public SizeConstraint!: Rule;
+
   addOrList(names: (keyof ASN1CstParser)[]) {
     const array = names.map(name => ({
       ALT: () => {
@@ -164,6 +167,7 @@ export class ASN1CstParser extends CstParser {
     initTypeRules.call(this);
     initReferencedTypeRules.call(this);
     initTaggedTypeRules.call(this);
+    initSizeConstraintRules.call(this);
     this.performSelfAnalysis();
   }
 }
