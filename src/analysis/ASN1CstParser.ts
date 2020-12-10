@@ -47,6 +47,7 @@ export class ASN1CstParser extends CstParser {
   public ReferencedType!: Rule;
 
   public DefinedType!: Rule;
+  public UsefulType!: Rule;
 
   public TaggedType!: Rule;
   public Tag!: Rule;
