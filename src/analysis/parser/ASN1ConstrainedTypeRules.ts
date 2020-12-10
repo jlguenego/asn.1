@@ -8,29 +8,6 @@ import {
 } from '../ASN1Lexer';
 
 export function initConstrainedTypeRules(this: ASN1CstParser) {
-  this.RULE('ConstrainedType', () => {
-    // 49.1
-    //     Type Constraint
-    // | TypeWithConstraint
-
-    // chevrotain does not allow rules recursion.
-    // this.addOr([
-    //   {
-    //     ALT: () => {
-    this.SUBRULE(this.BuiltinType);
-    this.OPTION(() => {
-      this.SUBRULE(this.Constraint);
-    });
-    //   },
-    // },
-    // {
-    //   ALT: () => {
-    //     this.SUBRULE(this.TypeWithConstraint);
-    //   },
-    // },
-    // ]);
-  });
-
   this.RULE('Constraint', () => {
     // 49.6 Constraint ::= "(" ConstraintSpec ExceptionSpec ")"
     this.CONSUME(L_PARENTHESIS);

@@ -7,7 +7,6 @@ import {
   DEFINITIONS,
   END,
   Identifier,
-  TypeReference,
   IA5String,
   UTF8String,
   BOOLEAN,
@@ -25,7 +24,9 @@ import {initConstrainedTypeRules} from './parser/ASN1ConstrainedTypeRules';
 import {initIntegerTypeRules} from './parser/ASN1IntegerTypeRules';
 import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstParser';
 import {initObjectIdentifierValueRules} from './parser/ASN1ObjectIdentifierValueRules';
+import {initReferencedTypeRules} from './parser/ASN1ReferencedTypeRules';
 import {initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
+import {initTypeRules} from './parser/ASN1TypeRules';
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ModuleDefinition!: Rule;
@@ -44,10 +45,15 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ObjIdComponents!: Rule;
   public NameAndNumberForm!: Rule;
   public NumberForm!: Rule;
+
   public Type!: Rule;
+  public ConstrainedType!: Rule;
+  public ReferencedType!: Rule;
+
+  public DefinedType!: Rule;
+
   public BuiltinType!: Rule;
 
-  public ConstrainedType!: Rule;
   public Constraint!: Rule;
   public TypeWithConstraint!: Rule;
   public ConstraintSpec!: Rule;
@@ -189,27 +195,6 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
       this.addOrTokenList([Identifier, NumberToken, NegativeNumberToken]);
     });
 
-    this.RULE('TypeAssignment', () => {
-      // 16.1
-      this.CONSUME(TypeReference);
-      this.CONSUME(AFFECTATION);
-      this.SUBRULE(this.Type);
-    });
-
-    this.RULE('Type', () => {
-      this.addOrList(['ConstrainedType']);
-    });
-
-    this.RULE('BuiltinType', () => {
-      this.addOrList([
-        'BooleanType',
-        'ObjectIdentifierType',
-        'CharacterStringType',
-        'IntegerType',
-        'SequenceType',
-      ]);
-    });
-
     this.RULE('BooleanType', () => {
       this.CONSUME(BOOLEAN);
     });
@@ -257,6 +242,8 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     initIntegerTypeRules.call(this);
     initObjectIdentifierValueRules.call(this);
     initSequenceTypeRules.call(this);
+    initTypeRules.call(this);
+    initReferencedTypeRules.call(this);
     this.performSelfAnalysis();
   }
 }
