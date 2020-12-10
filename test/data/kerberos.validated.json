@@ -5,6 +5,7 @@
   "tagLabel": "14",
   "length": 1614,
   "lengthType": "DEFINITE",
+  "tagName": "AP-REQ",
   "value": [
     {
       "tagClass": "UNIVERSAL",
@@ -18,6 +19,7 @@
           "tagClass": "CONTEXT_SPECIFIC",
           "isConstructed": true,
           "tagCode": 0,
+          "tagName": "pvno",
           "tagLabel": "0",
           "length": 3,
           "lengthType": "DEFINITE",
@@ -37,6 +39,7 @@
           "tagClass": "CONTEXT_SPECIFIC",
           "isConstructed": true,
           "tagCode": 1,
+          "tagName": "msg-type",
           "tagLabel": "1",
           "length": 3,
           "lengthType": "DEFINITE",
@@ -57,6 +60,7 @@
           "isConstructed": true,
           "tagCode": 2,
           "tagLabel": "2",
+          "tagName": "ap-options",
           "length": 7,
           "lengthType": "DEFINITE",
           "value": [
@@ -76,6 +80,7 @@
           "isConstructed": true,
           "tagCode": 3,
           "tagLabel": "3",
+          "tagName": "ticket",
           "length": 1180,
           "lengthType": "DEFINITE",
           "value": [
@@ -298,6 +303,7 @@
           "isConstructed": true,
           "tagCode": 4,
           "tagLabel": "4",
+          "tagName": "authenticator",
           "length": 403,
           "lengthType": "DEFINITE",
           "value": [
