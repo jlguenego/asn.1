@@ -48,6 +48,10 @@ export const TAGS = createToken({
 
 export const AFFECTATION = createToken({name: 'AFFECTATION', pattern: /::=/});
 
+export const GeneralString = createToken({
+  name: 'GeneralString',
+  pattern: /GeneralString/,
+});
 export const IA5String = createToken({name: 'IA5String', pattern: /IA5String/});
 export const UTF8String = createToken({
   name: 'UTF8String',
@@ -99,6 +103,7 @@ export const allASN1Tokens = [
   DEFINITIONS,
   END,
   EXPLICIT,
+  GeneralString,
   IA5String,
   IDENTIFIER,
   IMPLICIT,

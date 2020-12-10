@@ -19,6 +19,7 @@ import {
   IDENTIFIER,
   NumberToken,
   NegativeNumberToken,
+  GeneralString,
 } from './ASN1Lexer';
 import {initConstrainedTypeRules} from './parser/ASN1ConstrainedTypeRules';
 import {initIntegerTypeRules} from './parser/ASN1IntegerTypeRules';
@@ -250,6 +251,11 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
 
     this.RULE('RestrictedCharacterStringType', () => {
       this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(GeneralString);
+          },
+        },
         {
           ALT: () => {
             this.CONSUME(IA5String);
