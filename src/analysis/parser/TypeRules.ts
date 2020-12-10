@@ -16,11 +16,21 @@ export function initTypeRules(this: ASN1CstParser) {
   this.RULE('ConstrainedType', () => {
     // chevrotain does not allow rules recursion.
     // 49.1
-
-    this.SUBRULE(this.BuiltinType);
-    this.OPTION(() => {
-      this.SUBRULE(this.Constraint);
-    });
+    this.OR([
+      {
+        ALT: () => {
+          this.SUBRULE(this.BuiltinType);
+          this.OPTION(() => {
+            this.SUBRULE(this.Constraint);
+          });
+        },
+      },
+      {
+        ALT: () => {
+          this.SUBRULE(this.TypeWithConstraint);
+        },
+      },
+    ]);
   });
 
   this.RULE('BuiltinType', () => {

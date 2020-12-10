@@ -61,7 +61,34 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
 
   this.RULE('GeneralConstraint', () => {});
   this.RULE('ExceptionSpec', () => {});
-  this.RULE('TypeWithConstraint', () => {});
+  this.RULE('TypeWithConstraint', () => {
+    this.addOrTokenList([k.SEQUENCE, k.SET]);
+    this.OR2([
+      {
+        ALT: () => {
+          this.SUBRULE(this.Constraint);
+        },
+      },
+      {
+        ALT: () => {
+          this.SUBRULE(this.SizeConstraint);
+        },
+      },
+    ]);
+    this.CONSUME(k.OF);
+    this.OR3([
+      {
+        ALT: () => {
+          this.SUBRULE(this.Type);
+        },
+      },
+      {
+        ALT: () => {
+          this.SUBRULE(this.NamedType);
+        },
+      },
+    ]);
+  });
 
   this.RULE('ValueRange', () => {
     // Refactored: ValueRange include SingleValue
