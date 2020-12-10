@@ -35,6 +35,11 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
   this.RULE('SubtypeElements', () => {
     this.addOrList(['ContainedSubType', 'SizeConstraint', 'ValueRange']);
   });
+
+  this.RULE('SingleValue', () => {
+    this.SUBRULE(this.Value);
+  });
+
   this.RULE('ContainedSubType', () => {
     this.SUBRULE(this.Type);
   });
@@ -44,9 +49,12 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
   this.RULE('TypeWithConstraint', () => {});
 
   this.RULE('ValueRange', () => {
+    // Refactored: ValueRange include SingleValue
     this.SUBRULE(this.LowerEndpoint);
-    this.CONSUME(RANGE_SEPARATOR);
-    this.SUBRULE(this.UpperEndpoint);
+    this.OPTION(() => {
+      this.CONSUME(RANGE_SEPARATOR);
+      this.SUBRULE(this.UpperEndpoint);
+    });
   });
   this.RULE('LowerEndpoint', () => {
     this.SUBRULE(this.LowerEndValue);

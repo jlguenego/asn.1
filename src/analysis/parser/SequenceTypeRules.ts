@@ -41,6 +41,9 @@ export function initSequenceTypeRules(this: ASN1CstParser) {
       {
         ALT: () => {
           this.SUBRULE(this.NamedType);
+          this.OPTION(() => {
+            this.CONSUME(k.OPTIONAL);
+          });
         },
       },
     ]);

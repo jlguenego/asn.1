@@ -51,6 +51,7 @@ export class ASN1CstParser extends CstParser {
 
   public TaggedType!: Rule;
   public Tag!: Rule;
+  public Class!: Rule;
   public ClassNumber!: Rule;
 
   public BuiltinType!: Rule;
@@ -66,6 +67,8 @@ export class ASN1CstParser extends CstParser {
   public ElementSetSpec!: Rule;
   public Elements!: Rule;
   public SubtypeElements!: Rule;
+  public SingleValue!: Rule;
+
   public ContainedSubType!: Rule;
   public GeneralConstraint!: Rule;
   public ValueRange!: Rule;
