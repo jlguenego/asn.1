@@ -1,5 +1,10 @@
 import {ASN1CstParser} from '../ASN1CstParser';
-import {L_PARENTHESIS, RANGE_SEPARATOR, R_PARENTHESIS} from '../ASN1Lexer';
+import {
+  L_PARENTHESIS,
+  PIPE,
+  RANGE_SEPARATOR,
+  R_PARENTHESIS,
+} from '../ASN1Lexer';
 import {k} from '../lexer/ASN1Keyword';
 
 export function initConstrainedTypeRules(this: ASN1CstParser) {
@@ -27,7 +32,17 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
     this.SUBRULE(this.ElementSetSpec);
   });
   this.RULE('ElementSetSpec', () => {
+    this.SUBRULE(this.Unions);
+  });
+  this.RULE('Unions', () => {
     this.SUBRULE(this.Elements);
+    this.MANY(() => {
+      this.SUBRULE(this.UnionMark);
+      this.SUBRULE2(this.Elements);
+    });
+  });
+  this.RULE('UnionMark', () => {
+    this.CONSUME(PIPE);
   });
   this.RULE('Elements', () => {
     this.SUBRULE(this.SubtypeElements);

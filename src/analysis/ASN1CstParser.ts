@@ -65,6 +65,9 @@ export class ASN1CstParser extends CstParser {
   public ElementSetSpecs!: Rule;
   public RootElementSetSpec!: Rule;
   public ElementSetSpec!: Rule;
+  public Unions!: Rule;
+  public Intersections!: Rule;
+  public UnionMark!: Rule;
   public Elements!: Rule;
   public SubtypeElements!: Rule;
   public SingleValue!: Rule;

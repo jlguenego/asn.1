@@ -23,6 +23,7 @@ export const R_PARENTHESIS = createToken({name: 'RParenthesis', pattern: /\)/});
 export const L_SQUARE = createToken({name: 'LSquareBracket', pattern: /\[/});
 export const R_SQUARE = createToken({name: 'RSquareBracket', pattern: /\]/});
 export const COMMA = createToken({name: 'Comma', pattern: /,/});
+export const PIPE = createToken({name: 'Pipe', pattern: /\|/});
 export const RANGE_SEPARATOR = createToken({
   name: 'RangeSeparator',
   pattern: /[.][.]/,
@@ -70,6 +71,7 @@ export const allASN1Tokens = [
   L_SQUARE,
   R_SQUARE,
   COMMA,
+  PIPE,
 
   // The Identifier must appear after the keywords because all keywords are valid identifiers.
   Identifier,
