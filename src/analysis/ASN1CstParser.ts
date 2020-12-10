@@ -54,7 +54,11 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ExceptionSpec!: Rule;
   public SubtypeConstraint!: Rule;
   public ElementSetSpecs!: Rule;
+  public RootElementSetSpec!: Rule;
+  public ElementSetSpec!: Rule;
+  public Elements!: Rule;
   public SubtypeElements!: Rule;
+  public ContainedSubType!: Rule;
   public GeneralConstraint!: Rule;
   public ValueRange!: Rule;
   public LowerEndpoint!: Rule;

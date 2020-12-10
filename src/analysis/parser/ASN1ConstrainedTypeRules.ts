@@ -49,8 +49,24 @@ export function initConstrainedTypeRules(this: ASN1CstParser) {
     this.SUBRULE(this.ElementSetSpecs);
   });
   this.RULE('ElementSetSpecs', () => {
-    this.SUBRULE(this.ValueRange);
+    this.SUBRULE(this.RootElementSetSpec);
   });
+  this.RULE('RootElementSetSpec', () => {
+    this.SUBRULE(this.ElementSetSpec);
+  });
+  this.RULE('ElementSetSpec', () => {
+    this.SUBRULE(this.Elements);
+  });
+  this.RULE('Elements', () => {
+    this.SUBRULE(this.SubtypeElements);
+  });
+  this.RULE('SubtypeElements', () => {
+    this.addOrList(['ContainedSubType', 'ValueRange']);
+  });
+  this.RULE('ContainedSubType', () => {
+    this.SUBRULE(this.Type);
+  });
+
   this.RULE('GeneralConstraint', () => {});
   this.RULE('ExceptionSpec', () => {});
   this.RULE('TypeWithConstraint', () => {});
