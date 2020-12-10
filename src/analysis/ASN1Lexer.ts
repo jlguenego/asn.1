@@ -37,6 +37,7 @@ export const INTEGER = createToken({name: 'INTEGER', pattern: /INTEGER/});
 export const MAX = createToken({name: 'MAX', pattern: /MAX/});
 export const MIN = createToken({name: 'MIN', pattern: /MIN/});
 export const OBJECT = createToken({name: 'OBJECT', pattern: /OBJECT/});
+export const OF = createToken({name: 'OF', pattern: /OF/});
 export const SEQUENCE = createToken({
   name: 'Sequence',
   pattern: /SEQUENCE/,
@@ -113,6 +114,7 @@ export const allASN1Tokens = [
   MAX,
   MIN,
   OBJECT,
+  OF,
   SEQUENCE,
   TAGS,
 
