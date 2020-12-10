@@ -26,6 +26,7 @@ import {ASN1ModuleIdentifierCstParser} from './parser/ASN1ModuleIdentifierCstPar
 import {initObjectIdentifierValueRules} from './parser/ASN1ObjectIdentifierValueRules';
 import {initReferencedTypeRules} from './parser/ASN1ReferencedTypeRules';
 import {initSequenceTypeRules} from './parser/ASN1SequenceTypeRules';
+import {initTaggedTypeRules} from './parser/ASN1TaggedTypeRules';
 import {initTypeRules} from './parser/ASN1TypeRules';
 
 export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
@@ -52,7 +53,12 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
 
   public DefinedType!: Rule;
 
+  public TaggedType!: Rule;
+  public Tag!: Rule;
+  public ClassNumber!: Rule;
+
   public BuiltinType!: Rule;
+  public PrefixedType!: Rule;
 
   public Constraint!: Rule;
   public TypeWithConstraint!: Rule;
@@ -244,6 +250,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     initSequenceTypeRules.call(this);
     initTypeRules.call(this);
     initReferencedTypeRules.call(this);
+    initTaggedTypeRules.call(this);
     this.performSelfAnalysis();
   }
 }

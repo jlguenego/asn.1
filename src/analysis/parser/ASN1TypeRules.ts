@@ -30,6 +30,11 @@ export function initTypeRules(this: ASN1CstParser) {
       'CharacterStringType',
       'IntegerType',
       'SequenceType',
+      'PrefixedType',
     ]);
+  });
+
+  this.RULE('PrefixedType', () => {
+    this.SUBRULE(this.TaggedType);
   });
 }
