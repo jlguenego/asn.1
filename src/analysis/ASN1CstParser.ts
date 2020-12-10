@@ -1,4 +1,4 @@
-import {CstNode, TokenType} from 'chevrotain';
+import {CstNode, CstParser, TokenType} from 'chevrotain';
 import {Rule} from '../interfaces/Rule';
 
 import {
@@ -19,10 +19,11 @@ import {
   NumberToken,
   NegativeNumberToken,
   GeneralString,
+  allASN1Tokens,
 } from './ASN1Lexer';
 import {initConstrainedTypeRules} from './parser/ConstrainedTypeRules';
 import {initIntegerTypeRules} from './parser/IntegerTypeRules';
-import {ASN1ModuleIdentifierCstParser} from './parser/ModuleIdentifierCstParser';
+import {initModuleIdentifierRules} from './parser/ModuleIdentifierRules';
 import {initObjectIdentifierValueRules} from './parser/ObjectIdentifierValueRules';
 import {initReferencedTypeRules} from './parser/ReferencedTypeRules';
 import {initSequenceOfTypeRules} from './parser/SequenceOfTypeRules';
@@ -30,8 +31,16 @@ import {initSequenceTypeRules} from './parser/SequenceTypeRules';
 import {initTaggedTypeRules} from './parser/TaggedTypeRules';
 import {initTypeRules} from './parser/TypeRules';
 
-export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
+export class ASN1CstParser extends CstParser {
   public ModuleDefinition!: Rule;
+
+  public ModuleIdentifier!: () => CstNode;
+  public DefinitiveIdentification!: () => CstNode;
+  public DefinitiveOID!: () => CstNode;
+  public DefinitiveObjIdComponentList!: () => CstNode;
+  public DefinitiveObjIdComponent!: () => CstNode;
+  public DefinitiveNameAndNumberForm!: () => CstNode;
+
   public TagDefault!: Rule;
   public ModuleBody!: Rule;
   public AssignmentList!: Rule;
@@ -115,7 +124,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   }
 
   constructor() {
-    super();
+    super(allASN1Tokens);
 
     this.RULE('ModuleDefinition', () => {
       this.SUBRULE(this.ModuleIdentifier);
@@ -247,6 +256,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
       this.addOrList(['ValueReference']);
     });
 
+    initModuleIdentifierRules.call(this);
     initConstrainedTypeRules.call(this);
     initIntegerTypeRules.call(this);
     initObjectIdentifierValueRules.call(this);
