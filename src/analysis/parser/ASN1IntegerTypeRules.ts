@@ -37,7 +37,7 @@ export function initIntegerTypeRules(this: ASN1CstParser) {
   });
 
   this.RULE('SignedNumber', () => {
-    this.addOr([
+    this.OR([
       {
         ALT: () => {
           this.CONSUME(NumberToken);

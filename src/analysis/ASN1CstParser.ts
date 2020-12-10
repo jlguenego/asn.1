@@ -1,4 +1,4 @@
-import {CstNode, GrammarAction, IOrAlt, TokenType} from 'chevrotain';
+import {CstNode, TokenType} from 'chevrotain';
 import {Rule} from '../interfaces/Rule';
 
 import {
@@ -76,30 +76,6 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
   public ComponentTypeList!: Rule;
   public ComponentType!: Rule;
   public NamedType!: Rule;
-
-  addRule(name: string, implementation: (...implArgs: unknown[]) => unknown) {
-    this.RULE(name, implementation);
-  }
-
-  addSubrule(rule: Rule) {
-    this.SUBRULE(rule);
-  }
-
-  addConsume(token: TokenType) {
-    this.CONSUME(token);
-  }
-
-  addOr(altsOrOpts: IOrAlt<void>[]) {
-    this.OR(altsOrOpts);
-  }
-
-  addOption(actionORMethodDef: GrammarAction<void>) {
-    this.OPTION(actionORMethodDef);
-  }
-
-  addMany(actionORMethodDef: GrammarAction<void>) {
-    this.MANY(actionORMethodDef);
-  }
 
   addOrList(names: (keyof ASN1CstParser)[]) {
     const array = names.map(name => ({
@@ -276,7 +252,7 @@ export class ASN1CstParser extends ASN1ModuleIdentifierCstParser {
     initConstrainedTypeRules.call(this);
     initIntegerTypeRules.call(this);
     initObjectIdentifierValueRules.call(this);
-    initSequenceTypeRules(this);
+    initSequenceTypeRules.call(this);
     this.performSelfAnalysis();
   }
 }

@@ -1,52 +1,52 @@
 import {ASN1CstParser} from '../ASN1CstParser';
 import {COMMA, Identifier, L_CURLY, R_CURLY, SEQUENCE} from '../ASN1Lexer';
 
-export function initSequenceTypeRules($: ASN1CstParser) {
-  $.addRule('SequenceType', () => {
-    $.addOr([
+export function initSequenceTypeRules(this: ASN1CstParser) {
+  this.RULE('SequenceType', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addConsume(SEQUENCE);
-          $.addConsume(L_CURLY);
-          $.addOption(() => {
-            $.addSubrule($.ComponentTypeLists);
+          this.CONSUME(SEQUENCE);
+          this.CONSUME(L_CURLY);
+          this.OPTION(() => {
+            this.SUBRULE(this.ComponentTypeLists);
           });
-          $.addConsume(R_CURLY);
+          this.CONSUME(R_CURLY);
         },
       },
     ]);
   });
 
-  $.addRule('ComponentTypeLists', () => {
-    $.addOr([
+  this.RULE('ComponentTypeLists', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addSubrule($.ComponentTypeList);
+          this.SUBRULE(this.ComponentTypeList);
         },
       },
     ]);
   });
 
-  $.addRule('ComponentTypeList', () => {
-    $.addSubrule($.ComponentType);
-    $.addOption(() => {
-      $.addConsume(COMMA);
-      $.addSubrule($.ComponentTypeList);
+  this.RULE('ComponentTypeList', () => {
+    this.SUBRULE(this.ComponentType);
+    this.OPTION(() => {
+      this.CONSUME(COMMA);
+      this.SUBRULE(this.ComponentTypeList);
     });
   });
 
-  $.addRule('ComponentType', () => {
-    $.addOr([
+  this.RULE('ComponentType', () => {
+    this.OR([
       {
         ALT: () => {
-          $.addSubrule($.NamedType);
+          this.SUBRULE(this.NamedType);
         },
       },
     ]);
   });
 
-  $.addRule('NamedType', () => {
-    $.addConsume(Identifier);
-    $.addSubrule($.Type);
+  this.RULE('NamedType', () => {
+    this.CONSUME(Identifier);
+    this.SUBRULE(this.Type);
   });
 }
