@@ -25,6 +25,11 @@ export const EXPLICIT = createToken({
   name: 'EXPLICIT',
   pattern: /EXPLICIT/,
 });
+export const GeneralString = createToken({
+  name: 'GeneralString',
+  pattern: /GeneralString/,
+});
+export const IA5String = createToken({name: 'IA5String', pattern: /IA5String/});
 export const IMPLICIT = createToken({
   name: 'IMPLICIT',
   pattern: /IMPLICIT/,
@@ -37,6 +42,7 @@ export const INTEGER = createToken({name: 'INTEGER', pattern: /INTEGER/});
 export const MAX = createToken({name: 'MAX', pattern: /MAX/});
 export const MIN = createToken({name: 'MIN', pattern: /MIN/});
 export const OBJECT = createToken({name: 'OBJECT', pattern: /OBJECT/});
+export const OCTET = createToken({name: 'OCTET', pattern: /OCTET/});
 export const OF = createToken({name: 'OF', pattern: /OF/});
 export const SEQUENCE = createToken({
   name: 'Sequence',
@@ -49,11 +55,7 @@ export const TAGS = createToken({
 
 export const AFFECTATION = createToken({name: 'AFFECTATION', pattern: /::=/});
 
-export const GeneralString = createToken({
-  name: 'GeneralString',
-  pattern: /GeneralString/,
-});
-export const IA5String = createToken({name: 'IA5String', pattern: /IA5String/});
+export const STRING = createToken({name: 'STRING', pattern: /STRING/});
 export const UTF8String = createToken({
   name: 'UTF8String',
   pattern: /UTF8String/,
@@ -114,8 +116,10 @@ export const allASN1Tokens = [
   MAX,
   MIN,
   OBJECT,
+  OCTET,
   OF,
   SEQUENCE,
+  STRING,
   TAGS,
 
   // 3 chars
