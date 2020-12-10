@@ -12,6 +12,7 @@ import {
   AUTOMATIC,
   allASN1Tokens,
 } from './ASN1Lexer';
+import {initBuiltinTypeRules} from './parser/BuiltinTypeRules';
 import {initBuiltinValueRules} from './parser/BuiltinValueRules';
 import {initConstrainedTypeRules} from './parser/ConstrainedTypeRules';
 import {initIntegerTypeRules} from './parser/IntegerTypeRules';
@@ -80,6 +81,9 @@ export class ASN1CstParser extends CstParser {
   public LowerEndValue!: Rule;
   public UpperEndValue!: Rule;
 
+  public BitStringType!: Rule;
+  public BooleanType!: Rule;
+  public OctetStringType!: Rule;
   public SequenceType!: Rule;
   public SequenceOfType!: Rule;
 
@@ -88,7 +92,7 @@ export class ASN1CstParser extends CstParser {
   public NamedNumber!: Rule;
   public SignedNumber!: Rule;
   public DefinedValue!: Rule;
-  public BooleanType!: Rule;
+
   public ObjectIdentifierType!: Rule;
   public CharacterStringType!: Rule;
   public RestrictedCharacterStringType!: Rule;
@@ -151,6 +155,7 @@ export class ASN1CstParser extends CstParser {
 
     initModuleIdentifierRules.call(this);
     initBuiltinValueRules.call(this);
+    initBuiltinTypeRules.call(this);
     initConstrainedTypeRules.call(this);
     initIntegerTypeRules.call(this);
     initObjectIdentifierValueRules.call(this);

@@ -26,12 +26,14 @@ export function initTypeRules(this: ASN1CstParser) {
   this.RULE('BuiltinType', () => {
     this.addOrList([
       'BooleanType',
-      'ObjectIdentifierType',
+      'BitStringType',
       'CharacterStringType',
       'IntegerType',
+      'OctetStringType',
+      'ObjectIdentifierType',
+      'PrefixedType',
       'SequenceType',
       'SequenceOfType',
-      'PrefixedType',
     ]);
   });
 

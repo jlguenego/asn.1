@@ -15,6 +15,7 @@ export const WhiteSpace = createToken({
 // Keywords
 export const AUTOMATIC = createToken({name: 'AUTOMATIC', pattern: /AUTOMATIC/});
 export const BEGIN = createToken({name: 'BEGIN', pattern: /BEGIN/});
+export const BIT = createToken({name: 'BIT', pattern: /BIT/});
 export const BOOLEAN = createToken({name: 'BOOLEAN', pattern: /BOOLEAN/});
 export const DEFINITIONS = createToken({
   name: 'DEFINITIONS',
@@ -45,8 +46,12 @@ export const OBJECT = createToken({name: 'OBJECT', pattern: /OBJECT/});
 export const OCTET = createToken({name: 'OCTET', pattern: /OCTET/});
 export const OF = createToken({name: 'OF', pattern: /OF/});
 export const SEQUENCE = createToken({
-  name: 'Sequence',
+  name: 'SEQUENCE',
   pattern: /SEQUENCE/,
+});
+export const SIZE = createToken({
+  name: 'SIZE',
+  pattern: /SIZE/,
 });
 export const TAGS = createToken({
   name: 'TAGS',
@@ -104,6 +109,7 @@ export const allASN1Tokens = [
   // "keywords" appear before the Identifier
   AUTOMATIC,
   BEGIN,
+  BIT,
   BOOLEAN,
   DEFINITIONS,
   END,
@@ -119,6 +125,7 @@ export const allASN1Tokens = [
   OCTET,
   OF,
   SEQUENCE,
+  SIZE,
   STRING,
   TAGS,
 
