@@ -43,7 +43,10 @@ export class ASN1Validator {
       );
     }
     if (taggedType.type instanceof ASN1Sequence) {
-      this.validateSequence(taggedType.type, (input.value as ASN1Message[])[0]);
+      const subInput = taggedType.implicit
+        ? input
+        : (input.value as ASN1Message[])[0];
+      this.validateSequence(taggedType.type, subInput);
     }
     if (taggedType.type instanceof ASN1DefinedType) {
       this.validateDefinedType(taggedType.type, input);
@@ -84,26 +87,32 @@ export class ASN1Validator {
 
     if (component.type instanceof ASN1TaggedType) {
       this.validateTaggedType(component.type, input);
+    } else if (component.type instanceof ASN1DefinedType) {
+      input.tagDefinedType = component.type.name;
+      const assignment = this.module.getAssignment(component.type.name);
+      this.validateAssignment(input, assignment);
     } else {
-      const name = component.type.constructor.name;
-      switch (name) {
-        case 'ASN1BooleanType':
-          if (typeof input.value !== 'boolean') {
-            throw new Error('must be an boolean');
-          }
-          break;
-        case 'ASN1IntegerType':
-          if (!Number.isInteger(input.value)) {
-            throw new Error('must be an integer');
-          }
-          break;
-        case 'ASN1IA5StringType':
-          if (typeof input.value !== 'string') {
-            throw new Error(`must be an string: ${input}`);
-          }
-          break;
-        default:
-          break;
+      if (input.value !== null) {
+        const name = component.type.constructor.name;
+        switch (name) {
+          case 'ASN1BooleanType':
+            if (typeof input.value !== 'boolean') {
+              throw new Error('must be an boolean');
+            }
+            break;
+          case 'ASN1IntegerType':
+            if (!Number.isInteger(input.value)) {
+              throw new Error('must be an integer');
+            }
+            break;
+          case 'ASN1IA5StringType':
+            if (typeof input.value !== 'string') {
+              throw new Error(`must be an string: ${input}`);
+            }
+            break;
+          default:
+            break;
+        }
       }
     }
 
