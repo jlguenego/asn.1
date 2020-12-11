@@ -68,6 +68,7 @@ export interface SequenceTypeCstNode extends CstNode {
 
 export interface ComponentTypeCstNode extends CstNode {
   NamedType: CstNode;
+  OPTIONAL?: IToken[];
 }
 
 export interface NamedTypeCstNode extends CstNode {

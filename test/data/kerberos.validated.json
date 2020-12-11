@@ -5,7 +5,7 @@
   "tagLabel": "14",
   "length": 1614,
   "lengthType": "DEFINITE",
-  "tagName": "AP-REQ",
+  "tagDefinedType": "AP-REQ",
   "value": [
     {
       "tagClass": "UNIVERSAL",
@@ -107,6 +107,7 @@
                       "isConstructed": true,
                       "tagCode": 0,
                       "tagLabel": "0",
+                      "tagName": "tkt-vno",
                       "length": 3,
                       "lengthType": "DEFINITE",
                       "value": [
@@ -126,6 +127,8 @@
                       "isConstructed": true,
                       "tagCode": 1,
                       "tagLabel": "1",
+                      "tagDefinedType": "Realm",
+                      "tagName": "realm",
                       "length": 11,
                       "lengthType": "DEFINITE",
                       "value": [
@@ -145,6 +148,8 @@
                       "isConstructed": true,
                       "tagCode": 2,
                       "tagLabel": "2",
+                      "tagName": "sname",
+                      "tagDefinedType": "PrincipalName",
                       "length": 28,
                       "lengthType": "DEFINITE",
                       "value": [
@@ -161,6 +166,8 @@
                               "isConstructed": true,
                               "tagCode": 0,
                               "tagLabel": "0",
+                              "tagName": "name-type",
+                              "tagDefinedType": "Int32",
                               "length": 3,
                               "lengthType": "DEFINITE",
                               "value": [
@@ -180,6 +187,7 @@
                               "isConstructed": true,
                               "tagCode": 1,
                               "tagLabel": "1",
+                              "tagName": "name-string",
                               "length": 19,
                               "lengthType": "DEFINITE",
                               "value": [
@@ -223,6 +231,8 @@
                       "tagCode": 3,
                       "tagLabel": "3",
                       "length": 1120,
+                      "tagName": "enc-part",
+                      "tagDefinedType": "EncryptedData",
                       "lengthType": "DEFINITE",
                       "value": [
                         {
@@ -238,6 +248,8 @@
                               "isConstructed": true,
                               "tagCode": 0,
                               "tagLabel": "0",
+                              "tagName": "etype",
+                              "tagDefinedType": "Int32",
                               "length": 3,
                               "lengthType": "DEFINITE",
                               "value": [
@@ -257,6 +269,8 @@
                               "isConstructed": true,
                               "tagCode": 1,
                               "tagLabel": "1",
+                              "tagDefinedType": "UInt32",
+                              "tagName": "kvno",
                               "length": 3,
                               "lengthType": "DEFINITE",
                               "value": [
@@ -276,6 +290,7 @@
                               "isConstructed": true,
                               "tagCode": 2,
                               "tagLabel": "2",
+                              "tagName": "cipher",
                               "length": 1102,
                               "lengthType": "DEFINITE",
                               "value": [
@@ -323,6 +338,8 @@
                   "isConstructed": true,
                   "tagCode": 0,
                   "tagLabel": "0",
+                  "tagName": "etype",
+                  "tagDefinedType": "Int32",
                   "length": 3,
                   "lengthType": "DEFINITE",
                   "value": [
@@ -342,6 +359,7 @@
                   "isConstructed": true,
                   "tagCode": 2,
                   "tagLabel": "2",
+                  "tagName": "cipher",
                   "length": 390,
                   "lengthType": "DEFINITE",
                   "value": [

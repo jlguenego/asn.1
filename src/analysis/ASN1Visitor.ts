@@ -1,3 +1,4 @@
+// import {inspect} from 'util';
 import {ASN1Assignment} from '../asn1/ASN1Assignment';
 import {ASN1DefinedType} from '../asn1/ASN1DefinedType';
 import {ASN1Module} from '../asn1/ASN1Module';
@@ -144,12 +145,14 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   ComponentType(ctx: ComponentTypeCstNode, sequence: ASN1Sequence) {
-    const namedType = this.visit(ctx.NamedType);
+    const namedType = this.visit(ctx.NamedType) as ASN1NamedType;
+    if (ctx.OPTIONAL) {
+      namedType.optional = true;
+    }
     sequence.addComponent(namedType);
   }
 
   NamedType(ctx: NamedTypeCstNode) {
-    // console.log('ctx NamedType: ', util.inspect(ctx, false, null, true));
     const name = ctx.Identifier[0].image;
     const type = this.visit(ctx.Type);
     const namedType = new ASN1NamedType(name, type);

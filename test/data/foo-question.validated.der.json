@@ -1,6 +1,6 @@
 {
   "tagClass": "UNIVERSAL",
-  "tagName": "FooQuestion",
+  "tagDefinedType": "FooQuestion",
   "isConstructed": true,
   "tagCode": 16,
   "tagLabel": "SEQUENCE",
