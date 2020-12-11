@@ -11,6 +11,7 @@ import kerberosJson from './data/kerberos.json';
 import kerberosValidatedJson from './data/kerberos.validated.json';
 import {ASN1Validator} from '../src/ASN1Validator';
 import {ASN1Message} from '../src/interfaces/ASN1Message';
+// import {ASN1MsgUtils} from '../src/ASN1MsgUtils';
 
 const debug = dbg('asn.1:test');
 
@@ -54,4 +55,20 @@ describe('Kerberos Protocol', () => {
     // );
     assert.deepStrictEqual(kerberosJson.value[2], kerberosValidatedJson);
   });
+
+  // it('get the PrincipalName', () => {
+  //   const principalNameMsg = ASN1MsgUtils.query(
+  //     kerberosValidatedJson as ASN1Message,
+  //     'tagName',
+  //     'name-string'
+  //   ) as ASN1Message;
+  //   console.log(
+  //     'principalNameMsg: ',
+  //     inspect(principalNameMsg, false, null, true)
+  //   );
+  //   const serviceName = (principalNameMsg.value as ASN1Message[])[0].value[0]
+  //     .value;
+  //   const principalName = serviceName + '/' + hostname;
+  //   // assert.deepStrictEqual(principalName, 'HTTP/localhost');
+  // });
 });

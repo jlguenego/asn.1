@@ -152,7 +152,7 @@
                               "tagClass": "UNIVERSAL",
                               "isConstructed": false,
                               "tagCode": 27,
-                              "tagLabel": "GENERAL_STRING",
+                              "tagLabel": "GeneralString",
                               "length": 9,
                               "lengthType": "DEFINITE",
                               "value": "JLG.LOCAL"
@@ -214,7 +214,7 @@
                                           "tagClass": "UNIVERSAL",
                                           "isConstructed": false,
                                           "tagCode": 27,
-                                          "tagLabel": "GENERAL_STRING",
+                                          "tagLabel": "GeneralString",
                                           "length": 4,
                                           "lengthType": "DEFINITE",
                                           "value": "HTTP"
@@ -223,7 +223,7 @@
                                           "tagClass": "UNIVERSAL",
                                           "isConstructed": false,
                                           "tagCode": 27,
-                                          "tagLabel": "GENERAL_STRING",
+                                          "tagLabel": "GeneralString",
                                           "length": 9,
                                           "lengthType": "DEFINITE",
                                           "value": "localhost"

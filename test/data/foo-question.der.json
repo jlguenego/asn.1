@@ -19,7 +19,7 @@
       "tagClass": "UNIVERSAL",
       "isConstructed": false,
       "tagCode": 22,
-      "tagLabel": "IA5STRING",
+      "tagLabel": "IA5String",
       "length": 14,
       "lengthType": "DEFINITE",
       "value": "Anybody there?"
