@@ -43,6 +43,7 @@ export interface PrefixedTypeCstNode extends CstNode {
 export interface TaggedTypeCstNode extends CstNode {
   Tag: CstNode;
   Type: CstNode;
+  IMPLICIT?: IToken[];
 }
 
 export interface TagCstNode extends CstNode {

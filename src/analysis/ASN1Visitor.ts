@@ -113,7 +113,8 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   TaggedType(ctx: TaggedTypeCstNode) {
     const tag = this.visit(ctx.Tag) as ASN1Tag;
     const type = this.visit(ctx.Type) as ASN1Type;
-    return new ASN1TaggedType(tag, type);
+    const isImplicit = ctx.IMPLICIT ? true : false;
+    return new ASN1TaggedType(tag, type, isImplicit);
   }
 
   Tag(ctx: TagCstNode) {
