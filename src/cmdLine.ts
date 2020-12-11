@@ -6,7 +6,8 @@ import {inspect} from 'util';
 import {version} from '../package.json';
 import {ASN1Parser} from './ASN1Parser';
 import {ASN1Validator} from './ASN1Validator';
-import {sanitize} from './misc';
+import {Props} from './interfaces/Props';
+import {cloneAlpha, sanitize} from './misc';
 
 export function asn1Parse(): void {
   program
@@ -85,5 +86,7 @@ export function asn1Parse(): void {
     const asn1Validator = new ASN1Validator(asn1Definition);
     asn1Validator.validate(output, program.type);
   }
-  console.log(inspect(output, false, null, true));
+  console.log(
+    inspect(cloneAlpha((output as unknown) as Props), false, null, true)
+  );
 }

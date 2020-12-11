@@ -1,4 +1,5 @@
 import {readFileSync} from 'fs';
+import {Props} from './interfaces/Props';
 export const sanitize = (str: string) =>
   str
     .replace(/#.*/g, '')
@@ -24,4 +25,18 @@ export function formatBitString(value: string): string {
     result = bit + sep + result;
   }
   return result;
+}
+
+export function cloneAlpha(obj: Props): Props {
+  const x: Props = {};
+  for (const key of Object.keys(obj).sort()) {
+    if (obj[key] instanceof Array) {
+      x[key] = (obj[key] as Props[]).map(k => cloneAlpha(k));
+    } else if (obj[key] instanceof Object) {
+      x[key] = cloneAlpha(obj[key] as Props);
+    } else {
+      x[key] = obj[key];
+    }
+  }
+  return x;
 }
