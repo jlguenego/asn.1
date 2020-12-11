@@ -18,7 +18,7 @@
     "posttest": "npm.cmd run lint",
     "release": "standard-version",
     "start": "node bin/asn1-parse.js -f hex test/data/foo-question.der -d test/data/foo-protocol.asn1 -t FooQuestion",
-    "kerberos": "node bin/asn1-parse.js -f base64 test/data/kerberos.base64.der"
+    "kerberos": "node bin/asn1-parse.js -f base64 test/data/kerberos.base64.der -d test/data/kerberos.asn1 -t GSS-API"
   },
   "keywords": [],
   "author": "",

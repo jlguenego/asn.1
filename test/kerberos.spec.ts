@@ -49,7 +49,6 @@ describe('Kerberos Protocol', () => {
     });
     const validator = new ASN1Validator(definition);
     validator.validate(kerberosJson as ASN1Message, 'GSS-API');
-    // console.log('kerberosJson: ', inspect(kerberosJson, false, null, true));
     assert.deepStrictEqual(kerberosJson, kerberosValidatedJson);
   });
 
