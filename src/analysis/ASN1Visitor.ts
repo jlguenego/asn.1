@@ -1,4 +1,5 @@
 import {ASN1Assignment} from '../asn1/ASN1Assignment';
+import {ASN1DefinedType} from '../asn1/ASN1DefinedType';
 import {ASN1Module} from '../asn1/ASN1Module';
 import {ASN1NamedType} from '../asn1/ASN1NamedType';
 import {ASN1Sequence} from '../asn1/ASN1Sequence';
@@ -28,6 +29,8 @@ import {
   TagCstNode,
   ClassCstNode,
   ClassNumberCstNode,
+  DefinedTypeCstNode,
+  ReferencedTypeCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -62,11 +65,25 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   Type(ctx: TypeCstNode) {
-    return this.visit(ctx.ConstrainedType);
+    if (ctx.ConstrainedType) {
+      return this.visit(ctx.ConstrainedType);
+    }
+    if (ctx.ReferencedType) {
+      return this.visit(ctx.ReferencedType);
+    }
   }
 
   ConstrainedType(ctx: ConstrainedTypeCstNode) {
     return this.visit(ctx.BuiltinType);
+  }
+
+  ReferencedType(ctx: ReferencedTypeCstNode) {
+    if (ctx.DefinedType) {
+      return this.visit(ctx.DefinedType);
+    }
+    if (ctx.UsefulType) {
+      return this.visit(ctx.UsefulType);
+    }
   }
 
   BuiltinType(ctx: BuiltinTypeCstNode) {
@@ -113,6 +130,11 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
 
   ClassNumber(ctx: ClassNumberCstNode) {
     return +ctx.Number[0].image;
+  }
+
+  DefinedType(ctx: DefinedTypeCstNode) {
+    const name = ctx.TypeReference[0].image;
+    return new ASN1DefinedType(name);
   }
 
   SequenceType(ctx: SequenceTypeCstNode) {

@@ -61,6 +61,7 @@
           "tagCode": 2,
           "tagLabel": "2",
           "tagName": "ap-options",
+          "tagDefinedType": "APOptions",
           "length": 7,
           "lengthType": "DEFINITE",
           "value": [
@@ -81,6 +82,7 @@
           "tagCode": 3,
           "tagLabel": "3",
           "tagName": "ticket",
+          "tagDefinedType": "Ticket",
           "length": 1180,
           "lengthType": "DEFINITE",
           "value": [
@@ -304,6 +306,7 @@
           "tagCode": 4,
           "tagLabel": "4",
           "tagName": "authenticator",
+          "tagDefinedType": "EncryptedData",
           "length": 403,
           "lengthType": "DEFINITE",
           "value": [

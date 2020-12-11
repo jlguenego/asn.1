@@ -18,8 +18,14 @@ export interface ConstrainedTypeCstNode extends CstNode {
   BuiltinType: CstNode;
 }
 
+export interface ReferencedTypeCstNode extends CstNode {
+  DefinedType?: CstNode;
+  UsefulType?: CstNode;
+}
+
 export interface TypeCstNode extends CstNode {
-  ConstrainedType: CstNode;
+  ConstrainedType?: CstNode;
+  ReferencedType?: CstNode;
 }
 
 export interface BuiltinTypeCstNode extends CstNode {
@@ -50,6 +56,10 @@ export interface ClassCstNode extends CstNode {
 
 export interface ClassNumberCstNode extends CstNode {
   Number: IToken[];
+}
+
+export interface DefinedTypeCstNode extends CstNode {
+  TypeReference: IToken[];
 }
 
 export interface SequenceTypeCstNode extends CstNode {
