@@ -53,19 +53,16 @@ describe('Kerberos Protocol', () => {
   });
 
   it('get the PrincipalName', () => {
-    const principalNameMsg = ASN1MsgUtils.query(
-      kerberosValidatedJson as ASN1Message,
-      'tagName',
-      'name-string'
-    ) as ASN1Message;
-
     const generalStrings = ASN1MsgUtils.queryAll(
-      principalNameMsg,
+      kerberosJson as ASN1Message,
       'tagLabel',
       'GeneralString'
     );
 
-    const principalName = generalStrings.map(v => v.value).join('/');
+    const principalName = generalStrings
+      .map(v => v.value)
+      .slice(1)
+      .join('/');
     assert.deepStrictEqual(principalName, 'HTTP/localhost');
   });
 });

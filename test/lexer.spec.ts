@@ -9,10 +9,9 @@ import {ASN1Module} from '../src/asn1/ASN1Module';
 
 describe('Lexer Unit Test', () => {
   it('should tokenize', () => {
-    const input = readFileSync(
-      resolve(__dirname, '../examples/messages/foo-protocol.asn1'),
-      {encoding: 'utf8'}
-    );
+    const input = readFileSync(resolve(__dirname, 'data/foo-protocol.asn1'), {
+      encoding: 'utf8',
+    });
 
     // lexical analysis.
     const output = ASN1Lexer.tokenize(input);
