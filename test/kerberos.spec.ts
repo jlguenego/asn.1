@@ -47,11 +47,7 @@ describe('Kerberos Protocol', () => {
       encoding: 'utf8',
     });
     const validator = new ASN1Validator(definition);
-    validator.validate(
-      kerberosJson.value[2] as ASN1Message,
-      'AP-REQ',
-      EncodingRule.DER
-    );
+    validator.validate(kerberosJson.value[2] as ASN1Message, 'AP-REQ');
     // console.log(
     //   'kerberosJson.value[2]: ',
     //   inspect(kerberosJson.value[2], false, null, true)

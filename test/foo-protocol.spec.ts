@@ -27,11 +27,7 @@ describe('Foo Unit Test', () => {
       {encoding: 'utf8'}
     );
     const validator = new ASN1Validator(definition);
-    validator.validate(
-      fooQuestionDerJson as ASN1Message,
-      'FooQuestion',
-      EncodingRule.DER
-    );
+    validator.validate(fooQuestionDerJson as ASN1Message, 'FooQuestion');
     assert.deepStrictEqual(fooQuestionDerJson, fooQuestionDerValidatedJson);
   });
 });
