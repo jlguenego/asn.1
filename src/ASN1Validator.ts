@@ -1,5 +1,5 @@
 import {inspect} from 'util';
-import dbg from 'debug';
+// import dbg from 'debug';
 import {ASN1ComponentType} from './asn1/ASN1ComponentType';
 import {ASN1DefinedType} from './asn1/ASN1DefinedType';
 import {ASN1Module} from './asn1/ASN1Module';
@@ -7,8 +7,9 @@ import {ASN1NamedType} from './asn1/ASN1NamedType';
 import {ASN1Sequence} from './asn1/ASN1Sequence';
 import {ASN1TaggedType} from './asn1/ASN1TaggedType';
 import {ASN1Message} from './interfaces/ASN1Message';
+import {ASN1Assignment} from './asn1/ASN1Assignment';
 
-const debug = dbg('asn.1:validator');
+// const debug = dbg('asn.1:validator');
 
 export class ASN1Validator {
   module: ASN1Module;
@@ -18,8 +19,11 @@ export class ASN1Validator {
 
   validate(input: ASN1Message, type: string) {
     const assignment = this.module.getAssignment(type);
-    debug('assignment: ', inspect(assignment, false, null, true));
+    console.log('assignment: ', inspect(assignment, false, null, true));
+    this.validateAssignment(input, assignment);
+  }
 
+  validateAssignment(input: ASN1Message, assignment: ASN1Assignment) {
     if (assignment.type instanceof ASN1TaggedType) {
       this.validateTaggedType(assignment.type, input);
     }
@@ -30,15 +34,16 @@ export class ASN1Validator {
   }
 
   validateTaggedType(taggedType: ASN1TaggedType, input: ASN1Message) {
-    debug('validateTaggedType input: ', input);
-    debug('validateTaggedType taggedType: ', taggedType);
-
     if (input.tagClass !== taggedType.tag.tagClass) {
+      console.log('validateTaggedType input: ', input);
+      console.log('validateTaggedType taggedType: ', taggedType);
       throw new Error(
         `taggedType tagClass differ: ${input.tagClass} vs ${taggedType.tag.tagClass}`
       );
     }
     if (input.tagCode !== taggedType.tag.tagCode) {
+      console.log('validateTaggedType input: ', input);
+      console.log('validateTaggedType taggedType: ', taggedType);
       throw new Error(
         `taggedType tagCode differ: ${input.tagCode} vs ${taggedType.tag.tagCode}`
       );
@@ -47,7 +52,7 @@ export class ASN1Validator {
       this.validateSequence(taggedType.type, (input.value as ASN1Message[])[0]);
     }
     if (taggedType.type instanceof ASN1DefinedType) {
-      input.tagDefinedType = taggedType.type.name;
+      this.validateDefinedType(taggedType.type, input);
     }
   }
 
@@ -90,5 +95,12 @@ export class ASN1Validator {
     }
 
     input.tagName = component.name;
+  }
+
+  validateDefinedType(type: ASN1DefinedType, input: ASN1Message) {
+    input.tagDefinedType = type.name;
+    const assignment = this.module.getAssignment(type.name);
+    console.log('assignment: ', assignment);
+    this.validateAssignment((input.value as ASN1Message[])[0], assignment);
   }
 }
