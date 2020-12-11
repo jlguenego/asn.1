@@ -5,6 +5,9 @@ import {k} from '../lexer/ASN1Keyword';
 export function initTaggedTypeRules(this: ASN1CstParser) {
   this.RULE('TaggedType', () => {
     this.SUBRULE(this.Tag);
+    this.OPTION(() => {
+      this.addOrTokenList([k.IMPLICIT, k.EXPLICIT]);
+    });
     this.SUBRULE(this.Type);
   });
 

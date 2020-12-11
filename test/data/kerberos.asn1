@@ -389,4 +389,18 @@ AD-AND-OR ::= SEQUENCE {
 
 AD-MANDATORY-FOR-KDC ::= AuthorizationData
 
+-- JLG Added the GSS-API RFC1964 message
+MechType ::= OBJECT IDENTIFIER
+
+GSS-API ::= [APPLICATION 0] IMPLICIT SEQUENCE {
+  thisMech        MechType,
+                   -- MechType is OBJECT IDENTIFIER
+                   -- representing "Kerberos V5"
+  prefix          BOOLEAN,
+  innerContextToken AP-REQ
+                   -- contents mechanism-specific;
+                   -- ASN.1 usage within innerContextToken
+                   -- is not required
+}
+
 END

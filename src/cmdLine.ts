@@ -1,6 +1,7 @@
 import {program} from 'commander';
 import fs from 'fs';
 import path from 'path';
+import {inspect} from 'util';
 
 import {version} from '../package.json';
 import {ASN1Parser} from './ASN1Parser';
@@ -84,5 +85,5 @@ export function asn1Parse(): void {
     const asn1Validator = new ASN1Validator(asn1Definition);
     asn1Validator.validate(output, program.type);
   }
-  console.log(output);
+  console.log(inspect(output, false, null, true));
 }
