@@ -19,4 +19,23 @@ export class ASN1MsgUtils {
     }
     return null;
   }
+
+  static queryAll(
+    msg: ASN1Message,
+    key: keyof ASN1Message,
+    value: string
+  ): ASN1Message[] {
+    const result: ASN1Message[] = [];
+    if (msg[key] === value) {
+      result.push(msg);
+      return result;
+    }
+    if (msg.value instanceof Array) {
+      for (const v of msg.value as ASN1Message[]) {
+        const subResult = ASN1MsgUtils.queryAll(v, key, value);
+        result.push(...subResult);
+      }
+    }
+    return result;
+  }
 }
