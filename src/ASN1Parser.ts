@@ -12,7 +12,7 @@ export class ASN1Parser {
     encodingRule: EncodingRule.DER,
   };
 
-  constructor(opts: Partial<ASN1ParserOptions>) {
+  constructor(opts: Partial<ASN1ParserOptions> = {}) {
     this.options = {...this.options, ...opts};
   }
 

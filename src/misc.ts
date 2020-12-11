@@ -14,7 +14,7 @@ export const readEncodedFile = (filename: string): ArrayBuffer => {
   return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
 };
 
-// 0110011001010 -> 0 1100 1100 1010
+// 0110011001010 -> 0_1100_1100_1010
 export function formatBitString(value: string): string {
   const bits = value.split('');
   let result = '';

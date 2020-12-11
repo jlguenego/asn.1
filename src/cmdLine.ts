@@ -1,9 +1,11 @@
 import {program} from 'commander';
 import fs from 'fs';
 import path from 'path';
+
 import {version} from '../package.json';
 import {ASN1Parser} from './ASN1Parser';
 import {ASN1Validator} from './ASN1Validator';
+import {sanitize} from './misc';
 
 export function asn1Parse(): void {
   program
@@ -11,11 +13,11 @@ export function asn1Parse(): void {
     .arguments('<msgFile>')
     .option(
       '-d, --definition <asn1-file>',
-      'specify a ASN.1 definition file (.asn1)'
+      'specify an ASN.1 definition file (.asn1)'
     )
     .option(
       '-t, --type <asn1-type>',
-      'specify one ASN.1 type. If empty or not specified, try to identify it via class.'
+      'specify an ASN.1 type. Must be specified with definition file.'
     )
     .option(
       '-f, --format <type>',
@@ -42,11 +44,11 @@ export function asn1Parse(): void {
       input = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
     } else if (program['format'] === 'hex') {
       const str = fs.readFileSync(file, {encoding: 'utf8'});
-      const b = Buffer.from(str.replace(/\s/gm, ''), 'hex');
+      const b = Buffer.from(sanitize(str), 'hex');
       input = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
     } else if (program['format'] === 'base64') {
       const str = fs.readFileSync(file, {encoding: 'utf8'});
-      const b = Buffer.from(str.replace(/\s/gm, ''), 'base64');
+      const b = Buffer.from(sanitize(str), 'base64');
       input = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
     } else {
       throw new Error(
@@ -71,14 +73,16 @@ export function asn1Parse(): void {
     program.help();
   }
 
-  const asn1Parser = new ASN1Parser({});
+  const asn1Parser = new ASN1Parser();
   const output = asn1Parser.parse(input);
-  console.log('output: ', output);
-
   if (asn1Definition) {
-    const type = program['type'];
+    if (!program.type) {
+      console.log('When --definition is specified, --type must be too.');
+      program.help();
+    }
 
     const asn1Validator = new ASN1Validator(asn1Definition);
-    asn1Validator.validate(output, type);
+    asn1Validator.validate(output, program.type);
   }
+  console.log(output);
 }
