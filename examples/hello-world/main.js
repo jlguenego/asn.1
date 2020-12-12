@@ -1,6 +1,7 @@
 // const {ASN1} = require('@jlguenego/asn1');
 const {ASN1} = require('../../build/src');
 const {inspect} = require('util');
+const {EncodingRule} = require('../../build/src/EncodingRule');
 
 const derMessage = `
 30 # Sequence constructed (WelcomeMsg)
@@ -52,3 +53,18 @@ const validatedMsg = asn1Module.validate(message, 'WelcomeMsg');
 
 // validatedMsg is the same as message, but enriched with tagged names and types.
 console.log('validatedMsg: ', inspect(validatedMsg, false, null, true));
+
+const data = {
+  id: 18,
+  someone: {
+    lastname: 'GUENEGO',
+    firstname: 'Suzana',
+    likeCoding: false,
+  },
+};
+
+// regenerate the original DER message.
+const derBuffer = asn1Module.generate('WelcomeMsg', data, {
+  encodingRule: EncodingRule.DER,
+});
+console.log('derMessage: ', derBuffer.toString('hex'));

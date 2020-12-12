@@ -2,13 +2,11 @@
 
 A complete ASN1 tool set for Node.
 
-- ASN1 BER/CER/DER message parser.
-- ASN1 Module file compiler
-- ASN1 message validation
+- ASN.1 BER/CER/DER message parser.
+- ASN.1 Module file compiler
+- ASN.1 message validation
 
-## Summary
-
-- [Generating messages](doc/generating.md) from ASN1 module definition file and input data.
+Requirement: node environment. Does not work on browser.
 
 ## Install
 
@@ -74,6 +72,21 @@ const validatedMsg = asn1Module.validate(message, 'WelcomeMsg');
 
 // validatedMsg is the same as message, but enriched with tagged names and types.
 console.log('validatedMsg: ', inspect(validatedMsg, false, null, true));
+
+const data = {
+  id: 18,
+  someone: {
+    lastname: 'GUENEGO',
+    firstname: 'Suzana',
+    likeCoding: false,
+  },
+};
+
+// regenerate the original DER message.
+const derBuffer = asn1Module.generate('WelcomeMsg', data, {
+  encodingRule: EncodingRule.DER,
+});
+console.log('derMessage: ', derBuffer.toString('hex'));
 ```
 
 ### Command line
@@ -174,4 +187,4 @@ This module is written in Typescript. No need to install typings.
 
 ## Author
 
-Jean-Louis GUENEGO <jlguenego@gmail.com>
+Made with :heart: by Jean-Louis GUENEGO <jlguenego@gmail.com>
