@@ -10,6 +10,18 @@ Requirement: node environment. Does not work on browser.
 
 ## Install
 
+### Local
+
+Using the Javascript/Typescript API.
+
+```
+npm i @jlguenego/asn.1
+```
+
+### Global
+
+Playing with the command line `asn1-parse`
+
 ```
 npm i -g @jlguenego/asn.1
 ```
