@@ -53,14 +53,11 @@ export class ASN1Module {
     data: Props,
     opts: Partial<ASN1GeneratorOptions> = {}
   ): Buffer {
-    console.log('type: ', type);
-    console.log('data: ', data);
     const options = {
       encodingRule: EncodingRule.DER,
       inputFormat: 'json',
       ...opts,
     };
-    console.log('options: ', options);
     const generator = new ASN1Generator(this, type);
     const asn1Message = generator.generateFromJson(data);
     if (options.encodingRule === EncodingRule.DER) {

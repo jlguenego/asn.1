@@ -23,7 +23,6 @@ export class ASN1Generator {
   }
 
   generateFromAssignement(assignment: ASN1Assignment): ASN1Message {
-    console.log('assignment: ', assignment);
     if (assignment.type instanceof ASN1Sequence) {
       return this.generateFromSequence(assignment.type);
     }
@@ -31,7 +30,6 @@ export class ASN1Generator {
   }
 
   generateFromSequence(sequence: ASN1Sequence): ASN1Message {
-    console.log('sequence: ', sequence);
     const message = {
       isConstructed: true,
       lengthType: LengthType.DEFINITE,
@@ -50,11 +48,10 @@ export class ASN1Generator {
   }
 
   generateFromComponent(component: ASN1ComponentType): ASN1Message {
-    console.log('component: ', component);
     if (!(component instanceof ASN1NamedType)) {
       throw new Error('only implement ASN1NamedType at this time');
     }
-    let message;
+    let message: ASN1Message;
     if (component.type instanceof ASN1Sequence) {
       message = this.generateFromSequence(component.type);
     } else if (component.type instanceof ASN1DefinedType) {
@@ -73,18 +70,22 @@ export class ASN1Generator {
         case 'ASN1BooleanType':
           message.tagLabel = TagUniversal.BOOLEAN.label;
           message.tagCode = TagUniversal.BOOLEAN.code;
+          message.value = false;
           break;
         case 'ASN1GeneralStringType':
           message.tagLabel = TagUniversal.GENERAL_STRING.label;
           message.tagCode = TagUniversal.GENERAL_STRING.code;
+          message.value = 'to be replaced';
           break;
         case 'ASN1IA5StringType':
           message.tagLabel = TagUniversal.IA5STRING.label;
           message.tagCode = TagUniversal.IA5STRING.code;
+          message.value = 'to be replaced';
           break;
         case 'ASN1IntegerType':
           message.tagLabel = TagUniversal.INTEGER.label;
           message.tagCode = TagUniversal.INTEGER.code;
+          message.value = 1337;
           break;
         default:
           throw new Error(
