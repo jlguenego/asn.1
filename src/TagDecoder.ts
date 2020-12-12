@@ -6,7 +6,7 @@ export class TagDecoder {
     if (tagClass === TagClass.UNIVERSAL) {
       const foundTag = Object.values(TagUniversal).find(t => t.code === tag);
       if (!foundTag) {
-        throw new Error('tag not yet implemented');
+        throw new Error('tag not yet implemented (decimal): ' + tag);
       }
       return foundTag.label;
     }

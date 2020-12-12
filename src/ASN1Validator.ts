@@ -11,10 +11,7 @@ import {ASN1Assignment} from './asn1/ASN1Assignment';
 // const debug = dbg('asn.1:validator');
 
 export class ASN1Validator {
-  module: ASN1Module;
-  constructor(private definition: string) {
-    this.module = ASN1Module.compile(this.definition);
-  }
+  constructor(private module: ASN1Module) {}
 
   validate(input: ASN1Message, type: string) {
     const assignment = this.module.getAssignment(type);

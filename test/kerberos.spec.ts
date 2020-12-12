@@ -7,7 +7,6 @@ import dbg from 'debug';
 import {EncodingRule} from '../src/EncodingRule';
 import kerberosJson from './data/kerberos.json';
 import kerberosValidatedJson from './data/kerberos.validated.json';
-import {ASN1Validator} from '../src/ASN1Validator';
 import {ASN1Message} from '../src/interfaces/ASN1Message';
 import {ASN1MsgUtils} from '../src/ASN1MsgUtils';
 import {sanitize} from '../src/misc';
@@ -48,9 +47,9 @@ describe('Kerberos Protocol', () => {
     const definition = readFileSync(resolve(__dirname, 'data/kerberos.asn1'), {
       encoding: 'utf8',
     });
-    const validator = new ASN1Validator(definition);
-    validator.validate(kerberosJson as ASN1Message, 'GSS-API');
-    assert.deepStrictEqual(kerberosJson, kerberosValidatedJson);
+    const module = ASN1.getModuleFromStr(definition);
+    const validated = module.validate(kerberosJson as ASN1Message, 'GSS-API');
+    assert.deepStrictEqual(validated, kerberosValidatedJson);
   });
 
   it('get the PrincipalName', () => {

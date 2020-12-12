@@ -5,7 +5,6 @@ import {inspect} from 'util';
 
 import {version} from '../package.json';
 import {ASN1} from './ASN1';
-import {ASN1Validator} from './ASN1Validator';
 import {Props} from './interfaces/Props';
 import {cloneAlpha, sanitize} from './misc';
 
@@ -75,15 +74,15 @@ export function asn1Parse(): void {
     program.help();
   }
 
-  const output = ASN1.parseMsg(input);
+  let output = ASN1.parseMsg(input);
   if (asn1Definition) {
     if (!program.type) {
       console.log('When --definition is specified, --type must be too.');
       program.help();
     }
 
-    const asn1Validator = new ASN1Validator(asn1Definition);
-    asn1Validator.validate(output, program.type);
+    const module = ASN1.getModuleFromStr(asn1Definition);
+    output = module.validate(output, program.type);
   }
   console.log(
     inspect(cloneAlpha((output as unknown) as Props), false, null, true)

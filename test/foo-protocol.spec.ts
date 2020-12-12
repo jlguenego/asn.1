@@ -3,7 +3,6 @@ import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {ASN1} from '../src';
 
-import {ASN1Validator} from '../src/ASN1Validator';
 import {EncodingRule} from '../src/EncodingRule';
 import {ASN1Message} from '../src/interfaces/ASN1Message';
 import fooQuestionDerJson from './data/foo-question.der.json';
@@ -28,8 +27,11 @@ describe('Foo Unit Test', () => {
       resolve(__dirname, 'data/foo-protocol.asn1'),
       {encoding: 'utf8'}
     );
-    const validator = new ASN1Validator(definition);
-    validator.validate(fooQuestionDerJson as ASN1Message, 'FooQuestion');
-    assert.deepStrictEqual(fooQuestionDerJson, fooQuestionDerValidatedJson);
+    const module = ASN1.getModuleFromStr(definition);
+    const validatedJson = module.validate(
+      fooQuestionDerJson as ASN1Message,
+      'FooQuestion'
+    );
+    assert.deepStrictEqual(validatedJson, fooQuestionDerValidatedJson);
   });
 });
