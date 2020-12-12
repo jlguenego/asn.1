@@ -6,8 +6,8 @@ export interface ASN1Message {
   isConstructed: boolean;
   tagCode: number;
   tagLabel: string;
-  lengthType: LengthType;
-  length: number;
+  lengthType?: LengthType;
+  length?: number;
   value: ASN1Type;
   tagName?: string;
   tagDefinedType?: string;

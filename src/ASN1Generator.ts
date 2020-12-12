@@ -4,8 +4,7 @@ import {ASN1DefinedType} from './asn1/ASN1DefinedType';
 import {ASN1Module} from './asn1/ASN1Module';
 import {ASN1NamedType} from './asn1/ASN1NamedType';
 import {ASN1Sequence} from './asn1/ASN1Sequence';
-import {ASN1Message} from './interfaces/ASN1Message';
-import {LengthType} from './interfaces/LengthType';
+import {ASN1Message, ASN1Type} from './interfaces/ASN1Message';
 import {Props} from './interfaces/Props';
 import {TagClass} from './interfaces/TagClass';
 import {TagUniversal} from './interfaces/TagUniversal';
@@ -18,7 +17,7 @@ export class ASN1Generator {
   }
 
   generateFromJson(data: Props): ASN1Message {
-    console.log('data: ', data);
+    generateFromJson(this.asn1Message, data);
     return this.asn1Message;
   }
 
@@ -32,12 +31,10 @@ export class ASN1Generator {
   generateFromSequence(sequence: ASN1Sequence): ASN1Message {
     const message = {
       isConstructed: true,
-      lengthType: LengthType.DEFINITE,
-      length: 0,
-      tagCode: TagUniversal.SEQUENCE.code,
       tagClass: TagClass.UNIVERSAL,
-      value: [] as ASN1Message[],
+      tagCode: TagUniversal.SEQUENCE.code,
       tagLabel: TagUniversal.SEQUENCE.label,
+      value: [] as ASN1Message[],
     };
 
     for (let i = 0; i < sequence.components.length; i++) {
@@ -59,12 +56,10 @@ export class ASN1Generator {
     } else {
       message = {
         isConstructed: false,
-        lengthType: LengthType.DEFINITE,
-        length: 0,
-        tagCode: -1,
         tagClass: TagClass.UNIVERSAL,
-        value: null,
+        tagCode: -1,
         tagLabel: 'TBD',
+        value: null,
       };
       switch (component.type.constructor.name) {
         case 'ASN1BooleanType':
@@ -102,5 +97,20 @@ export class ASN1Generator {
     const message = this.generateFromAssignement(assignment);
     message.tagDefinedType = type.name;
     return message;
+  }
+}
+
+function generateFromJson(msg: ASN1Message, data: Props) {
+  const array = msg.value as ASN1Message[];
+  for (const key of Object.keys(data)) {
+    const cell = array.find(c => c.tagName === key);
+    if (cell === undefined) {
+      throw new Error('cell not found for key = ' + key);
+    }
+    if (cell.tagCode === TagUniversal.SEQUENCE.code) {
+      generateFromJson(cell, data[key] as Props);
+    } else {
+      cell.value = data[key] as ASN1Type;
+    }
   }
 }
