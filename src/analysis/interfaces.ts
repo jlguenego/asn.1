@@ -82,5 +82,6 @@ export interface CharacterStringTypeCstNode extends CstNode {
 }
 
 export interface RestrictedCharacterStringTypeCstNode extends CstNode {
-  IA5String: IToken[];
+  IA5String?: IToken[];
+  GeneralString?: IToken[];
 }

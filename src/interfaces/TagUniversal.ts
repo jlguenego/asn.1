@@ -1,4 +1,4 @@
-export const TagUniversal: {[key: string]: {code: number; label: string}} = {
+export const TagUniversal = {
   BOOLEAN: {code: 1, label: 'BOOLEAN'},
   INTEGER: {code: 2, label: 'INTEGER'},
   BIT_STRING: {code: 3, label: 'BIT_STRING'},

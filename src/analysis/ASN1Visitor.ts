@@ -9,6 +9,7 @@ import {ASN1TaggedType} from '../asn1/ASN1TaggedType';
 import {ASN1Type} from '../asn1/ASN1Type';
 import {
   ASN1BooleanType,
+  ASN1GeneralStringType,
   ASN1IA5StringType,
   ASN1IntegerType,
 } from '../asn1/types/builtin';
@@ -32,6 +33,7 @@ import {
   ClassNumberCstNode,
   DefinedTypeCstNode,
   ReferencedTypeCstNode,
+  RestrictedCharacterStringTypeCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -164,7 +166,13 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
     return this.visit(ctx.RestrictedCharacterStringType);
   }
 
-  RestrictedCharacterStringType() {
+  RestrictedCharacterStringType(ctx: RestrictedCharacterStringTypeCstNode) {
+    if (ctx.IA5String) {
+      return new ASN1IA5StringType();
+    }
+    if (ctx.GeneralString) {
+      return new ASN1GeneralStringType();
+    }
     return new ASN1IA5StringType();
   }
 }
