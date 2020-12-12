@@ -1,4 +1,4 @@
-import {readFileSync} from 'fs';
+import {ASN1MessageFormat} from './interfaces/ASN1MessageFormat';
 import {Props} from './interfaces/Props';
 export const sanitize = (str: string) =>
   str
@@ -6,13 +6,19 @@ export const sanitize = (str: string) =>
     .replace(/ /g, '')
     .replace(/\r?\n|\r/g, '');
 
-export const readEncodedFile = (filename: string): ArrayBuffer => {
-  const inputMsg = readFileSync(filename, {
-    encoding: 'utf8',
-  });
-
-  const buf = Buffer.from(sanitize(inputMsg), 'hex');
-  return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+export const getArrayBufferFromStr = (
+  inputMsg: string,
+  format: ASN1MessageFormat
+): ArrayBuffer => {
+  if (format === 'hex') {
+    const buf = Buffer.from(sanitize(inputMsg), 'hex');
+    return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+  }
+  if (format === 'base64') {
+    const buf = Buffer.from(sanitize(inputMsg), 'base64');
+    return buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength);
+  }
+  throw new Error('format not yet implemented: ' + format);
 };
 
 // 0110011001010 -> 0_1100_1100_1010

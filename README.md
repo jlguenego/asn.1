@@ -17,19 +17,42 @@ npm i -g @jlguenego/asn.1
 ### Javascript
 
 ```js
-const {asn1Parse, ASN1Validator} = require('@jlguenego/asn1');
-const {readFileSync} = require('fs');
+const {ASN1} = require('@jlguenego/asn1');
+const {readFileSync, writeFileSync} = require('fs');
 
-// get an arraybuffer from a ASN1 BER/CER/DER raw content.
-const arrayBuffer = ...
-const output = asn1Parse(arrayBuffer);
+const str = '30 13 02 01 05 16 0e 41 6e 79 62 6f 64 79 20 74 68 65 72 65 3f';
+writeFileSync(filename, str);
 
-// output is a readable ASN1 message file.
+// read from an ASN1 BER/CER/DER/JER/XER file raw content.
+const message = ASN1.parseMsgFile(filename, {
+  format: 'hex',
+  encodingRule: 'DER',
+});
+// message is a JS object with ASN1 readable/understandable content
+console.log('message: ', message);
 
-// validate and enrich the ASN1 message file according a ASN1 module definition file
-const definition = readFileSync(asn1ModuleDefFile, {encoding: 'utf8'});
-const validator = new ASN1Validator(definition);
-validator.validate(output, 'FooQuestion');
+// ASN1 module definition parser.
+const asn1ModuleStr = `
+FooProtocol DEFINITIONS ::= BEGIN
+
+    FooQuestion ::= SEQUENCE {
+        trackingNumber INTEGER,
+        question       IA5String
+    }
+
+    FooAnswer ::= SEQUENCE {
+        questionNumber INTEGER,
+        answer         BOOLEAN
+    }
+
+END
+`;
+
+const module = ASN1.getModuleFromStr(asn1ModuleStr);
+const validatedMsg = module.validate(message, 'FooQuestion');
+
+// validatedMsg is the same as message, but enriched with tagged names and types.
+console.log('validatedMsg: ', validatedMsg);
 ```
 
 ### Command line

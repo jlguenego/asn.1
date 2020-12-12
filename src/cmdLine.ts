@@ -4,7 +4,7 @@ import path from 'path';
 import {inspect} from 'util';
 
 import {version} from '../package.json';
-import {ASN1Parser} from './ASN1Parser';
+import {ASN1} from './ASN1';
 import {ASN1Validator} from './ASN1Validator';
 import {Props} from './interfaces/Props';
 import {cloneAlpha, sanitize} from './misc';
@@ -75,8 +75,7 @@ export function asn1Parse(): void {
     program.help();
   }
 
-  const asn1Parser = new ASN1Parser();
-  const output = asn1Parser.parse(input);
+  const output = ASN1.parseMsg(input);
   if (asn1Definition) {
     if (!program.type) {
       console.log('When --definition is specified, --type must be too.');

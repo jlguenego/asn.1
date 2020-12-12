@@ -4,14 +4,14 @@ import {resolve} from 'path';
 import {inspect} from 'util';
 import dbg from 'debug';
 
-import {asn1Parse} from '../src';
 import {EncodingRule} from '../src/EncodingRule';
-import {readEncodedFile, sanitize} from '../src/misc';
 import kerberosJson from './data/kerberos.json';
 import kerberosValidatedJson from './data/kerberos.validated.json';
 import {ASN1Validator} from '../src/ASN1Validator';
 import {ASN1Message} from '../src/interfaces/ASN1Message';
 import {ASN1MsgUtils} from '../src/ASN1MsgUtils';
+import {sanitize} from '../src/misc';
+import {ASN1} from '../src';
 
 const debug = dbg('asn.1:test');
 
@@ -32,10 +32,11 @@ describe('Kerberos Protocol', () => {
   });
 
   it('test kerberos AP-REQ msg', () => {
-    const output = asn1Parse(
-      readEncodedFile(resolve(__dirname, 'data/kerberos.hex.der')),
+    const output = ASN1.parseFileMsg(
+      resolve(__dirname, 'data/kerberos.hex.der'),
       {
         encodingRule: EncodingRule.DER,
+        format: 'hex',
       }
     );
     debug('output: ', inspect(output, false, null, true));

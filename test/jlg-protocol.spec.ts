@@ -1,10 +1,9 @@
 import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
+import {ASN1} from '../src';
 
-import {asn1Parse} from '../src';
 import {EncodingRule} from '../src/EncodingRule';
-import {sanitize} from '../src/misc';
 
 describe('JLG Protocol', () => {
   it('test JLGDER message', () => {
@@ -12,13 +11,9 @@ describe('JLG Protocol', () => {
       encoding: 'utf8',
     });
 
-    const buf = Buffer.from(sanitize(inputMsg), 'hex');
-    const arrayBuffer = buf.buffer.slice(
-      buf.byteOffset,
-      buf.byteOffset + buf.byteLength
-    );
-    const output = asn1Parse(arrayBuffer, {
+    const output = ASN1.parseMsg(inputMsg, {
       encodingRule: EncodingRule.DER,
+      format: 'hex',
     });
     assert.deepStrictEqual(output, {
       tagClass: 'UNIVERSAL',
