@@ -6,6 +6,9 @@ import {ASN1Message} from '../interfaces/ASN1Message';
 import {ASN1Validator} from '../ASN1Validator';
 import {Props} from '../interfaces/Props';
 import {ASN1GeneratorOptions} from '../interfaces/ASN1GeneratorOptions';
+import {EncodingRule} from '../EncodingRule';
+import {DEREncode} from '../codec/der/encoder/DEREncoder';
+import {ASN1Generator} from '../ASN1Generator';
 
 export class ASN1Module {
   static compile(definition: string): ASN1Module {
@@ -48,11 +51,23 @@ export class ASN1Module {
   generate(
     type: string,
     data: Props,
-    options: Partial<ASN1GeneratorOptions>
+    opts: Partial<ASN1GeneratorOptions> = {}
   ): Buffer {
     console.log('type: ', type);
     console.log('data: ', data);
+    const options = {
+      encodingRule: EncodingRule.DER,
+      inputFormat: 'json',
+      ...opts,
+    };
     console.log('options: ', options);
-    return Buffer.from('0001020304', 'hex');
+    const generator = new ASN1Generator(this, type);
+    const asn1Message = generator.generateFromJson(data);
+    if (options.encodingRule === EncodingRule.DER) {
+      return DEREncode(asn1Message);
+    }
+    throw new Error(
+      'generate: encoding rule not yet implemented: ' + options.encodingRule
+    );
   }
 }

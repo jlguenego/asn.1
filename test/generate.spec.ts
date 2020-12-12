@@ -6,7 +6,7 @@ import {EncodingRule} from '../src/EncodingRule';
 
 import {sanitize} from '../src/misc';
 
-describe('Foo Unit Test', () => {
+describe('Generate Test', () => {
   it('should generate a message', () => {
     // ASN1 module definition parser.
     const asn1ModuleStr = `
