@@ -1,1 +1,16 @@
-00 01 02 03 04
+30 # Sequence constructed
+  1d # Length 29
+    02 # Type integer
+      01 # Length 1
+        22 # Value 34
+    30 # Type sequence constructed (someone - Person)
+      18 # Length 24
+        1b # Type 27 (General String)
+          07 # Length 7
+            47 55 45 4e 45 47 4f # "GUENEGO"
+        1b
+          0a # Length 10
+            4a 65 61 6e 2d   4c 6f 75 69 73 # "Jean-Louis"
+        01 # Type Boolean
+          01 # Length 1
+            ff # True

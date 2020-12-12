@@ -46,3 +46,10 @@ export function cloneAlpha(obj: Props): Props {
   }
   return x;
 }
+
+export function padHexString(hex: string) {
+  if (hex.length % 2) {
+    return '0' + hex;
+  }
+  return hex;
+}

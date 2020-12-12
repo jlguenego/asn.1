@@ -61,7 +61,7 @@ export class ASN1Module {
     const generator = new ASN1Generator(this, type);
     const asn1Message = generator.generateFromJson(data);
     if (options.encodingRule === EncodingRule.DER) {
-      return DEREncode(asn1Message);
+      return Buffer.from(DEREncode(asn1Message), 'hex');
     }
     throw new Error(
       'generate: encoding rule not yet implemented: ' + options.encodingRule
