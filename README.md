@@ -2,7 +2,7 @@
 
 A complete ASN1 tool set for Node.
 
-- ASN.1 BER/CER/DER message parser.
+- ASN.1 BER/CER/DER message parser/generator.
 - ASN.1 Module file compiler
 - ASN.1 message validation
 
@@ -184,6 +184,13 @@ The output should be:
 ## Typescript
 
 This module is written in Typescript. No need to install typings.
+
+## Context
+
+This library has been designed according the content of:
+
+- [ITU X.680 ASN.1 specification](https://www.itu.int/rec/T-REC-X.680)
+- [ITU X.690 ASN.1 BER/CER/DER specification](https://www.itu.int/rec/T-REC-X.680).
 
 ## Author
 
