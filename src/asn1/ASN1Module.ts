@@ -4,6 +4,8 @@ import {ASN1Assignment} from './ASN1Assignment';
 import {ASN1Visitor} from '../analysis/ASN1Visitor';
 import {ASN1Message} from '../interfaces/ASN1Message';
 import {ASN1Validator} from '../ASN1Validator';
+import {Props} from '../interfaces/Props';
+import {ASN1GeneratorOptions} from '../interfaces/ASN1GeneratorOptions';
 
 export class ASN1Module {
   static compile(definition: string): ASN1Module {
@@ -41,5 +43,16 @@ export class ASN1Module {
     const validator = new ASN1Validator(this);
     validator.validate(msg, type);
     return msg;
+  }
+
+  generate(
+    type: string,
+    data: Props,
+    options: Partial<ASN1GeneratorOptions>
+  ): Buffer {
+    console.log('type: ', type);
+    console.log('data: ', data);
+    console.log('options: ', options);
+    return Buffer.from('0001020304', 'hex');
   }
 }
