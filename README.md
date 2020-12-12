@@ -6,6 +6,10 @@ A complete ASN1 tool set for Node.
 - ASN1 Module file compiler
 - ASN1 message validation
 
+## Summary
+
+- [Generating messages](doc/generating.md) from ASN1 module definition file and input data.
+
 ## Install
 
 ```
@@ -163,6 +167,10 @@ The output should be:
   ]
 }
 ```
+
+## Typescript
+
+This module is written in Typescript. No need to install typings.
 
 ## Author
 
