@@ -17,8 +17,7 @@ npm i -g @jlguenego/asn.1
 ### Javascript
 
 ```js
-// const {ASN1} = require('@jlguenego/asn1');
-const {ASN1} = require('../../build/src');
+const {ASN1} = require('@jlguenego/asn1');
 const {inspect} = require('util');
 
 const derMessage = `
