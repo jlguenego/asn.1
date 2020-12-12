@@ -192,6 +192,10 @@ This library has been designed according the content of:
 - [ITU X.680 ASN.1 specification](https://www.itu.int/rec/T-REC-X.680)
 - [ITU X.690 ASN.1 BER/CER/DER specification](https://www.itu.int/rec/T-REC-X.680).
 
+## Contribute
+
+Feel free to raise an issue if you need something.
+
 ## Author
 
 Made with :heart: by Jean-Louis GUENEGO <jlguenego@gmail.com>
