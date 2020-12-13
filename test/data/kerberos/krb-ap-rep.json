@@ -1,0 +1,144 @@
+{
+  "tagClass": "APPLICATION",
+  "isConstructed": true,
+  "tagCode": 0,
+  "tagLabel": "0",
+  "length": 148,
+  "lengthType": "DEFINITE",
+  "value": [
+    {
+      "tagClass": "UNIVERSAL",
+      "isConstructed": false,
+      "tagCode": 6,
+      "tagLabel": "OBJECT_IDENTIFIER",
+      "length": 9,
+      "lengthType": "DEFINITE",
+      "value": "1.2.840.113554.1.2.2"
+    },
+    {
+      "tagClass": "UNIVERSAL",
+      "isConstructed": false,
+      "tagCode": 2,
+      "tagLabel": "INTEGER",
+      "length": 0,
+      "lengthType": "DEFINITE",
+      "value": null
+    },
+    {
+      "tagClass": "APPLICATION",
+      "isConstructed": true,
+      "tagCode": 15,
+      "tagLabel": "15",
+      "length": 132,
+      "lengthType": "DEFINITE",
+      "value": [
+        {
+          "tagClass": "UNIVERSAL",
+          "isConstructed": true,
+          "tagCode": 16,
+          "tagLabel": "SEQUENCE",
+          "length": 129,
+          "lengthType": "DEFINITE",
+          "value": [
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 0,
+              "tagLabel": "0",
+              "length": 3,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": false,
+                  "tagCode": 2,
+                  "tagLabel": "INTEGER",
+                  "length": 1,
+                  "lengthType": "DEFINITE",
+                  "value": 5
+                }
+              ]
+            },
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 1,
+              "tagLabel": "1",
+              "length": 3,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": false,
+                  "tagCode": 2,
+                  "tagLabel": "INTEGER",
+                  "length": 1,
+                  "lengthType": "DEFINITE",
+                  "value": 15
+                }
+              ]
+            },
+            {
+              "tagClass": "CONTEXT_SPECIFIC",
+              "isConstructed": true,
+              "tagCode": 2,
+              "tagLabel": "2",
+              "length": 117,
+              "lengthType": "DEFINITE",
+              "value": [
+                {
+                  "tagClass": "UNIVERSAL",
+                  "isConstructed": true,
+                  "tagCode": 16,
+                  "tagLabel": "SEQUENCE",
+                  "length": 115,
+                  "lengthType": "DEFINITE",
+                  "value": [
+                    {
+                      "tagClass": "CONTEXT_SPECIFIC",
+                      "isConstructed": true,
+                      "tagCode": 0,
+                      "tagLabel": "0",
+                      "length": 3,
+                      "lengthType": "DEFINITE",
+                      "value": [
+                        {
+                          "tagClass": "UNIVERSAL",
+                          "isConstructed": false,
+                          "tagCode": 2,
+                          "tagLabel": "INTEGER",
+                          "length": 1,
+                          "lengthType": "DEFINITE",
+                          "value": 23
+                        }
+                      ]
+                    },
+                    {
+                      "tagClass": "CONTEXT_SPECIFIC",
+                      "isConstructed": true,
+                      "tagCode": 2,
+                      "tagLabel": "2",
+                      "length": 108,
+                      "lengthType": "DEFINITE",
+                      "value": [
+                        {
+                          "tagClass": "UNIVERSAL",
+                          "isConstructed": false,
+                          "tagCode": 4,
+                          "tagLabel": "OCTET_STRING",
+                          "length": 106,
+                          "lengthType": "DEFINITE",
+                          "value": "b6c80df02d0aa0810eadc39ebf5807661eca52ea1af9210276ef9f498702f7ed7368ca4ef492d6c08ef1d30a41a36fefccc783ffa68b0e12e21f830e7424f4327d9b6ceb886facb477a99295b9255c47fed64e8fa85015f476a41e70b7c0e78e00751f0475acca9c929f"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

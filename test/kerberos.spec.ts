@@ -6,6 +6,7 @@ import dbg from 'debug';
 
 import kerberosJson from './data/kerberos.json';
 import kerberosValidatedJson from './data/kerberos.validated.json';
+import krbApRepJson from './data/kerberos/krb-ap-rep.json';
 import {ASN1, ASN1Message, ASN1MsgUtils, EncodingRule, sanitize} from '../src';
 
 const debug = dbg('asn.1:test');
@@ -60,5 +61,18 @@ describe('Kerberos Protocol', () => {
       .slice(1)
       .join('/');
     assert.deepStrictEqual(principalName, 'HTTP/localhost');
+  });
+
+  it('test kerberos AP-REP msg', () => {
+    const output = ASN1.parseFileMsg(
+      resolve(__dirname, 'data/kerberos/krb-ap-rep.base64.der'),
+      {
+        encodingRule: EncodingRule.DER,
+        format: 'base64',
+      }
+    );
+    debug('output: ', inspect(output, false, null, true));
+
+    assert.deepStrictEqual(output, krbApRepJson);
   });
 });
