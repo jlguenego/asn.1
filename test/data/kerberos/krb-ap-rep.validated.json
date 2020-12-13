@@ -13,7 +13,9 @@
       "tagLabel": "OBJECT_IDENTIFIER",
       "length": 9,
       "lengthType": "DEFINITE",
-      "value": "1.2.840.113554.1.2.2"
+      "value": "1.2.840.113554.1.2.2",
+      "tagDefinedType": "MechType",
+      "tagName": "thisMech"
     },
     {
       "tagClass": "UNIVERSAL",
@@ -22,7 +24,8 @@
       "tagLabel": "INTEGER",
       "length": 0,
       "lengthType": "DEFINITE",
-      "value": null
+      "value": null,
+      "tagName": "tokId"
     },
     {
       "tagClass": "APPLICATION",
@@ -57,7 +60,8 @@
                   "lengthType": "DEFINITE",
                   "value": 5
                 }
-              ]
+              ],
+              "tagName": "pvno"
             },
             {
               "tagClass": "CONTEXT_SPECIFIC",
@@ -76,7 +80,8 @@
                   "lengthType": "DEFINITE",
                   "value": 15
                 }
-              ]
+              ],
+              "tagName": "msg-type"
             },
             {
               "tagClass": "CONTEXT_SPECIFIC",
@@ -111,7 +116,9 @@
                           "lengthType": "DEFINITE",
                           "value": 23
                         }
-                      ]
+                      ],
+                      "tagDefinedType": "Int32",
+                      "tagName": "etype"
                     },
                     {
                       "tagClass": "CONTEXT_SPECIFIC",
@@ -130,15 +137,21 @@
                           "lengthType": "DEFINITE",
                           "value": "b6c80df02d0aa0810eadc39ebf5807661eca52ea1af9210276ef9f498702f7ed7368ca4ef492d6c08ef1d30a41a36fefccc783ffa68b0e12e21f830e7424f4327d9b6ceb886facb477a99295b9255c47fed64e8fa85015f476a41e70b7c0e78e00751f0475acca9c929f"
                         }
-                      ]
+                      ],
+                      "tagName": "cipher"
                     }
                   ]
                 }
-              ]
+              ],
+              "tagDefinedType": "EncryptedData",
+              "tagName": "enc-part"
             }
           ]
         }
-      ]
+      ],
+      "tagDefinedType": "AP-REP",
+      "tagName": "innerContextToken"
     }
-  ]
+  ],
+  "tagDefinedType": "GSS-API"
 }

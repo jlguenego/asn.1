@@ -7,6 +7,7 @@ import {ASN1Sequence} from './asn1/ASN1Sequence';
 import {ASN1TaggedType} from './asn1/ASN1TaggedType';
 import {ASN1Message} from './interfaces/ASN1Message';
 import {ASN1Assignment} from './asn1/ASN1Assignment';
+import {ASN1ChoiceType} from './asn1/ASN1ChoiceType';
 
 // const debug = dbg('asn.1:validator');
 
@@ -82,7 +83,9 @@ export class ASN1Validator {
       throw new Error('can process only ASN1NamedType');
     }
 
-    if (component.type instanceof ASN1TaggedType) {
+    if (component.type instanceof ASN1ChoiceType) {
+      this.validateChoiceType(component.type, input);
+    } else if (component.type instanceof ASN1TaggedType) {
       this.validateTaggedType(component.type, input);
     } else if (component.type instanceof ASN1DefinedType) {
       input.tagDefinedType = component.type.name;
@@ -120,5 +123,17 @@ export class ASN1Validator {
     input.tagDefinedType = type.name;
     const assignment = this.module.getAssignment(type.name);
     this.validateAssignment((input.value as ASN1Message[])[0], assignment);
+  }
+
+  validateChoiceType(type: ASN1ChoiceType, input: ASN1Message) {
+    // try to validate the first choice, if not ok, then the second, if not ok, then the third...
+    for (let i = 0; i < type.alternatives.length; i++) {
+      try {
+        this.validateComponent(type.alternatives[i], input);
+      } catch (e) {
+        continue;
+      }
+      break;
+    }
   }
 }

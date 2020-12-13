@@ -4,7 +4,7 @@ import {ASN1DefinedType} from '../asn1/ASN1DefinedType';
 import {ASN1Module} from '../asn1/ASN1Module';
 import {ASN1NamedType} from '../asn1/ASN1NamedType';
 import {ASN1Sequence} from '../asn1/ASN1Sequence';
-import {ASN1Choice} from '../asn1/ASN1Choice';
+import {ASN1ChoiceType} from '../asn1/ASN1ChoiceType';
 import {ASN1Tag} from '../asn1/ASN1Tag';
 import {ASN1TaggedType} from '../asn1/ASN1TaggedType';
 import {ASN1Type} from '../asn1/ASN1Type';
@@ -162,12 +162,12 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   }
 
   ChoiceType(ctx: ChoiceTypeCstNode) {
-    const choice = new ASN1Choice();
+    const choice = new ASN1ChoiceType();
     this.visit(ctx.AlternativeTypeLists, choice);
     return choice;
   }
 
-  AlternativeType(ctx: AlternativeTypeCstNode, choice: ASN1Choice) {
+  AlternativeType(ctx: AlternativeTypeCstNode, choice: ASN1ChoiceType) {
     const namedType = this.visit(ctx.NamedType) as ASN1NamedType;
     choice.addAlternative(namedType);
   }
