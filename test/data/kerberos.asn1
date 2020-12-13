@@ -396,8 +396,13 @@ GSS-API ::= [APPLICATION 0] IMPLICIT SEQUENCE {
   thisMech        MechType,
                    -- MechType is OBJECT IDENTIFIER
                    -- representing "Kerberos V5"
-  prefix          BOOLEAN,
-  innerContextToken AP-REQ
+  tokId          v CHOICE {
+          tokId1   BOOLEAN,
+          tokId2   INTEGER
+  },
+  innerContextToken CHOICE {
+          krb-ap-req AP-REQ,
+          krb-ap-rep AP-REP
                    -- contents mechanism-specific;
                    -- ASN.1 usage within innerContextToken
                    -- is not required
