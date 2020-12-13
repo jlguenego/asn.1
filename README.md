@@ -56,7 +56,7 @@ const derMessage = `
 // read from an ASN1 BER/CER/DER/JER/XER file raw content.
 const message = ASN1.parseMsg(derMessage, {
   format: 'hex',
-  encodingRule: 'DER',
+  encodingRule: EncodingRule.DER,
 });
 // message is a JS object with ASN1 readable/understandable content
 console.log('message: ', inspect(message, false, null, true));
