@@ -396,7 +396,7 @@ GSS-API ::= [APPLICATION 0] IMPLICIT SEQUENCE {
   thisMech        MechType,
                    -- MechType is OBJECT IDENTIFIER
                    -- representing "Kerberos V5"
-  tokId          v CHOICE {
+  tokId           CHOICE {
           tokId1   BOOLEAN,
           tokId2   INTEGER
   },
@@ -406,6 +406,7 @@ GSS-API ::= [APPLICATION 0] IMPLICIT SEQUENCE {
                    -- contents mechanism-specific;
                    -- ASN.1 usage within innerContextToken
                    -- is not required
+  }
 }
 
 END

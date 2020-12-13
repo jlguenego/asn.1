@@ -5,6 +5,7 @@ import {AFFECTATION, allASN1Tokens} from './ASN1Lexer';
 import {k} from './lexer/ASN1Keyword';
 import {initBuiltinTypeRules} from './parser/BuiltinTypeRules';
 import {initBuiltinValueRules} from './parser/BuiltinValueRules';
+import {initChoiceTypeRules} from './parser/ChoiceTypeRules';
 import {initConstrainedTypeRules} from './parser/ConstrainedTypeRules';
 import {initIntegerTypeRules} from './parser/IntegerTypeRules';
 import {initModuleIdentifierRules} from './parser/ModuleIdentifierRules';
@@ -57,6 +58,11 @@ export class ASN1CstParser extends CstParser {
   public BuiltinType!: Rule;
   public PrefixedType!: Rule;
 
+  public ChoiceType!: Rule;
+  public AlternativeTypeLists!: Rule;
+  public RootAlternativeTypeList!: Rule;
+  public AlternativeTypeList!: Rule;
+
   public Constraint!: Rule;
   public TypeWithConstraint!: Rule;
   public ConstraintSpec!: Rule;
@@ -83,6 +89,7 @@ export class ASN1CstParser extends CstParser {
   public BitStringType!: Rule;
   public BooleanType!: Rule;
   public OctetStringType!: Rule;
+
   public SequenceType!: Rule;
   public SequenceOfType!: Rule;
 
@@ -166,6 +173,7 @@ export class ASN1CstParser extends CstParser {
     initReferencedTypeRules.call(this);
     initTaggedTypeRules.call(this);
     initSizeConstraintRules.call(this);
+    initChoiceTypeRules.call(this);
     this.performSelfAnalysis();
   }
 }

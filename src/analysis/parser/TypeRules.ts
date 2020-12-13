@@ -44,6 +44,7 @@ export function initTypeRules(this: ASN1CstParser) {
       'PrefixedType',
       'SequenceType',
       'SequenceOfType',
+      'ChoiceType',
     ]);
   });
 
