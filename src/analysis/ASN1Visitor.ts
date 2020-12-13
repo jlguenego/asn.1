@@ -4,6 +4,7 @@ import {ASN1DefinedType} from '../asn1/ASN1DefinedType';
 import {ASN1Module} from '../asn1/ASN1Module';
 import {ASN1NamedType} from '../asn1/ASN1NamedType';
 import {ASN1Sequence} from '../asn1/ASN1Sequence';
+import {ASN1Choice} from '../asn1/ASN1Choice';
 import {ASN1Tag} from '../asn1/ASN1Tag';
 import {ASN1TaggedType} from '../asn1/ASN1TaggedType';
 import {ASN1Type} from '../asn1/ASN1Type';
@@ -34,6 +35,8 @@ import {
   DefinedTypeCstNode,
   ReferencedTypeCstNode,
   RestrictedCharacterStringTypeCstNode,
+  ChoiceTypeCstNode,
+  AlternativeTypeListCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -105,6 +108,9 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
     if (ctx.CharacterStringType) {
       return this.visit(ctx.CharacterStringType);
     }
+    if (ctx.ChoiceType) {
+      return this.visit(ctx.ChoiceType);
+    }
     return null;
   }
 
@@ -153,6 +159,17 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
       namedType.optional = true;
     }
     sequence.addComponent(namedType);
+  }
+
+  ChoiceType(ctx: ChoiceTypeCstNode) {
+    const choice = new ASN1Choice();
+    this.visit(ctx.AlternativeTypeLists, choice);
+    return choice;
+  }
+
+  AlternativeTypeList(ctx: AlternativeTypeListCstNode, choice: ASN1Choice) {
+    const namedType = this.visit(ctx.NamedType) as ASN1NamedType;
+    choice.addAlternative(namedType);
   }
 
   NamedType(ctx: NamedTypeCstNode) {

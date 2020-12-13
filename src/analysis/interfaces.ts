@@ -34,6 +34,7 @@ export interface BuiltinTypeCstNode extends CstNode {
   IntegerType: CstNode;
   CharacterStringType: CstNode;
   PrefixedType: CstNode;
+  ChoiceType: CstNode;
 }
 
 export interface PrefixedTypeCstNode extends CstNode {
@@ -65,6 +66,14 @@ export interface DefinedTypeCstNode extends CstNode {
 
 export interface SequenceTypeCstNode extends CstNode {
   ComponentTypeLists: CstNode;
+}
+
+export interface ChoiceTypeCstNode extends CstNode {
+  AlternativeTypeLists: CstNode;
+}
+
+export interface AlternativeTypeListCstNode extends CstNode {
+  NamedType: CstNode;
 }
 
 export interface ComponentTypeCstNode extends CstNode {
