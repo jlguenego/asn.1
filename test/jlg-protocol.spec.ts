@@ -1,9 +1,7 @@
 import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import {ASN1} from '../src';
-
-import {EncodingRule} from '../src/EncodingRule';
+import {ASN1, EncodingRule} from '../src';
 
 describe('JLG Protocol', () => {
   it('test JLGDER message', () => {

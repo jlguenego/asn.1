@@ -2,10 +2,7 @@ import assert from 'assert';
 // import util from 'util';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import {ASN1Lexer} from '../src/analysis/ASN1Lexer';
-import {ASN1CstParser} from '../src/analysis/ASN1CstParser';
-import {ASN1Visitor} from '../src/analysis/ASN1Visitor';
-import {ASN1Module} from '../src/asn1/ASN1Module';
+import {ASN1CstParser, ASN1Lexer, ASN1Module, ASN1Visitor} from '../src';
 
 describe('Lexer Unit Test', () => {
   it('should tokenize', () => {

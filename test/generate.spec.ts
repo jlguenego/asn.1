@@ -1,10 +1,8 @@
 import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import {ASN1} from '../src';
-import {EncodingRule} from '../src/EncodingRule';
 
-import {sanitize} from '../src/misc';
+import {ASN1, EncodingRule, sanitize} from '../src';
 
 describe('Generate Test', () => {
   it('should generate a message', () => {

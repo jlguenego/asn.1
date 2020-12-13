@@ -1,10 +1,8 @@
 import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import {ASN1} from '../src';
+import {ASN1, EncodingRule, ASN1Message} from '../src';
 
-import {EncodingRule} from '../src/EncodingRule';
-import {ASN1Message} from '../src/interfaces/ASN1Message';
 import fooQuestionDerJson from './data/foo-question.der.json';
 import fooQuestionDerValidatedJson from './data/foo-question.validated.der.json';
 

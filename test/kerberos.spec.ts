@@ -4,13 +4,9 @@ import {resolve} from 'path';
 import {inspect} from 'util';
 import dbg from 'debug';
 
-import {EncodingRule} from '../src/EncodingRule';
 import kerberosJson from './data/kerberos.json';
 import kerberosValidatedJson from './data/kerberos.validated.json';
-import {ASN1Message} from '../src/interfaces/ASN1Message';
-import {ASN1MsgUtils} from '../src/ASN1MsgUtils';
-import {sanitize} from '../src/misc';
-import {ASN1} from '../src';
+import {ASN1, ASN1Message, ASN1MsgUtils, EncodingRule, sanitize} from '../src';
 
 const debug = dbg('asn.1:test');
 
