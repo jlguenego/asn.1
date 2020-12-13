@@ -72,7 +72,7 @@ export interface ChoiceTypeCstNode extends CstNode {
   AlternativeTypeLists: CstNode;
 }
 
-export interface AlternativeTypeListCstNode extends CstNode {
+export interface AlternativeTypeCstNode extends CstNode {
   NamedType: CstNode;
 }
 

@@ -62,6 +62,7 @@ export class ASN1CstParser extends CstParser {
   public AlternativeTypeLists!: Rule;
   public RootAlternativeTypeList!: Rule;
   public AlternativeTypeList!: Rule;
+  public AlternativeType!: Rule;
 
   public Constraint!: Rule;
   public TypeWithConstraint!: Rule;

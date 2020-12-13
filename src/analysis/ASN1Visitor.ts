@@ -36,7 +36,7 @@ import {
   ReferencedTypeCstNode,
   RestrictedCharacterStringTypeCstNode,
   ChoiceTypeCstNode,
-  AlternativeTypeListCstNode,
+  AlternativeTypeCstNode,
 } from './interfaces';
 
 const parserInstance = new ASN1CstParser();
@@ -167,7 +167,7 @@ export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
     return choice;
   }
 
-  AlternativeTypeList(ctx: AlternativeTypeListCstNode, choice: ASN1Choice) {
+  AlternativeType(ctx: AlternativeTypeCstNode, choice: ASN1Choice) {
     const namedType = this.visit(ctx.NamedType) as ASN1NamedType;
     choice.addAlternative(namedType);
   }

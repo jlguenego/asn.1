@@ -23,8 +23,12 @@ export function initChoiceTypeRules(this: ASN1CstParser) {
     this.MANY_SEP({
       SEP: COMMA,
       DEF: () => {
-        this.SUBRULE(this.NamedType);
+        this.SUBRULE(this.AlternativeType);
       },
     });
+  });
+
+  this.RULE('AlternativeType', () => {
+    this.SUBRULE(this.NamedType);
   });
 }
