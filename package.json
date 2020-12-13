@@ -2,8 +2,8 @@
   "name": "@jlguenego/asn.1",
   "version": "0.0.3",
   "description": "ASN.1 node tools",
-  "main": "index.js",
   "private": false,
+  "main": "build/src/index.js",
   "bin": {
     "asn1-parse": "./bin/asn1-parse.js"
   },
