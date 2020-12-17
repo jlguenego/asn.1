@@ -8,7 +8,7 @@
     "asn1-parse": "./bin/asn1-parse.js"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "nyc mocha",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
@@ -36,6 +36,7 @@
   "dependencies": {
     "chevrotain": "^7.0.3",
     "commander": "^6.2.0",
-    "debug": "^4.3.1"
+    "debug": "^4.3.1",
+    "nyc": "^15.1.0"
   }
 }
