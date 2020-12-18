@@ -68,7 +68,7 @@ HelloProtocol DEFINITIONS ::= BEGIN
     Person ::= SEQUENCE {
         lastname           GeneralString,
         firstname          GeneralString,
-        likeCoding     BOOLEAN
+        likeCoding         BOOLEAN
     }
 
     WelcomeMsg ::= SEQUENCE {
