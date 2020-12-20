@@ -1,5 +1,5 @@
-import {PathLike, readFileSync} from 'fs';
 import {ASN1Module} from './asn1/ASN1Module';
+import {ASN1ModuleFactory} from './asn1/ASN1ModuleFactory';
 import {BERDecode} from './codec/ber/decoder/BERDecoder';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
@@ -35,22 +35,7 @@ export class ASN1 {
     );
   }
 
-  static parseFileMsg(
-    filename: PathLike,
-    opts: Partial<ASN1ParserOptions> = {}
-  ) {
-    const options = {
-      format: 'bin',
-      encodingRule: EncodingRule.DER,
-      ...opts,
-    } as ASN1ParserOptions;
-
-    const encoding = options.format === 'bin' ? 'binary' : 'utf8';
-    const content = readFileSync(filename, {encoding});
-    return ASN1.parseMsg(content, options);
-  }
-
   static getModuleFromStr(definition: string): ASN1Module {
-    return ASN1Module.compile(definition);
+    return ASN1ModuleFactory.compile(definition);
   }
 }
