@@ -1,7 +1,4 @@
-import {ASN1Lexer} from '../analysis/ASN1Lexer';
-import {ASN1CstParser} from '../analysis/ASN1CstParser';
 import {ASN1Assignment} from './ASN1Assignment';
-import {ASN1Visitor} from '../analysis/ASN1Visitor';
 import {ASN1Message} from '../interfaces/ASN1Message';
 import {ASN1Validator} from '../ASN1Validator';
 import {Props} from '../interfaces/Props';
