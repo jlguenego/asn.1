@@ -26,7 +26,8 @@ describe('Foo Unit Test', () => {
       {encoding: 'utf8'}
     );
     const module = ASN1.getModuleFromStr(definition);
-    const validatedJson = module.validate(
+    const validatedJson = ASN1.validate(
+      module,
       fooQuestionDerJson as ASN1Message,
       'FooQuestion'
     );

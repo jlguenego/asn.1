@@ -1,11 +1,13 @@
 import {ASN1Module} from './asn1/ASN1Module';
 import {ASN1ModuleFactory} from './asn1/ASN1ModuleFactory';
 import {ASN1Generator} from './ASN1Generator';
+import {ASN1Validator} from './ASN1Validator';
 import {BERDecode} from './codec/ber/decoder/BERDecoder';
 import {DEREncode} from './codec/der/encoder/DEREncoder';
 import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
 import {ASN1GeneratorOptions} from './interfaces/ASN1GeneratorOptions';
+import {ASN1Message} from './interfaces/ASN1Message';
 import {Props} from './interfaces/Props';
 import {getArrayBufferFromStr} from './misc';
 
@@ -62,5 +64,16 @@ export class ASN1 {
     throw new Error(
       'generate: encoding rule not yet implemented: ' + options.encodingRule
     );
+  }
+
+  static validate(
+    module: ASN1Module,
+    message: ASN1Message,
+    type: string
+  ): ASN1Message {
+    const msg = JSON.parse(JSON.stringify(message)) as ASN1Message;
+    const validator = new ASN1Validator(module);
+    validator.validate(msg, type);
+    return msg;
   }
 }

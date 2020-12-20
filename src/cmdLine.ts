@@ -82,7 +82,7 @@ export function asn1Parse(): void {
     }
 
     const module = ASN1.getModuleFromStr(asn1Definition);
-    output = module.validate(output, program.type);
+    output = ASN1.validate(module, output, program.type);
   }
   console.log(
     inspect(cloneAlpha((output as unknown) as Props), false, null, true)

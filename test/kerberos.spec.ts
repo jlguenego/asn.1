@@ -54,7 +54,11 @@ describe('Kerberos Protocol', () => {
     );
     const module = ASN1.getModuleFromStr(definition);
     // console.log('module: ', inspect(module, false, null, true));
-    const validated = module.validate(kerberosJson as ASN1Message, 'GSS-API');
+    const validated = ASN1.validate(
+      module,
+      kerberosJson as ASN1Message,
+      'GSS-API'
+    );
     // console.log('validated: ', inspect(validated, false, null, true));
     assert.deepStrictEqual(validated, kerberosValidatedJson);
   });
@@ -94,7 +98,11 @@ describe('Kerberos Protocol', () => {
       }
     );
     const module = ASN1.getModuleFromStr(definition);
-    const validated = module.validate(krbApRepJson as ASN1Message, 'GSS-API');
+    const validated = ASN1.validate(
+      module,
+      krbApRepJson as ASN1Message,
+      'GSS-API'
+    );
     // console.log('validated: ', inspect(validated, false, null, true));
     assert.deepStrictEqual(validated, krbApRepValidatedJson);
   });
