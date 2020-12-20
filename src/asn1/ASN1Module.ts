@@ -1,11 +1,6 @@
 import {ASN1Assignment} from './ASN1Assignment';
 import {ASN1Message} from '../interfaces/ASN1Message';
 import {ASN1Validator} from '../ASN1Validator';
-import {Props} from '../interfaces/Props';
-import {ASN1GeneratorOptions} from '../interfaces/ASN1GeneratorOptions';
-import {EncodingRule} from '../EncodingRule';
-import {DEREncode} from '../codec/der/encoder/DEREncoder';
-import {ASN1Generator} from '../ASN1Generator';
 
 export class ASN1Module {
   assignments: ASN1Assignment[] = [];
@@ -30,25 +25,5 @@ export class ASN1Module {
     const validator = new ASN1Validator(this);
     validator.validate(msg, type);
     return msg;
-  }
-
-  generate(
-    type: string,
-    data: Props,
-    opts: Partial<ASN1GeneratorOptions> = {}
-  ): Buffer {
-    const options = {
-      encodingRule: EncodingRule.DER,
-      inputFormat: 'json',
-      ...opts,
-    };
-    const generator = new ASN1Generator(this, type);
-    const asn1Message = generator.generateFromJson(data);
-    if (options.encodingRule === EncodingRule.DER) {
-      return Buffer.from(DEREncode(asn1Message), 'hex');
-    }
-    throw new Error(
-      'generate: encoding rule not yet implemented: ' + options.encodingRule
-    );
   }
 }

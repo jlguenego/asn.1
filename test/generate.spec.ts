@@ -34,7 +34,7 @@ END
     };
 
     const asn1Module = ASN1.getModuleFromStr(asn1ModuleStr);
-    const buffer = asn1Module.generate('WelcomeMsg', data, {
+    const buffer = ASN1.generate(asn1Module, 'WelcomeMsg', data, {
       encodingRule: EncodingRule.DER,
     });
     const messageHex = buffer.toString('hex');
