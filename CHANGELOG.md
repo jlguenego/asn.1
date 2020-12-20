@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/jlguenego/asn.1/compare/v0.0.4...v0.0.5) (2020-12-20)
+
+
+### Features
+
+* added coverage with nyc ([22ed420](https://github.com/jlguenego/asn.1/commit/22ed42059067b4b2edda911b348b145393fc3140))
+
+
+### Bug Fixes
+
+* added export ([916d6ec](https://github.com/jlguenego/asn.1/commit/916d6ec476bece14af4403048ac21b4ed11e73a4))
+* added export ([27353c0](https://github.com/jlguenego/asn.1/commit/27353c05d69e31a4e70b03e069fac0030bf1d148))
+* order keyword ([f2e8b6e](https://github.com/jlguenego/asn.1/commit/f2e8b6e6cada58d51a882fad4e5d5b3cfb7d7b60))
+
 ### [0.0.4](https://github.com/jlguenego/asn.1/compare/v0.0.3...v0.0.4) (2020-12-13)
 
 

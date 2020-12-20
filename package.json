@@ -1,6 +1,6 @@
 {
   "name": "@jlguenego/asn.1",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "ASN.1 node tools",
   "private": false,
   "main": "build/src/index.js",
