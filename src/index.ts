@@ -7,3 +7,4 @@ export * from './analysis/ASN1Lexer';
 export * from './analysis/ASN1Visitor';
 export * from './analysis/ASN1CstParser';
 export * from './asn1/ASN1Module';
+export * from './codec/der/encoder/DEREncoder';
