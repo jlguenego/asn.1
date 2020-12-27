@@ -3,6 +3,7 @@
   "version": "0.0.6",
   "description": "ASN.1 node tools",
   "private": false,
+  "type": "module",
   "main": "build/src/index.js",
   "bin": {
     "asn1-parse": "./bin/asn1-parse.js"
