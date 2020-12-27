@@ -4,8 +4,7 @@
     "rootDir": ".",
     "outDir": "build",
     "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "module": "ES2015"
+    "resolveJsonModule": true
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }
