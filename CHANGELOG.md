@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/jlguenego/asn.1/compare/v0.0.6...v0.0.7) (2020-12-27)
+
+
+### Features
+
+* added esm module build ([6913e6e](https://github.com/jlguenego/asn.1/commit/6913e6e2d1d50b87d944a1834b874f744f20f569))
+* transform CommonJS module to ESM module. ([6fa17ee](https://github.com/jlguenego/asn.1/commit/6fa17ee94f0a2f079f3fbb3cedbae798629a0433))
+
 ### [0.0.6](https://github.com/jlguenego/asn.1/compare/v0.0.5...v0.0.6) (2020-12-21)
 
 ### [0.0.5](https://github.com/jlguenego/asn.1/compare/v0.0.4...v0.0.5) (2020-12-20)

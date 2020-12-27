@@ -1,6 +1,6 @@
 {
   "name": "@jlguenego/asn.1",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "ASN.1 node tools",
   "private": false,
   "main": "build/src/index.js",
@@ -18,6 +18,7 @@
     "pretest": "npm.cmd run compile",
     "posttest": "npm.cmd run lint",
     "build:esm": "tsc --project tsconfig.esm.json",
+    "prerelease": "npm run build:esm",
     "release": "standard-version",
     "start": "node bin/asn1-parse.js -f hex test/data/foo-question.der -d test/data/foo-protocol.asn1 -t FooQuestion",
     "kerberos": "node bin/asn1-parse.js -f base64 test/data/kerberos/krb-ap-req.base64.der -d test/data/kerberos/kerberos.asn1 -t GSS-API"
