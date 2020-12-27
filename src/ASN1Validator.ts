@@ -1,4 +1,3 @@
-// import dbg from 'debug';
 import {ASN1ComponentType} from './asn1/ASN1ComponentType';
 import {ASN1DefinedType} from './asn1/ASN1DefinedType';
 import {ASN1Module} from './asn1/ASN1Module';
@@ -8,8 +7,6 @@ import {ASN1TaggedType} from './asn1/ASN1TaggedType';
 import {ASN1Message} from './interfaces/ASN1Message';
 import {ASN1Assignment} from './asn1/ASN1Assignment';
 import {ASN1ChoiceType} from './asn1/ASN1ChoiceType';
-
-// const debug = dbg('asn.1:validator');
 
 export class ASN1Validator {
   constructor(private module: ASN1Module) {}

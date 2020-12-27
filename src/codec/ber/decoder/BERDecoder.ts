@@ -1,4 +1,3 @@
-import dbg from 'debug';
 import {CursorDataView} from '../../../CursorDataView';
 import {ASN1Message} from '../../../interfaces/ASN1Message';
 import {BERLength} from '../../../interfaces/BERLength';
@@ -13,8 +12,6 @@ import {readIA5String} from './primitive/ReadIA5String';
 import {readInteger} from './primitive/ReadInteger';
 import {readObjectIdentifier} from './primitive/ReadObjectIdentifier';
 import {readOctetString} from './primitive/ReadOctetString';
-
-const debug = dbg('asn.1:BERDecoder');
 
 export function BERDecode(input: ArrayBuffer): ASN1Message {
   const cdv = new CursorDataView(input);
@@ -84,7 +81,6 @@ function readComposed(
   identifier: Identifier
 ): ASN1Message {
   const {length, type} = readLengthOctets(cdv);
-  debug('type: ', type);
   const result: ASN1Message = {
     tagClass: identifier.tagClass,
     isConstructed: identifier.constructed,
@@ -113,7 +109,6 @@ function readComposed(
 
 function readSimple(cdv: CursorDataView, identifier: Identifier): ASN1Message {
   const {length, type} = readLengthOctets(cdv);
-  debug('type: ', type);
 
   const result: ASN1Message = {
     tagClass: identifier.tagClass,

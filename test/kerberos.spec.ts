@@ -2,7 +2,6 @@ import assert from 'assert';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {inspect} from 'util';
-import dbg from 'debug';
 
 import kerberosJson from './data/kerberos/krb-ap-req.json';
 import kerberosValidatedJson from './data/kerberos/krb-ap-req.validated.json';
@@ -10,8 +9,6 @@ import krbApRepJson from './data/kerberos/krb-ap-rep.json';
 import krbApRepValidatedJson from './data/kerberos/krb-ap-rep.validated.json';
 import {ASN1, ASN1Message, ASN1MsgUtils, EncodingRule, sanitize} from '../src';
 import {ASN1Node} from '../src/node/ASN1Node';
-
-const debug = dbg('asn.1:test');
 
 describe('Kerberos Protocol', () => {
   it('test hex base64 conv', () => {
@@ -40,8 +37,6 @@ describe('Kerberos Protocol', () => {
         format: 'hex',
       }
     );
-    debug('output: ', inspect(output, false, null, true));
-
     assert.deepStrictEqual(output, kerberosJson);
   });
 
@@ -85,8 +80,6 @@ describe('Kerberos Protocol', () => {
         format: 'base64',
       }
     );
-    debug('output: ', inspect(output, false, null, true));
-
     assert.deepStrictEqual(output, krbApRepJson);
   });
 

@@ -4,6 +4,7 @@
   "description": "ASN.1 node tools",
   "private": false,
   "main": "build/src/index.js",
+  "module": "build_esm/src/index.js",
   "bin": {
     "asn1-parse": "./bin/asn1-parse.js"
   },
@@ -16,6 +17,7 @@
     "prepare": "npm.cmd run compile",
     "pretest": "npm.cmd run compile",
     "posttest": "npm.cmd run lint",
+    "build:esm": "tsc --project tsconfig.esm.json",
     "release": "standard-version",
     "start": "node bin/asn1-parse.js -f hex test/data/foo-question.der -d test/data/foo-protocol.asn1 -t FooQuestion",
     "kerberos": "node bin/asn1-parse.js -f base64 test/data/kerberos/krb-ap-req.base64.der -d test/data/kerberos/kerberos.asn1 -t GSS-API"
@@ -27,6 +29,7 @@
     "@types/debug": "^4.1.5",
     "@types/mocha": "^8.0.4",
     "@types/node": "^14.14.12",
+    "debug": "^4.3.1",
     "gts": "^3.0.2",
     "mocha": "^8.2.1",
     "standard-version": "^9.0.0",
@@ -36,7 +39,6 @@
   "dependencies": {
     "chevrotain": "^7.0.3",
     "commander": "^6.2.0",
-    "debug": "^4.3.1",
     "nyc": "^15.1.0"
   }
 }
