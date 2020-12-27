@@ -49,7 +49,7 @@ END
 `;
 
 const asn1Module = ASN1.getModuleFromStr(asn1ModuleStr);
-const validatedMsg = asn1Module.validate(message, 'WelcomeMsg');
+const validatedMsg = ASN1.validate(asn1Module, message, 'WelcomeMsg');
 
 // validatedMsg is the same as message, but enriched with tagged names and types.
 console.log('validatedMsg: ', inspect(validatedMsg, false, null, true));
@@ -64,7 +64,7 @@ const data = {
 };
 
 // regenerate the original DER message.
-const derBuffer = asn1Module.generate('WelcomeMsg', data, {
+const derBuffer = ASN1.generate(asn1Module, 'WelcomeMsg', data, {
   encodingRule: EncodingRule.DER,
 });
 console.log('derMessage: ', derBuffer.toString('hex'));
