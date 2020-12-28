@@ -7,6 +7,7 @@ import {initBuiltinTypeRules} from './parser/BuiltinTypeRules';
 import {initBuiltinValueRules} from './parser/BuiltinValueRules';
 import {initChoiceTypeRules} from './parser/ChoiceTypeRules';
 import {initConstrainedTypeRules} from './parser/ConstrainedTypeRules';
+import {initImportsRules} from './parser/ImportsRules';
 import {initIntegerTypeRules} from './parser/IntegerTypeRules';
 import {initModuleIdentifierRules} from './parser/ModuleIdentifierRules';
 import {initObjectIdentifierValueRules} from './parser/ObjectIdentifierValueRules';
@@ -29,7 +30,21 @@ export class ASN1CstParser extends CstParser {
   public DefinitiveNameAndNumberForm!: () => CstNode;
 
   public TagDefault!: Rule;
+  public ExtensionDefault!: Rule;
   public ModuleBody!: Rule;
+
+  public Imports!: Rule;
+  public SymbolsImported!: Rule;
+  public SymbolsFromModuleList!: Rule;
+  public SymbolsFromModule!: Rule;
+  public SymbolList!: Rule;
+  public Symbol!: Rule;
+  public Reference!: Rule;
+  public ParameterizedReference!: Rule;
+
+  public GlobalModuleReference!: Rule;
+  public AssignedIdentifier!: Rule;
+
   public AssignmentList!: Rule;
   public Assignment!: Rule;
   public TypeAssignment!: Rule;
@@ -136,6 +151,7 @@ export class ASN1CstParser extends CstParser {
       this.SUBRULE(this.ModuleIdentifier);
       this.CONSUME(k.DEFINITIONS);
       this.SUBRULE(this.TagDefault);
+      this.SUBRULE(this.ExtensionDefault);
       this.CONSUME(AFFECTATION);
       this.CONSUME(k.BEGIN);
       this.SUBRULE(this.ModuleBody);
@@ -149,7 +165,15 @@ export class ASN1CstParser extends CstParser {
       });
     });
 
+    this.RULE('ExtensionDefault', () => {
+      this.OPTION(() => {
+        this.CONSUME(k.EXTENSIBILITY);
+        this.CONSUME(k.IMPLIED);
+      });
+    });
+
     this.RULE('ModuleBody', () => {
+      this.SUBRULE(this.Imports);
       this.SUBRULE(this.AssignmentList);
     });
 
@@ -176,6 +200,7 @@ export class ASN1CstParser extends CstParser {
     initTaggedTypeRules.call(this);
     initSizeConstraintRules.call(this);
     initChoiceTypeRules.call(this);
+    initImportsRules.call(this);
     this.performSelfAnalysis();
   }
 }

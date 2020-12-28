@@ -14,6 +14,9 @@ export function initObjectIdentifierValueRules(this: ASN1CstParser) {
       {
         ALT: () => {
           this.CONSUME(L_CURLY);
+          this.OPTION(() => {
+            this.SUBRULE(this.DefinedValue);
+          });
           this.SUBRULE(this.ObjIdComponentsList);
           this.CONSUME(R_CURLY);
         },
@@ -28,13 +31,7 @@ export function initObjectIdentifierValueRules(this: ASN1CstParser) {
   });
 
   this.RULE('ObjIdComponents', () => {
-    this.OR([
-      {
-        ALT: () => {
-          this.SUBRULE(this.NameAndNumberForm);
-        },
-      },
-    ]);
+    this.addOrList(['NameAndNumberForm', 'NumberForm']);
   });
 
   this.RULE('NameAndNumberForm', () => {
