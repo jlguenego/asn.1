@@ -8,13 +8,12 @@ import fooQuestionDerValidatedJson from './data/foo-question.validated.der.json'
 
 describe('Foo Unit Test', () => {
   it('should parse the foo message', () => {
-    const output = ASN1.parseMsg(
+    const output = ASN1.decode(
       readFileSync(resolve(__dirname, 'data/foo-question.der'), {
         encoding: 'utf8',
       }),
       {
         encodingRule: EncodingRule.DER,
-        format: 'hex',
       }
     );
     assert.deepStrictEqual(output, fooQuestionDerJson);

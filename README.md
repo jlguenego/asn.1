@@ -121,7 +121,7 @@ Options:
   -V, --version                 output the version number
   -d, --definition <asn1-file>  specify an ASN.1 definition file (.asn1)
   -t, --type <asn1-type>        specify an ASN.1 type. Must be specified with definition file.
-  -f, --format <type>           specify the message format ('bin'|'hex'|'base64') (default: "bin")
+  -f, --format <type>           specify the message format ('binary'|'hex'|'base64') (default: 'hex')
   -h, --help                    display help for command
 ```
 

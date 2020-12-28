@@ -22,8 +22,8 @@ export function asn1Parse(): void {
     )
     .option(
       '-f, --format <type>',
-      "specify the message format ('bin'|'hex'|'base64')",
-      'bin'
+      "specify the message format ('binary'|'hex'|'base64')",
+      'hex'
     )
     .description('Parse an ASN1 message', {
       msgFile: 'file containing a ASN.1 message to parse',
@@ -40,7 +40,7 @@ export function asn1Parse(): void {
 
   let input: ArrayBuffer;
   try {
-    if (program['format'] === 'bin') {
+    if (program['format'] === 'binary') {
       const b = fs.readFileSync(file);
       input = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength);
     } else if (program['format'] === 'hex') {
@@ -74,7 +74,7 @@ export function asn1Parse(): void {
     program.help();
   }
 
-  let output = ASN1.parseMsg(input);
+  let output = ASN1.decode(input);
   if (asn1Definition) {
     if (!program.type) {
       console.log('When --definition is specified, --type must be too.');

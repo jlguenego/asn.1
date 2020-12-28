@@ -9,9 +9,8 @@ describe('JLG Protocol', () => {
       encoding: 'utf8',
     });
 
-    const output = ASN1.parseMsg(inputMsg, {
+    const output = ASN1.decode(inputMsg, {
       encodingRule: EncodingRule.DER,
-      format: 'hex',
     });
     assert.deepStrictEqual(output, {
       tagClass: 'UNIVERSAL',

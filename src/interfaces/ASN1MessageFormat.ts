@@ -1,1 +1,5 @@
-export type ASN1MessageFormat = 'hex' | 'base64' | 'bin';
+export enum ASN1MessageFormat {
+  HEX = 'hex',
+  BASE64 = 'base64',
+  BINARY = 'binary',
+}

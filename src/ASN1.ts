@@ -8,16 +8,17 @@ import {EncodingRule} from './EncodingRule';
 import {ASN1ParserOptions} from './interfaces';
 import {ASN1GeneratorOptions} from './interfaces/ASN1GeneratorOptions';
 import {ASN1Message} from './interfaces/ASN1Message';
+import {ASN1MessageFormat} from './interfaces/ASN1MessageFormat';
 import {Props} from './interfaces/Props';
 import {getArrayBufferFromStr} from './misc';
 
 export class ASN1 {
-  static parseMsg(
+  static decode(
     message: string | ArrayBuffer,
     opts: Partial<ASN1ParserOptions> = {}
   ) {
-    const options = {
-      format: 'bin',
+    const options: ASN1ParserOptions = {
+      format: ASN1MessageFormat.HEX,
       encodingRule: EncodingRule.DER,
       ...opts,
     } as ASN1ParserOptions;
