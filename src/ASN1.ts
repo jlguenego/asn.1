@@ -46,6 +46,21 @@ export class ASN1 {
     return ASN1ModuleFactory.compile(definition);
   }
 
+  static encode(
+    asn1Message: ASN1Message,
+    encodingRule = EncodingRule.DER
+  ): Buffer {
+    if (
+      encodingRule === EncodingRule.DER ||
+      encodingRule === EncodingRule.BER
+    ) {
+      return Buffer.from(DEREncode(asn1Message), 'hex');
+    }
+    throw new Error(
+      'generate: encoding rule not yet implemented: ' + encodingRule
+    );
+  }
+
   static generate(
     module: ASN1Module,
     type: string,
@@ -59,12 +74,7 @@ export class ASN1 {
     };
     const generator = new ASN1Generator(module, type);
     const asn1Message = generator.generateFromJson(data);
-    if (options.encodingRule === EncodingRule.DER) {
-      return Buffer.from(DEREncode(asn1Message), 'hex');
-    }
-    throw new Error(
-      'generate: encoding rule not yet implemented: ' + options.encodingRule
-    );
+    return ASN1.encode(asn1Message, options.encodingRule);
   }
 
   static validate(
