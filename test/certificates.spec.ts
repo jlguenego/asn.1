@@ -13,6 +13,6 @@ describe('RFC3727 Unit Test', () => {
     );
 
     const module = ASN1.getModuleFromStr(input);
-    assert.strictEqual(module.name, 'FooProtocol');
+    assert.strictEqual(module.name, 'ComponentMatching');
   });
 });

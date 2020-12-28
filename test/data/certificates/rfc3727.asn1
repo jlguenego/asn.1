@@ -17,37 +17,38 @@ IMPORTS
                   informationFramework(1) 4 } ;
 
 ComponentAssertion ::= SEQUENCE {
-      component         ComponentReference (SIZE (1..MAX)) OPTIONAL,
-      useDefaultValues  BOOLEAN DEFAULT TRUE,
-      rule              MATCHING-RULE.&id,
-      value             MATCHING-RULE.&AssertionType }
+      component         ComponentReference -- (SIZE (1..MAX))-- OPTIONAL,
+      useDefaultValues  BOOLEAN -- DEFAULT TRUE--
+      --rule              MATCHING-RULE.&id,
+      --value             MATCHING-RULE.&AssertionType
+       }
 
 ComponentReference ::= UTF8String
 
-ComponentFilter ::= CHOICE {
-      item  [0] ComponentAssertion,
-      and   [1] SEQUENCE OF ComponentFilter,
-      or    [2] SEQUENCE OF ComponentFilter,
-      not   [3] ComponentFilter }
+-- ComponentFilter ::= CHOICE {
+--       item  [0] ComponentAssertion,
+--       and   [1] SEQUENCE OF ComponentFilter,
+--       or    [2] SEQUENCE OF ComponentFilter,
+--       not   [3] ComponentFilter }
 
-componentFilterMatch MATCHING-RULE ::= {
-      SYNTAX  ComponentFilter
-      ID { 1 2 36 79672281 1 13 2 } }
+-- componentFilterMatch MATCHING-RULE ::= {
+--       SYNTAX  ComponentFilter
+--       ID { 1 2 36 79672281 1 13 2 } }
 
-allComponentsMatch MATCHING-RULE ::= {
-      ID { 1 2 36 79672281 1 13 6 } }
+-- allComponentsMatch MATCHING-RULE ::= {
+--       ID { 1 2 36 79672281 1 13 6 } }
 
-directoryComponentsMatch MATCHING-RULE ::= {
-      ID { 1 2 36 79672281 1 13 7 } }
+-- directoryComponentsMatch MATCHING-RULE ::= {
+--       ID { 1 2 36 79672281 1 13 7 } }
 
 -- Additional Useful Matching Rules --
 
-rdnMatch MATCHING-RULE ::= {
-   SYNTAX  RelativeDistinguishedName
-      ID { 1 2 36 79672281 1 13 3 } }
+-- rdnMatch MATCHING-RULE ::= {
+--    SYNTAX  RelativeDistinguishedName
+--       ID { 1 2 36 79672281 1 13 3 } }
 
-presentMatch MATCHING-RULE ::= {
-      SYNTAX  NULL
-      ID { 1 2 36 79672281 1 13 5 } }
+-- presentMatch MATCHING-RULE ::= {
+--       SYNTAX  NULL
+--       ID { 1 2 36 79672281 1 13 5 } }
 
 END
