@@ -11,6 +11,7 @@ import {
 } from '../ASN1Lexer';
 
 export function initModuleIdentifierRules(this: ASN1CstParser) {
+  // Clause 13.1
   this.RULE('ModuleIdentifier', () => {
     this.CONSUME(TypeReference);
     this.SUBRULE(this.DefinitiveIdentification);
@@ -42,13 +43,11 @@ export function initModuleIdentifierRules(this: ASN1CstParser) {
   });
 
   this.RULE('DefinitiveObjIdComponent', () => {
-    this.OR([
-      {
-        ALT: () => {
-          this.SUBRULE(this.DefinitiveNameAndNumberForm);
-        },
-      },
-    ]);
+    this.addOrList(['DefinitiveNumberForm', 'DefinitiveNameAndNumberForm']);
+  });
+
+  this.RULE('DefinitiveNumberForm', () => {
+    this.CONSUME(NumberToken);
   });
 
   this.RULE('DefinitiveNameAndNumberForm', () => {

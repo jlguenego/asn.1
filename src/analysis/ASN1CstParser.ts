@@ -25,6 +25,7 @@ export class ASN1CstParser extends CstParser {
   public DefinitiveOID!: () => CstNode;
   public DefinitiveObjIdComponentList!: () => CstNode;
   public DefinitiveObjIdComponent!: () => CstNode;
+  public DefinitiveNumberForm!: () => CstNode;
   public DefinitiveNameAndNumberForm!: () => CstNode;
 
   public TagDefault!: Rule;
