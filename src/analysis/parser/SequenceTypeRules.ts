@@ -37,16 +37,22 @@ export function initSequenceTypeRules(this: ASN1CstParser) {
   });
 
   this.RULE('ComponentType', () => {
-    this.OR([
-      {
-        ALT: () => {
-          this.SUBRULE(this.NamedType);
-          this.OPTION(() => {
-            this.CONSUME(k.OPTIONAL);
-          });
+    this.SUBRULE(this.NamedType);
+    this.OPTION(() => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(k.DEFAULT);
+            this.SUBRULE(this.Value);
+          },
         },
-      },
-    ]);
+        {
+          ALT: () => {
+            this.CONSUME(k.OPTIONAL);
+          },
+        },
+      ]);
+    });
   });
 
   this.RULE('NamedType', () => {

@@ -5,6 +5,7 @@ import {
   NegativeNumberToken,
   NumberToken,
 } from '../ASN1Lexer';
+import {k} from '../lexer/ASN1Keyword';
 
 export function initBuiltinValueRules(this: ASN1CstParser) {
   this.RULE('ValueAssignment', () => {
@@ -29,11 +30,15 @@ export function initBuiltinValueRules(this: ASN1CstParser) {
   });
 
   this.RULE('BuiltinValue', () => {
-    this.addOrList(['ObjectIdentifierValue', 'IntegerValue']);
+    this.addOrList(['ObjectIdentifierValue', 'IntegerValue', 'BooleanValue']);
   });
 
   this.RULE('IntegerValue', () => {
     this.addOrTokenList([Identifier, NumberToken, NegativeNumberToken]);
+  });
+
+  this.RULE('BooleanValue', () => {
+    this.addOrTokenList([k.TRUE, k.FALSE]);
   });
 
   this.RULE('DefinedValue', () => {

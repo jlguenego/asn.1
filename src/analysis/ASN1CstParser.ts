@@ -52,6 +52,7 @@ export class ASN1CstParser extends CstParser {
   public ValueReference!: Rule;
   public Value!: Rule;
   public BuiltinValue!: Rule;
+  public BooleanValue!: Rule;
   public IntegerValue!: Rule;
   public ObjectIdentifierValue!: Rule;
   public ObjIdComponentsList!: Rule;

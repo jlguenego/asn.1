@@ -18,7 +18,7 @@ IMPORTS
 
 ComponentAssertion ::= SEQUENCE {
       component         ComponentReference -- (SIZE (1..MAX))-- OPTIONAL,
-      useDefaultValues  BOOLEAN -- DEFAULT TRUE--
+      useDefaultValues  BOOLEAN  DEFAULT TRUE
       --rule              MATCHING-RULE.&id,
       --value             MATCHING-RULE.&AssertionType
        }
