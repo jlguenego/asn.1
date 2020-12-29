@@ -14,11 +14,16 @@ export function initObjectIdentifierValueRules(this: ASN1CstParser) {
       {
         ALT: () => {
           this.CONSUME(L_CURLY);
-          this.OPTION(() => {
-            this.SUBRULE(this.DefinedValue);
-          });
+          this.SUBRULE(this.DefinedValue);
           this.SUBRULE(this.ObjIdComponentsList);
           this.CONSUME(R_CURLY);
+        },
+      },
+      {
+        ALT: () => {
+          this.CONSUME1(L_CURLY);
+          this.SUBRULE1(this.ObjIdComponentsList);
+          this.CONSUME1(R_CURLY);
         },
       },
     ]);
