@@ -42,7 +42,8 @@ import {
 const parserInstance = new ASN1CstParser();
 // The base visitor class can be accessed via the a parser instance.
 // const BaseASN1Visitor = parserInstance.getBaseCstVisitorConstructor();
-const BaseASN1VisitorWithDefaults = parserInstance.getBaseCstVisitorConstructorWithDefaults();
+const BaseASN1VisitorWithDefaults =
+  parserInstance.getBaseCstVisitorConstructorWithDefaults();
 
 export class ASN1Visitor extends BaseASN1VisitorWithDefaults {
   constructor() {

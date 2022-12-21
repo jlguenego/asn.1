@@ -57,7 +57,9 @@ export function asn1Parse(): void {
       );
     }
   } catch (e) {
-    console.log('Cannot read <msgFile>:', e.message);
+    if (e instanceof Error) {
+      console.log('Cannot read <msgFile>:', e.message);
+    }
     program.help();
   }
 
@@ -70,7 +72,9 @@ export function asn1Parse(): void {
       asn1Definition = undefined;
     }
   } catch (e) {
-    console.log('Cannot read <asn1-file>:', e.message);
+    if (e instanceof Error) {
+      console.log('Cannot read <asn1-file>:', e.message);
+    }
     program.help();
   }
 
@@ -85,6 +89,6 @@ export function asn1Parse(): void {
     output = ASN1.validate(module, output, program.type);
   }
   console.log(
-    inspect(cloneAlpha((output as unknown) as Props), false, null, true)
+    inspect(cloneAlpha(output as unknown as Props), false, null, true)
   );
 }
