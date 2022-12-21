@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/jlguenego/asn.1/compare/v0.0.7...v0.0.8) (2022-12-21)
+
+
+### Features
+
+* added DefinitiveNumberForm ([19e9417](https://github.com/jlguenego/asn.1/commit/19e9417fb61972cbe927b97ac2732c6be319004b))
+
 ### [0.0.7](https://github.com/jlguenego/asn.1/compare/v0.0.6...v0.0.7) (2020-12-27)
 
 
